@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07164281E1CF179006A2FCD /* AppDelegate.swift */; };
+		B071642B1E1CF179006A2FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071642A1E1CF179006A2FCD /* ViewController.swift */; };
+		B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B071642C1E1CF179006A2FCD /* Main.storyboard */; };
+		B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B071642F1E1CF179006A2FCD /* ____.xcdatamodeld */; };
+		B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B07164321E1CF179006A2FCD /* Assets.xcassets */; };
+		B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */; };
+		B07164411E1CF179006A2FCD /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07164401E1CF179006A2FCD /* ____Tests.swift */; };
+		B071644C1E1CF179006A2FCD /* ____UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071644B1E1CF179006A2FCD /* ____UITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B071643D1E1CF179006A2FCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B071641D1E1CF179006A2FCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B07164241E1CF179006A2FCD;
+			remoteInfo = "约玩平台";
+		};
+		B07164481E1CF179006A2FCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B071641D1E1CF179006A2FCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B07164241E1CF179006A2FCD;
+			remoteInfo = "约玩平台";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B07164251E1CF179006A2FCD /* 约玩平台.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "约玩平台.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B07164281E1CF179006A2FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B071642A1E1CF179006A2FCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B071642D1E1CF179006A2FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B07164301E1CF179006A2FCD /* ____.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "____.xcdatamodel"; sourceTree = "<group>"; };
+		B07164321E1CF179006A2FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B07164351E1CF179006A2FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B07164371E1CF179006A2FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B071643C1E1CF179006A2FCD /* 约玩平台Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "约玩平台Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B07164401E1CF179006A2FCD /* ____Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____Tests.swift"; sourceTree = "<group>"; };
+		B07164421E1CF179006A2FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B07164471E1CF179006A2FCD /* 约玩平台UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "约玩平台UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B071644B1E1CF179006A2FCD /* ____UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____UITests.swift"; sourceTree = "<group>"; };
+		B071644D1E1CF179006A2FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B07164221E1CF179006A2FCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07164391E1CF179006A2FCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07164441E1CF179006A2FCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B071641C1E1CF179006A2FCD = {
+			isa = PBXGroup;
+			children = (
+				B07164271E1CF179006A2FCD /* 约玩平台 */,
+				B071643F1E1CF179006A2FCD /* 约玩平台Tests */,
+				B071644A1E1CF179006A2FCD /* 约玩平台UITests */,
+				B07164261E1CF179006A2FCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B07164261E1CF179006A2FCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B07164251E1CF179006A2FCD /* 约玩平台.app */,
+				B071643C1E1CF179006A2FCD /* 约玩平台Tests.xctest */,
+				B07164471E1CF179006A2FCD /* 约玩平台UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
+			isa = PBXGroup;
+			children = (
+				B07164281E1CF179006A2FCD /* AppDelegate.swift */,
+				B071642A1E1CF179006A2FCD /* ViewController.swift */,
+				B071642C1E1CF179006A2FCD /* Main.storyboard */,
+				B07164321E1CF179006A2FCD /* Assets.xcassets */,
+				B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */,
+				B07164371E1CF179006A2FCD /* Info.plist */,
+				B071642F1E1CF179006A2FCD /* ____.xcdatamodeld */,
+			);
+			path = "约玩平台";
+			sourceTree = "<group>";
+		};
+		B071643F1E1CF179006A2FCD /* 约玩平台Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B07164401E1CF179006A2FCD /* ____Tests.swift */,
+				B07164421E1CF179006A2FCD /* Info.plist */,
+			);
+			path = "约玩平台Tests";
+			sourceTree = "<group>";
+		};
+		B071644A1E1CF179006A2FCD /* 约玩平台UITests */ = {
+			isa = PBXGroup;
+			children = (
+				B071644B1E1CF179006A2FCD /* ____UITests.swift */,
+				B071644D1E1CF179006A2FCD /* Info.plist */,
+			);
+			path = "约玩平台UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B07164241E1CF179006A2FCD /* 约玩平台 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B07164501E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台" */;
+			buildPhases = (
+				B07164211E1CF179006A2FCD /* Sources */,
+				B07164221E1CF179006A2FCD /* Frameworks */,
+				B07164231E1CF179006A2FCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "约玩平台";
+			productName = "约玩平台";
+			productReference = B07164251E1CF179006A2FCD /* 约玩平台.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B071643B1E1CF179006A2FCD /* 约玩平台Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B07164531E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台Tests" */;
+			buildPhases = (
+				B07164381E1CF179006A2FCD /* Sources */,
+				B07164391E1CF179006A2FCD /* Frameworks */,
+				B071643A1E1CF179006A2FCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B071643E1E1CF179006A2FCD /* PBXTargetDependency */,
+			);
+			name = "约玩平台Tests";
+			productName = "约玩平台Tests";
+			productReference = B071643C1E1CF179006A2FCD /* 约玩平台Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B07164461E1CF179006A2FCD /* 约玩平台UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B07164561E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台UITests" */;
+			buildPhases = (
+				B07164431E1CF179006A2FCD /* Sources */,
+				B07164441E1CF179006A2FCD /* Frameworks */,
+				B07164451E1CF179006A2FCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B07164491E1CF179006A2FCD /* PBXTargetDependency */,
+			);
+			name = "约玩平台UITests";
+			productName = "约玩平台UITests";
+			productReference = B07164471E1CF179006A2FCD /* 约玩平台UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B071641D1E1CF179006A2FCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Bossxuan;
+				TargetAttributes = {
+					B07164241E1CF179006A2FCD = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7PY3375THJ;
+						ProvisioningStyle = Automatic;
+					};
+					B071643B1E1CF179006A2FCD = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7PY3375THJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B07164241E1CF179006A2FCD;
+					};
+					B07164461E1CF179006A2FCD = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7PY3375THJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B07164241E1CF179006A2FCD;
+					};
+				};
+			};
+			buildConfigurationList = B07164201E1CF179006A2FCD /* Build configuration list for PBXProject "约玩平台" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B071641C1E1CF179006A2FCD;
+			productRefGroup = B07164261E1CF179006A2FCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B07164241E1CF179006A2FCD /* 约玩平台 */,
+				B071643B1E1CF179006A2FCD /* 约玩平台Tests */,
+				B07164461E1CF179006A2FCD /* 约玩平台UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B07164231E1CF179006A2FCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
+				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
+				B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B071643A1E1CF179006A2FCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07164451E1CF179006A2FCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B07164211E1CF179006A2FCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B071642B1E1CF179006A2FCD /* ViewController.swift in Sources */,
+				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
+				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07164381E1CF179006A2FCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B07164411E1CF179006A2FCD /* ____Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07164431E1CF179006A2FCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B071644C1E1CF179006A2FCD /* ____UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B071643E1E1CF179006A2FCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B07164241E1CF179006A2FCD /* 约玩平台 */;
+			targetProxy = B071643D1E1CF179006A2FCD /* PBXContainerItemProxy */;
+		};
+		B07164491E1CF179006A2FCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B07164241E1CF179006A2FCD /* 约玩平台 */;
+			targetProxy = B07164481E1CF179006A2FCD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B071642C1E1CF179006A2FCD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B071642D1E1CF179006A2FCD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B07164351E1CF179006A2FCD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B071644E1E1CF179006A2FCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B071644F1E1CF179006A2FCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B07164511E1CF179006A2FCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B07164521E1CF179006A2FCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B07164541E1CF179006A2FCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/约玩平台.app/约玩平台";
+			};
+			name = Debug;
+		};
+		B07164551E1CF179006A2FCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/约玩平台.app/约玩平台";
+			};
+			name = Release;
+		};
+		B07164571E1CF179006A2FCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "约玩平台";
+			};
+			name = Debug;
+		};
+		B07164581E1CF179006A2FCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 7PY3375THJ;
+				INFOPLIST_FILE = "约玩平台UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23.----UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "约玩平台";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B07164201E1CF179006A2FCD /* Build configuration list for PBXProject "约玩平台" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B071644E1E1CF179006A2FCD /* Debug */,
+				B071644F1E1CF179006A2FCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B07164501E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B07164511E1CF179006A2FCD /* Debug */,
+				B07164521E1CF179006A2FCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B07164531E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B07164541E1CF179006A2FCD /* Debug */,
+				B07164551E1CF179006A2FCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B07164561E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B07164571E1CF179006A2FCD /* Debug */,
+				B07164581E1CF179006A2FCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B071642F1E1CF179006A2FCD /* ____.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B07164301E1CF179006A2FCD /* ____.xcdatamodel */,
+			);
+			currentVersion = B07164301E1CF179006A2FCD /* ____.xcdatamodel */;
+			path = "____.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B071641D1E1CF179006A2FCD /* Project object */;
+}
