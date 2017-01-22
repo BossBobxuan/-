@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */; };
+		B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */; };
+		B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39D1E1E4D53001B17F2 /* slideView.swift */; };
+		B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F3F821E222F8800777C82 /* ActivityModel.swift */; };
+		B05F3F851E223C8900777C82 /* ActivityDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F3F841E223C8900777C82 /* ActivityDisplayTableViewCell.swift */; };
+		B05F3F871E223D3D00777C82 /* interested.png in Resources */ = {isa = PBXBuildFile; fileRef = B05F3F861E223D3D00777C82 /* interested.png */; };
+		B05F3F8A1E22681700777C82 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = B05F3F891E22681700777C82 /* location.png */; };
 		B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07164281E1CF179006A2FCD /* AppDelegate.swift */; };
-		B071642B1E1CF179006A2FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071642A1E1CF179006A2FCD /* ViewController.swift */; };
 		B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B071642C1E1CF179006A2FCD /* Main.storyboard */; };
 		B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B071642F1E1CF179006A2FCD /* ____.xcdatamodeld */; };
 		B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B07164321E1CF179006A2FCD /* Assets.xcassets */; };
 		B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */; };
 		B07164411E1CF179006A2FCD /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07164401E1CF179006A2FCD /* ____Tests.swift */; };
 		B071644C1E1CF179006A2FCD /* ____UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071644B1E1CF179006A2FCD /* ____UITests.swift */; };
+		B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */; };
+		B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645C1E1CF326006A2FCD /* LoginViewController.swift */; };
+		B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645E1E1CF339006A2FCD /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.release.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.release.xcconfig"; sourceTree = "<group>"; };
+		B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitylistViewController.swift; sourceTree = "<group>"; };
+		B056B39D1E1E4D53001B17F2 /* slideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slideView.swift; sourceTree = "<group>"; };
+		B05F3F821E222F8800777C82 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		B05F3F841E223C8900777C82 /* ActivityDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDisplayTableViewCell.swift; sourceTree = "<group>"; };
+		B05F3F861E223D3D00777C82 /* interested.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interested.png; sourceTree = "<group>"; };
+		B05F3F891E22681700777C82 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		B07164251E1CF179006A2FCD /* 约玩平台.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "约玩平台.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B07164281E1CF179006A2FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B071642A1E1CF179006A2FCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B071642D1E1CF179006A2FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B07164301E1CF179006A2FCD /* ____.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "____.xcdatamodel"; sourceTree = "<group>"; };
 		B07164321E1CF179006A2FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +64,12 @@
 		B07164471E1CF179006A2FCD /* 约玩平台UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "约玩平台UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B071644B1E1CF179006A2FCD /* ____UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____UITests.swift"; sourceTree = "<group>"; };
 		B071644D1E1CF179006A2FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstUseViewController.swift; sourceTree = "<group>"; };
+		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
+		D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-约玩平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.debug.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +98,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38F91091490B34495BD613AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */,
+				1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B056B39A1E1E4BCA001B17F2 /* 活动列表界面 */ = {
+			isa = PBXGroup;
+			children = (
+				B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */,
+				B056B39D1E1E4D53001B17F2 /* slideView.swift */,
+				B05F3F821E222F8800777C82 /* ActivityModel.swift */,
+				B05F3F841E223C8900777C82 /* ActivityDisplayTableViewCell.swift */,
+			);
+			name = "活动列表界面";
+			sourceTree = "<group>";
+		};
+		B05F3F881E223D4C00777C82 /* supportfile */ = {
+			isa = PBXGroup;
+			children = (
+				B05F3F861E223D3D00777C82 /* interested.png */,
+				B05F3F891E22681700777C82 /* location.png */,
+			);
+			name = supportfile;
+			sourceTree = "<group>";
+		};
 		B071641C1E1CF179006A2FCD = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +134,8 @@
 				B071643F1E1CF179006A2FCD /* 约玩平台Tests */,
 				B071644A1E1CF179006A2FCD /* 约玩平台UITests */,
 				B07164261E1CF179006A2FCD /* Products */,
+				38F91091490B34495BD613AA /* Pods */,
+				FD0A758884871EC04E41FC42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +152,16 @@
 		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
 			isa = PBXGroup;
 			children = (
+				B05F3F881E223D4C00777C82 /* supportfile */,
+				B056B39A1E1E4BCA001B17F2 /* 活动列表界面 */,
+				B07164591E1CF1AE006A2FCD /* 首次进入注册与登录 */,
 				B07164281E1CF179006A2FCD /* AppDelegate.swift */,
-				B071642A1E1CF179006A2FCD /* ViewController.swift */,
 				B071642C1E1CF179006A2FCD /* Main.storyboard */,
 				B07164321E1CF179006A2FCD /* Assets.xcassets */,
 				B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */,
 				B07164371E1CF179006A2FCD /* Info.plist */,
 				B071642F1E1CF179006A2FCD /* ____.xcdatamodeld */,
+				B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */,
 			);
 			path = "约玩平台";
 			sourceTree = "<group>";
@@ -128,6 +184,24 @@
 			path = "约玩平台UITests";
 			sourceTree = "<group>";
 		};
+		B07164591E1CF1AE006A2FCD /* 首次进入注册与登录 */ = {
+			isa = PBXGroup;
+			children = (
+				B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */,
+				B071645C1E1CF326006A2FCD /* LoginViewController.swift */,
+				B071645E1E1CF339006A2FCD /* SignUpViewController.swift */,
+			);
+			name = "首次进入注册与登录";
+			sourceTree = "<group>";
+		};
+		FD0A758884871EC04E41FC42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B07164501E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台" */;
 			buildPhases = (
+				AD3D9E1EDC1DF76C03C52A7C /* [CP] Check Pods Manifest.lock */,
 				B07164211E1CF179006A2FCD /* Sources */,
 				B07164221E1CF179006A2FCD /* Frameworks */,
 				B07164231E1CF179006A2FCD /* Resources */,
+				E0CB26D239FA892E2F099426 /* [CP] Embed Pods Frameworks */,
+				86288E85B397211C9BE93C75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,7 +315,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B05F3F871E223D3D00777C82 /* interested.png in Resources */,
 				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
+				B05F3F8A1E22681700777C82 /* location.png in Resources */,
 				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
 				B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */,
 			);
@@ -260,14 +339,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		86288E85B397211C9BE93C75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD3D9E1EDC1DF76C03C52A7C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E0CB26D239FA892E2F099426 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B07164211E1CF179006A2FCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B071642B1E1CF179006A2FCD /* ViewController.swift in Sources */,
+				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
+				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
+				B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */,
+				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
+				B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
+				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
+				B05F3F851E223C8900777C82 /* ActivityDisplayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +548,7 @@
 		};
 		B07164511E1CF179006A2FCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7PY3375THJ;
@@ -422,12 +556,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B07164521E1CF179006A2FCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7PY3375THJ;
@@ -435,6 +571,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -516,6 +653,7 @@
 				B07164521E1CF179006A2FCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B07164531E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台Tests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +662,7 @@
 				B07164551E1CF179006A2FCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B07164561E1CF179006A2FCD /* Build configuration list for PBXNativeTarget "约玩平台UITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +671,7 @@
 				B07164581E1CF179006A2FCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
