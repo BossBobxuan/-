@@ -144,6 +144,16 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         let alert = UIAlertController(title: "无法连接", message: "请检查网络连接  ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        if self.activityTableView.refreshControl?.isRefreshing == true
+        {
+            self.activityTableView.refreshControl?.endRefreshing()
+        }
+        if self.loadingstateUI.isAnimating == true
+        {
+            loadingstateUI.stopAnimating()
+            btn.isHidden = false
+            
+        }
     }
     //请求数据成功后的回调
     func needreload() {
