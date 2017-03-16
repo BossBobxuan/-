@@ -273,25 +273,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDb-Us-8aH">
-                                <rect key="frame" x="16" y="193" width="29" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ah-Re-m6Z">
                                 <rect key="frame" x="64" y="168" width="9" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8J-5f-WPu">
-                                <rect key="frame" x="64" y="193" width="43" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PYK-de-et8">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PYK-de-et8">
                                 <rect key="frame" x="16" y="218" width="343" height="29"/>
                                 <segments>
                                     <segment title="参与"/>
@@ -302,19 +290,34 @@
                                     <action selector="needChangeUserActivityShowList:" destination="3KI-Xp-R29" eventType="valueChanged" id="i2O-nD-t2f"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnn-4r-Wud">
+                                <rect key="frame" x="10" y="186" width="31" height="30"/>
+                                <state key="normal" title="关注">
+                                    <color key="titleColor" red="0.092898796290000002" green="0.099420600299999995" blue="0.1060993522" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jgg-Gb-AfY" kind="show" id="07H-cX-yXE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-H9-zBc">
+                                <rect key="frame" x="49" y="186" width="46" height="30"/>
+                                <state key="normal" title="关注者">
+                                    <color key="titleColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jgg-Gb-AfY" kind="show" id="kke-B2-ZGp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PYK-de-et8" firstAttribute="top" secondItem="iDb-Us-8aH" secondAttribute="bottom" constant="8" symbolic="YES" id="18D-qC-Qee"/>
                             <constraint firstAttribute="leadingMargin" secondItem="PYK-de-et8" secondAttribute="leading" id="3YK-FV-lf0"/>
                             <constraint firstItem="C09-lI-SLv" firstAttribute="top" secondItem="lt8-gL-Zo8" secondAttribute="bottom" constant="8" symbolic="YES" id="444-Qu-8LO"/>
-                            <constraint firstItem="M8J-5f-WPu" firstAttribute="leading" secondItem="1ah-Re-m6Z" secondAttribute="leading" id="5VJ-nt-hbD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="C09-lI-SLv" secondAttribute="trailing" id="7KU-Yb-1a8"/>
-                            <constraint firstItem="iDb-Us-8aH" firstAttribute="top" secondItem="Fjk-B8-WtH" secondAttribute="bottom" constant="8" symbolic="YES" id="8gM-1e-Eog"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="iDb-Us-8aH" secondAttribute="leading" id="Ato-BZ-bm9"/>
                             <constraint firstItem="Fjk-B8-WtH" firstAttribute="top" secondItem="C09-lI-SLv" secondAttribute="bottom" constant="8" symbolic="YES" id="Dn4-9f-MYy"/>
+                            <constraint firstItem="PJB-H9-zBc" firstAttribute="leading" secondItem="Wnn-4r-Wud" secondAttribute="trailing" constant="8" symbolic="YES" id="HGf-w9-HwR"/>
+                            <constraint firstItem="Wnn-4r-Wud" firstAttribute="top" secondItem="Fjk-B8-WtH" secondAttribute="bottom" constant="1" id="KW1-UF-5wR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ciz-oO-tW9" secondAttribute="trailing" id="Veh-je-5Vl"/>
-                            <constraint firstItem="M8J-5f-WPu" firstAttribute="top" secondItem="1ah-Re-m6Z" secondAttribute="bottom" constant="8" symbolic="YES" id="WbZ-Nj-wEH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PYK-de-et8" secondAttribute="trailing" id="YDL-9Q-h8N"/>
                             <constraint firstItem="Ciz-oO-tW9" firstAttribute="height" secondItem="lt8-gL-Zo8" secondAttribute="height" id="Z1i-2C-FZ1"/>
                             <constraint firstAttribute="leadingMargin" secondItem="C09-lI-SLv" secondAttribute="leading" id="jwt-g2-lWk"/>
@@ -322,6 +325,8 @@
                             <constraint firstItem="1ah-Re-m6Z" firstAttribute="leading" secondItem="Ciz-oO-tW9" secondAttribute="leading" id="llK-JT-4Vq"/>
                             <constraint firstItem="Ciz-oO-tW9" firstAttribute="centerY" secondItem="lt8-gL-Zo8" secondAttribute="centerY" id="nB7-TF-i0x"/>
                             <constraint firstItem="lt8-gL-Zo8" firstAttribute="top" secondItem="BhE-Wd-i0D" secondAttribute="bottom" constant="8" symbolic="YES" id="nJY-cv-uE0"/>
+                            <constraint firstItem="Wnn-4r-Wud" firstAttribute="leading" secondItem="bsl-0r-KiV" secondAttribute="leadingMargin" constant="-6" id="rRE-gj-Qqa"/>
+                            <constraint firstItem="PJB-H9-zBc" firstAttribute="top" secondItem="Wnn-4r-Wud" secondAttribute="top" id="t4r-PO-qeh"/>
                             <constraint firstAttribute="leadingMargin" secondItem="lt8-gL-Zo8" secondAttribute="leading" id="tct-5G-xgQ"/>
                             <constraint firstItem="1ah-Re-m6Z" firstAttribute="top" secondItem="Fjk-B8-WtH" secondAttribute="top" id="uo2-TT-o2u"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Fjk-B8-WtH" secondAttribute="leading" id="vp5-2N-cLp"/>
@@ -338,7 +343,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBF-80-wcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="2047.826086956522"/>
+            <point key="canvasLocation" x="2756" y="2048"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a6l-42-4eh">
+            <objects>
+                <viewController id="jgg-Gb-AfY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Atb-SV-xbi"/>
+                        <viewControllerLayoutGuide type="bottom" id="7at-BU-1sL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TQw-ri-Pap">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yT5-Eg-Zfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3617" y="2048"/>
         </scene>
         <!--站内信-->
         <scene sceneID="EKh-67-PHp">
@@ -378,6 +401,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tl6-r8-pIZ">
+                                        <rect key="frame" x="10" y="10" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVJ-nN-pY0">
                                         <rect key="frame" x="79" y="367" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -599,4 +627,7 @@
     <resources>
         <image name="interested.png" width="1609" height="1555"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="07H-cX-yXE"/>
+    </inferredMetricsTieBreakers>
 </document>
