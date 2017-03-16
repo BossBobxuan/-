@@ -12,31 +12,7 @@ protocol GetDataSuccessDelegate {
     func needreload()->Void
     func errordisplay()->Void
 }
-class ActivityEnity:NSObject,MKAnnotation
-{
-    var activityTitle:String
-    var ownername:String
-    var interestednumber:Int
-    var latitude:CLLocationDegrees
-    var longitude:CLLocationDegrees
-    var title: String?
-        {
-            return activityTitle
-    }
-    var coordinate: CLLocationCoordinate2D
-        {
-            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    init(activityTitle:String,ownername:String,interestednumber:Int,latitude:CLLocationDegrees,longitude:CLLocationDegrees)
-    {
-        
-        self.activityTitle = activityTitle
-        self.ownername = ownername
-        self.interestednumber = interestednumber
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-}
+
 class ActivityModel
 {
     var enitys:[ActivityEnity] = [ActivityEnity]()
