@@ -7,8 +7,12 @@
 //
 
 import UIKit
-
-class PersonalInfomationViewController: UIViewController,getPersonalInformationDelegate {
+struct seguename {
+    static let toFollowersView = "segueToFollowersList"
+    static let toFansView = "segueToFansList"
+    static let toUserInformation = "segueToUserInformation"
+}
+class PersonalInfomationViewController: UIViewController,PullDataDelegate {
     //MARK: - outlet
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var fansCountsLabel: UILabel!
@@ -16,6 +20,8 @@ class PersonalInfomationViewController: UIViewController,getPersonalInformationD
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     fileprivate var personalInformationModel: PersonalInformationModel!
+    var uid: Int?
+    
     //MARK: - Event func
     
     //此函数用于改变用户活动列表（感兴趣，参加，发布）
@@ -28,8 +34,15 @@ class PersonalInfomationViewController: UIViewController,getPersonalInformationD
         self.personalInformationModel = PersonalInformationModel(delegate: self)
         
         //此处以后需要更改该token
-        personalInformationModel.getPersonalInformation(token: "222")
-        
+        if uid != nil
+        {
+            personalInformationModel.getUserInformation(uid: uid!)
+        }else
+        {
+            
+            //此处token需要更改
+            personalInformationModel.getPersonalInformation(token: "222")
+        }
         
         
     }
@@ -53,11 +66,37 @@ class PersonalInfomationViewController: UIViewController,getPersonalInformationD
         }
     }
     //此函数用于拉取数据失败的处理
-    func getPersonalInformationFailed()
+    func getDataFailed()
     {
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    //MARK: - prepare segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == seguename.toFollowersView
+        {
+            
+            if let controller = segue.destination as? ShowUserViewController
+            {
+                
+                controller.type = "follower"
+                controller.navigationItem.title = self.followerCountsLabel.text! + " 关注"
+                controller.uid = uid
+            }
+        }
+        else if segue.identifier == seguename.toFansView
+        {
+            if let controller = segue.destination as? ShowUserViewController
+            {
+                
+                controller.type = "fan"
+                controller.navigationItem.title = self.fansCountsLabel.text! + " 关注者"
+                controller.uid = uid
+            }
+        }
     }
     /*
     // MARK: - Navigation

@@ -25,6 +25,9 @@
 		B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */; };
 		B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645C1E1CF326006A2FCD /* LoginViewController.swift */; };
 		B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645E1E1CF339006A2FCD /* SignUpViewController.swift */; };
+		B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */; };
+		B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */; };
+		B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */; };
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
@@ -72,6 +75,9 @@
 		B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstUseViewController.swift; sourceTree = "<group>"; };
 		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowUserViewController.swift; sourceTree = "<group>"; };
+		B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDataDelegate.swift; sourceTree = "<group>"; };
+		B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersOrFansModel.swift; sourceTree = "<group>"; };
 		B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationModel.swift; sourceTree = "<group>"; };
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
@@ -115,13 +121,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B0355E1B1E7AAE64003429C8 /* 个人信息界面 */ = {
+		B0355E1B1E7AAE64003429C8 /* 用户信息界面 */ = {
 			isa = PBXGroup;
 			children = (
 				B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */,
+				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
+				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
 			);
-			name = "个人信息界面";
+			name = "用户信息界面";
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -170,8 +178,9 @@
 		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
 			isa = PBXGroup;
 			children = (
+				B08AFDE21E7D553A004C9C96 /* Protocal */,
 				B096D2B51E7AC5FF00E5D201 /* Enity */,
-				B0355E1B1E7AAE64003429C8 /* 个人信息界面 */,
+				B0355E1B1E7AAE64003429C8 /* 用户信息界面 */,
 				B05F3F881E223D4C00777C82 /* supportfile */,
 				B056B39A1E1E4BCA001B17F2 /* 活动列表界面 */,
 				B07164591E1CF1AE006A2FCD /* 首次进入注册与登录 */,
@@ -212,6 +221,14 @@
 				B071645E1E1CF339006A2FCD /* SignUpViewController.swift */,
 			);
 			name = "首次进入注册与登录";
+			sourceTree = "<group>";
+		};
+		B08AFDE21E7D553A004C9C96 /* Protocal */ = {
+			isa = PBXGroup;
+			children = (
+				B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */,
+			);
+			name = Protocal;
 			sourceTree = "<group>";
 		};
 		B096D2B51E7AC5FF00E5D201 /* Enity */ = {
@@ -431,8 +448,11 @@
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,
 				B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */,
+				B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
+				B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */,
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
+				B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */,
 				B05F3F851E223C8900777C82 /* ActivityDisplayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

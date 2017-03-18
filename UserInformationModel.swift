@@ -10,19 +10,16 @@ import Foundation
 struct urlStruct {
     static let basicUrl = "http://develop.doris.work:8888/"
 }
-protocol getPersonalInformationDelegate {
-    func needUpdateUI() -> Void
-    func getPersonalInformationFailed() -> Void
-}
+
 
 
 
 class PersonalInformationModel
 {
     var personalInformationEnity: UserInfomationEnity?
-    var delegate: getPersonalInformationDelegate
+    var delegate: PullDataDelegate
     
-    init(delegate: getPersonalInformationDelegate) {
+    init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
     
@@ -33,14 +30,34 @@ class PersonalInformationModel
         manager.get(requestUrl, parameters: ["token":token], progress: {(progress) in }, success: {
             (dataTask,response) in
                 self.dealwithResponse(response: response)
+            
         
         
         }, failure: {(dataTask,error) in
                 print(error)
-                self.delegate.getPersonalInformationFailed()
+                self.delegate.getDataFailed()
         
         })
+        
     }
+    func getUserInformation(uid: Int) -> Void
+    {
+        let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)" + ".json"
+        let manager = AFHTTPSessionManager()
+        manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            self.dealwithResponse(response: response)
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+        
+    }
+    
     fileprivate func dealwithResponse(response: Any?) -> Void
     {
         if let JsonDictionary = response as? NSDictionary
@@ -50,7 +67,7 @@ class PersonalInformationModel
         }
         else
         {
-            self.delegate.getPersonalInformationFailed()
+            self.delegate.getDataFailed()
         }
     }
     
