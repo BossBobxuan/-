@@ -58,6 +58,10 @@ class PersonalInformationModel
         
     }
     
+    
+    
+   
+    
     fileprivate func dealwithResponse(response: Any?) -> Void
     {
         if let JsonDictionary = response as? NSDictionary

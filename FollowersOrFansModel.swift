@@ -14,6 +14,7 @@ class FollowersOrFansModel
     var delegate: PullDataDelegate
     var page: Int = 1
     var type: String
+    let manager = AFHTTPSessionManager()
     init(delegate: PullDataDelegate,type: String) {
         self.delegate = delegate
         self.type = type
@@ -22,7 +23,7 @@ class FollowersOrFansModel
     func GetFollowersOrFansList(token: String) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
-        let manager = AFHTTPSessionManager()
+       
         manager.get(requestUrl, parameters: ["token":token,"page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -39,7 +40,7 @@ class FollowersOrFansModel
     func GetFollowersOrFansList(uid: Int) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
-        let manager = AFHTTPSessionManager()
+        
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -58,7 +59,7 @@ class FollowersOrFansModel
         page = 1
         userInformationEnitys = []
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
-        let manager = AFHTTPSessionManager()
+        
         manager.get(requestUrl, parameters: ["token":token,"page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -76,7 +77,7 @@ class FollowersOrFansModel
         page = 1
         userInformationEnitys = []
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
-        let manager = AFHTTPSessionManager()
+        
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -89,7 +90,37 @@ class FollowersOrFansModel
         })
     }
     
-    
+    //添加关注
+    func addFollow(uid: Int)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        
+        //此处token需要更改
+        manager.post(requestUrl, parameters: ["token": "2222"], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+        
+    }
+    //取消关注
+    func notFollow(uid: Int)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        manager.delete(requestUrl, parameters: ["token": "2222"], success: {(dataTask,response) in
+        
+        
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+        
+        })
+    }
     fileprivate func dealwithResponse(response: Any?) -> Void
     {
         

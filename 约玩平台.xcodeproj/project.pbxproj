@@ -31,6 +31,8 @@
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
+		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
+		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
 		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
+		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
+		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
 		D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-约玩平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.debug.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,8 +130,10 @@
 			children = (
 				B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */,
 				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
+				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
+				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
 			);
 			name = "用户信息界面";
 			path = ..;
@@ -438,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */,
 				B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */,
 				B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */,
 				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
@@ -449,6 +456,7 @@
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,
 				B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */,
 				B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */,
+				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
 				B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */,
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
@@ -526,6 +534,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -575,6 +584,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -607,7 +617,7 @@
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
@@ -622,7 +632,7 @@
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23.----";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;

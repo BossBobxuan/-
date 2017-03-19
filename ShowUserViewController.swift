@@ -25,6 +25,8 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //MARK: - Event func
+    
+    //下拉更新
     func pullToRefresh()
     {
         print("下拉刷新")
@@ -56,6 +58,38 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         
         
     }
+    //更改关注状态
+    func changeStateOfFollow(_ sender: haveUidButton)
+    {
+        if sender.titleLabel?.text == "互相关注"
+        {
+            followersOrFansModel.notFollow(uid: sender.uid!)
+            sender.setTitle("被关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "被关注"
+        {
+            followersOrFansModel.addFollow(uid: sender.uid!)
+            sender.setTitle("互相关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "已关注"
+        {
+            followersOrFansModel.notFollow(uid: sender.uid!)
+            sender.setTitle("未关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "未关注"
+        {
+            followersOrFansModel.addFollow(uid: sender.uid!)
+            sender.setTitle("已关注", for: .normal)
+        }
+        //此处做测试等下需要删除
+        else if sender.titleLabel?.text == "自己"
+        {
+            followersOrFansModel.addFollow(uid: sender.uid!)
+            sender.setTitle("已关注", for: .normal)
+        }
+    }
+    
+    
     
     //MARK: - viewController lifecycle
     override func viewDidLoad() {
@@ -97,9 +131,12 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: seguename.toUserInformation, sender: followersOrFansModel.userInformationEnitys[indexPath.row])
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
     //MARK: - tableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,9 +146,42 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "default")
-        cell?.textLabel?.text = followersOrFansModel.userInformationEnitys[indexPath.row].name
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! UserInformationTableViewCell
+        cell.nameLabel.text = followersOrFansModel.userInformationEnitys[indexPath.row].name
+        cell.discriptionTextView.text = followersOrFansModel.userInformationEnitys[indexPath.row].description
+        if followersOrFansModel.userInformationEnitys[indexPath.row].avatar != nil
+        {
+            //在此处异步获取头像照片
+            
+        }
+        cell.followStateButton.uid = followersOrFansModel.userInformationEnitys[indexPath.row].id
+        cell.followStateButton.addTarget(self, action: "changeStateOfFollow:", for: .touchUpInside)
+        let relation = followersOrFansModel.userInformationEnitys[indexPath.row].relation
+        if relation == "follower"
+        {
+            cell.followStateButton.setTitle("已关注", for: .normal)
+        }
+        else if relation == "fans"
+        {
+            cell.followStateButton.setTitle("被关注", for: .normal)
+            
+        }
+        else if relation == "friend"
+        {
+            cell.followStateButton.setTitle("互相关注", for: .normal)
+        }
+        else if relation == "myself"
+        {
+            //cell.followStateButton.isHidden = true
+            //做测试先显示按钮
+            cell.followStateButton.setTitle("自己", for: .normal)
+            //cell.followStateButton.isEnabled = false
+        }
+        else if relation == "stranger"
+        {
+            cell.followStateButton.setTitle("未关注", for: .normal)
+        }
+        return cell
     }
     
     
