@@ -223,8 +223,8 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         {
             if let controller = segue.destination as? PersonalInfomationViewController
             {
-                controller.uid = (sender as! UserInfomationEnity).id
-                controller.title = (sender as! UserInfomationEnity).name
+                controller.uid = (sender as! UserInformationEnity).id
+                controller.title = (sender as! UserInformationEnity).name
             }
         }
             

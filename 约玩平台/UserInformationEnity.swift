@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class UserInfomationEnity
+class UserInformationEnity
 {
     var id: Int
     var user: String
@@ -18,8 +18,8 @@ class UserInfomationEnity
     var fansCount: Int
     var activitiesCount: Int
     var relation: String
-    
-    init(id: Int,user: String,name: String,avatar: Int?,description: String,followersCount: Int,fansCount: Int,activitiesCount: Int,relation: String)
+    var gender: String?
+    init(id: Int,user: String,name: String,avatar: Int?,description: String,followersCount: Int,fansCount: Int,activitiesCount: Int,relation: String,gender: String?)
     {
         self.id = id
         self.user = user
@@ -30,5 +30,6 @@ class UserInfomationEnity
         self.fansCount = fansCount
         self.activitiesCount = activitiesCount
         self.relation = relation
+        self.gender = gender
     }
 }

@@ -16,7 +16,7 @@ class ActivityEnity:NSObject,MKAnnotation
     var wisherCount: Int?
     var wisherTotal: Int?
     var participantCount: Int?
-    var creator: UserInfomationEnity?
+    var creator: UserInformationEnity?
     var beginTime: Int? //此处应为Unix时间戳
     var endTime: Int? //此处应为Unix时间戳
     var address: String?

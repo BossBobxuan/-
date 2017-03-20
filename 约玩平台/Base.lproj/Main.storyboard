@@ -340,11 +340,141 @@
                         <outlet property="fansCountsLabel" destination="1ah-Re-m6Z" id="G60-xm-b3S"/>
                         <outlet property="followerCountsLabel" destination="Fjk-B8-WtH" id="mVy-6w-41g"/>
                         <outlet property="nameLabel" destination="Ciz-oO-tW9" id="bcL-BU-nIR"/>
+                        <segue destination="VTE-9D-Cne" kind="show" identifier="segueToEditPersonalInformation" id="9jE-dl-dsI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBF-80-wcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2756" y="2048"/>
+        </scene>
+        <!--Edit Personal Information View Controller-->
+        <scene sceneID="gkR-ei-dch">
+            <objects>
+                <viewController id="VTE-9D-Cne" customClass="EditPersonalInformationViewController" customModule="约玩平台" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a87-AJ-1NI"/>
+                        <viewControllerLayoutGuide type="bottom" id="awz-XT-IxN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7c4-3D-T0F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RHt-X6-5An">
+                                <rect key="frame" x="16" y="28" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HkN-2j-F5h"/>
+                                    <constraint firstAttribute="width" secondItem="RHt-X6-5An" secondAttribute="height" multiplier="1:1" id="JYL-gg-nEf"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5p-PW-3Jl">
+                                <rect key="frame" x="84" y="28" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="签名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aya-yO-d1W">
+                                <rect key="frame" x="84" y="66" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcq-aF-Afh">
+                                <rect key="frame" x="31" y="96" width="31" height="30"/>
+                                <state key="normal" title="编辑"/>
+                                <connections>
+                                    <action selector="EditAvatar:" destination="VTE-9D-Cne" eventType="touchUpInside" id="DHP-nM-Xbk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUg-3x-wnT">
+                                <rect key="frame" x="16" y="134" width="35" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Pd8-l2-lh5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9v-94-3de">
+                                <rect key="frame" x="59" y="129" width="300" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.092898796290000002" green="0.099420600299999995" blue="0.1060993522" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPickerView:" destination="VTE-9D-Cne" eventType="touchUpInside" id="nNS-yy-0Uj"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MmE-a7-UoU">
+                                <rect key="frame" x="16" y="519" width="343" height="140"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKC-nM-sgh">
+                                        <rect key="frame" x="8" y="0.0" width="31" height="30"/>
+                                        <state key="normal" title="取消"/>
+                                        <connections>
+                                            <action selector="cancelPick:" destination="VTE-9D-Cne" eventType="touchUpInside" id="KhJ-Z0-KqT"/>
+                                        </connections>
+                                    </button>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-nt-ijG">
+                                        <rect key="frame" x="20" y="40" width="303" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="bZv-1Q-HMg"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1a9-su-cyN">
+                                        <rect key="frame" x="304" y="0.0" width="31" height="30"/>
+                                        <state key="normal" title="完成"/>
+                                        <connections>
+                                            <action selector="finishPick:" destination="VTE-9D-Cne" eventType="touchUpInside" id="eUe-aS-qc9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qKC-nM-sgh" firstAttribute="top" secondItem="MmE-a7-UoU" secondAttribute="top" id="6gS-KN-Dyv"/>
+                                    <constraint firstAttribute="trailing" secondItem="1a9-su-cyN" secondAttribute="trailing" constant="8" id="7d3-DT-4d4"/>
+                                    <constraint firstItem="f4g-nt-ijG" firstAttribute="leading" secondItem="MmE-a7-UoU" secondAttribute="leading" constant="20" symbolic="YES" id="Edl-Uv-sSF"/>
+                                    <constraint firstAttribute="bottom" secondItem="f4g-nt-ijG" secondAttribute="bottom" constant="20" symbolic="YES" id="FbV-Vg-W7h"/>
+                                    <constraint firstAttribute="trailing" secondItem="f4g-nt-ijG" secondAttribute="trailing" constant="20" symbolic="YES" id="btk-zK-Eya"/>
+                                    <constraint firstAttribute="height" constant="140" id="dso-Ed-jpR"/>
+                                    <constraint firstItem="1a9-su-cyN" firstAttribute="top" secondItem="MmE-a7-UoU" secondAttribute="top" id="jGr-Xz-XBW"/>
+                                    <constraint firstItem="qKC-nM-sgh" firstAttribute="leading" secondItem="MmE-a7-UoU" secondAttribute="leading" constant="8" id="qEd-Rc-h16"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L5p-PW-3Jl" firstAttribute="trailing" secondItem="aya-yO-d1W" secondAttribute="trailing" id="2YQ-xx-c1s"/>
+                            <constraint firstItem="fUg-3x-wnT" firstAttribute="leading" secondItem="RHt-X6-5An" secondAttribute="leading" id="3f8-GV-def"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L5p-PW-3Jl" secondAttribute="trailing" id="B0P-hD-C6c"/>
+                            <constraint firstItem="aya-yO-d1W" firstAttribute="top" secondItem="L5p-PW-3Jl" secondAttribute="bottom" constant="8" symbolic="YES" id="Dbw-Hu-uNb"/>
+                            <constraint firstItem="aya-yO-d1W" firstAttribute="leading" secondItem="L5p-PW-3Jl" secondAttribute="leading" id="GIX-ZT-UqI"/>
+                            <constraint firstItem="L5p-PW-3Jl" firstAttribute="leading" secondItem="RHt-X6-5An" secondAttribute="trailing" constant="8" symbolic="YES" id="IOj-GM-588"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aya-yO-d1W" secondAttribute="trailing" id="InC-i4-hXc"/>
+                            <constraint firstItem="fUg-3x-wnT" firstAttribute="top" secondItem="Pcq-aF-Afh" secondAttribute="bottom" constant="8" symbolic="YES" id="N3T-JL-wKi"/>
+                            <constraint firstItem="L5p-PW-3Jl" firstAttribute="top" secondItem="RHt-X6-5An" secondAttribute="top" id="QVe-T7-vZD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MmE-a7-UoU" secondAttribute="trailing" id="RFQ-Ji-xdi"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="RHt-X6-5An" secondAttribute="leading" id="awt-Lh-glX"/>
+                            <constraint firstItem="awz-XT-IxN" firstAttribute="top" secondItem="MmE-a7-UoU" secondAttribute="bottom" constant="8" symbolic="YES" id="dAJ-Hb-fcf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="MmE-a7-UoU" secondAttribute="leading" id="p9P-4r-vm2"/>
+                            <constraint firstItem="Z9v-94-3de" firstAttribute="leading" secondItem="fUg-3x-wnT" secondAttribute="trailing" constant="8" id="ruP-Jd-G1g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z9v-94-3de" secondAttribute="trailing" id="sDb-fn-FNh"/>
+                            <constraint firstItem="Z9v-94-3de" firstAttribute="centerY" secondItem="fUg-3x-wnT" secondAttribute="centerY" id="tvk-qO-kcS"/>
+                            <constraint firstItem="aya-yO-d1W" firstAttribute="width" secondItem="L5p-PW-3Jl" secondAttribute="width" id="wrR-MP-wLL"/>
+                            <constraint firstItem="Pcq-aF-Afh" firstAttribute="centerX" secondItem="RHt-X6-5An" secondAttribute="centerX" id="xC2-Fk-jpm"/>
+                            <constraint firstItem="RHt-X6-5An" firstAttribute="top" secondItem="a87-AJ-1NI" secondAttribute="bottom" constant="8" id="xHt-6S-MKG"/>
+                            <constraint firstItem="Pcq-aF-Afh" firstAttribute="top" secondItem="RHt-X6-5An" secondAttribute="bottom" constant="8" id="zkP-gi-9fR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="RHt-X6-5An" id="PSN-kE-KmH"/>
+                        <outlet property="discriptionTextField" destination="aya-yO-d1W" id="ABI-X4-t5w"/>
+                        <outlet property="genderButton" destination="Z9v-94-3de" id="KFt-pX-4sJ"/>
+                        <outlet property="genderPickerParentView" destination="MmE-a7-UoU" id="uqw-pO-bjy"/>
+                        <outlet property="genderPickerView" destination="f4g-nt-ijG" id="fka-m2-M61"/>
+                        <outlet property="nameTextField" destination="L5p-PW-3Jl" id="0kG-Oh-mGN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lS8-6y-5vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="2824.1379310344828"/>
         </scene>
         <!--Show User View Controller-->
         <scene sceneID="a6l-42-4eh">
@@ -490,7 +620,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Teg-iz-uBP" id="3We-5n-Al2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVM-pi-nTV">

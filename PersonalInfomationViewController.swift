@@ -11,6 +11,7 @@ struct seguename {
     static let toFollowersView = "segueToFollowersList"
     static let toFansView = "segueToFansList"
     static let toUserInformation = "segueToUserInformation"
+    static let toEditPersonalInformation = "segueToEditPersonalInformation"
 }
 class PersonalInfomationViewController: UIViewController,PullDataDelegate {
     //MARK: - outlet
@@ -23,7 +24,10 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
     var uid: Int?
     
     //MARK: - Event func
-    
+    func editPersonalInformation(_ sender: UIBarButtonItem)
+    {
+        performSegue(withIdentifier: seguename.toEditPersonalInformation, sender: self)
+    }
     //此函数用于改变用户活动列表（感兴趣，参加，发布）
     @IBAction func needChangeUserActivityShowList(_ sender: UISegmentedControl) {
     }
@@ -39,10 +43,13 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
             personalInformationModel.getUserInformation(uid: uid!)
         }else
         {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
+            
             
             //此处token需要更改
             personalInformationModel.getPersonalInformation(token: "222")
         }
+        
         
         
     }
@@ -95,6 +102,13 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
                 controller.type = "fan"
                 controller.navigationItem.title = self.fansCountsLabel.text! + " 关注者"
                 controller.uid = uid
+            }
+        }
+        else if segue.identifier == seguename.toEditPersonalInformation
+        {
+            if let controller = segue.destination as? EditPersonalInformationViewController
+            {
+                controller.userInformationModel = personalInformationModel
             }
         }
     }

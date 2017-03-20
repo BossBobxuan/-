@@ -10,7 +10,7 @@ import Foundation
 
 class FollowersOrFansModel
 {
-    var userInformationEnitys: [UserInfomationEnity] = []
+    var userInformationEnitys: [UserInformationEnity] = []
     var delegate: PullDataDelegate
     var page: Int = 1
     var type: String
@@ -132,10 +132,10 @@ class FollowersOrFansModel
                 {
                     if let JsonDictionary = follower as? NSDictionary
                     {
+                        //MARK: - 此处gender暂时未nil，以后需要修改
+                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: nil)
+                        userInformationEnitys.append(userInformationEnity)
                         
-                        let userInformationEnity = UserInfomationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String)
-                            userInformationEnitys.append(userInformationEnity)
-                            
                     }
                     
                 }

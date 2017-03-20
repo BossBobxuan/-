@@ -16,9 +16,9 @@ struct urlStruct {
 
 class PersonalInformationModel
 {
-    var personalInformationEnity: UserInfomationEnity?
+    var personalInformationEnity: UserInformationEnity?
     var delegate: PullDataDelegate
-    
+    let manager = AFHTTPSessionManager()
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
@@ -26,7 +26,7 @@ class PersonalInformationModel
     func getPersonalInformation(token: String) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/~me.json"
-        let manager = AFHTTPSessionManager()
+       
         manager.get(requestUrl, parameters: ["token":token], progress: {(progress) in }, success: {
             (dataTask,response) in
                 self.dealwithResponse(response: response)
@@ -43,7 +43,7 @@ class PersonalInformationModel
     func getUserInformation(uid: Int) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)" + ".json"
-        let manager = AFHTTPSessionManager()
+        
         manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -57,6 +57,21 @@ class PersonalInformationModel
         })
         
     }
+    func editUserInformation(token: String) -> Void
+    {
+        let requestUrl = urlStruct.basicUrl + "user/~me.json"
+        manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender!,"avatar": personalInformationEnity!.avatar!,"description":personalInformationEnity!.description,"token": token], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            self.dealwithResponse(response: response)
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+    }
     
     
     
@@ -66,7 +81,8 @@ class PersonalInformationModel
     {
         if let JsonDictionary = response as? NSDictionary
         {
-            personalInformationEnity = UserInfomationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String)
+            //MARK: - 此处gender暂时为空以后需要更改
+            personalInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: nil)
             self.delegate.needUpdateUI()
         }
         else
