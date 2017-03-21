@@ -30,7 +30,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     func pullToRefresh()
     {
         print("下拉刷新")
-        //UserTableView.beginUpdates()
+        
         if uid != nil
         {
             followersOrFansModel.FreshFollowersOrFans(uid: uid!,token: token)
@@ -145,9 +145,11 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         return followersOrFansModel.userInformationEnitys.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
+       
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(followersOrFansModel.userInformationEnitys.count)
         let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! UserInformationTableViewCell
         cell.nameLabel.text = followersOrFansModel.userInformationEnitys[indexPath.row].name
         cell.discriptionTextView.text = followersOrFansModel.userInformationEnitys[indexPath.row].description
@@ -202,6 +204,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: - PullDataDelegate
     func needUpdateUI() {
+        
         if self.UserTableView.refreshControl?.isRefreshing == true
         {
             self.UserTableView.refreshControl?.endRefreshing()
@@ -212,8 +215,8 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             btn.isHidden = false
             
         }
-        
         UserTableView.reloadData()
+        
     }
     
     func getDataFailed() {

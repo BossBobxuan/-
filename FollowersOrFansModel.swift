@@ -58,11 +58,12 @@ class FollowersOrFansModel
     func FreshFollowersOrFans(token: String) -> Void
     {
         page = 1
-        userInformationEnitys = []
+        
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-        manager.get(requestUrl, parameters: ["token":token,"page":page], progress: {(progress) in }, success: {
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
+            self.userInformationEnitys.removeAll()
             self.dealwithResponse(response: response)
             
             
@@ -76,11 +77,12 @@ class FollowersOrFansModel
     func FreshFollowersOrFans(uid: Int,token: String) -> Void
     {
         page = 1
-        self.userInformationEnitys = []
+        
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
+            self.userInformationEnitys.removeAll()
             self.dealwithResponse(response: response)
             
             
