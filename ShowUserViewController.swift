@@ -30,14 +30,16 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     func pullToRefresh()
     {
         print("下拉刷新")
+        //UserTableView.beginUpdates()
         if uid != nil
         {
-            followersOrFansModel.FreshFollowersOrFans(uid: uid!)
+            followersOrFansModel.FreshFollowersOrFans(uid: uid!,token: token)
+           
         }else
         {
         
             //token需要更改
-            followersOrFansModel.FreshFollowersOrFans(token: "2222")
+            followersOrFansModel.FreshFollowersOrFans(token: token)
         }
         
     }
@@ -48,11 +50,11 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         loadingstateUI.startAnimating()
         if uid != nil
         {
-            followersOrFansModel.GetFollowersOrFansList(uid: uid!)
+            followersOrFansModel.GetFollowersOrFansList(uid: uid!,token: token)
         }else
         {
             //token需要更改
-            followersOrFansModel.GetFollowersOrFansList(token: "2222")
+            followersOrFansModel.GetFollowersOrFansList(token: token)
             
         }
         
@@ -63,28 +65,28 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
     {
         if sender.titleLabel?.text == "互相关注"
         {
-            followersOrFansModel.notFollow(uid: sender.uid!)
+            followersOrFansModel.notFollow(uid: sender.uid!,token: token)
             sender.setTitle("被关注", for: .normal)
         }
         else if sender.titleLabel?.text == "被关注"
         {
-            followersOrFansModel.addFollow(uid: sender.uid!)
+            followersOrFansModel.addFollow(uid: sender.uid!,token: token)
             sender.setTitle("互相关注", for: .normal)
         }
         else if sender.titleLabel?.text == "已关注"
         {
-            followersOrFansModel.notFollow(uid: sender.uid!)
+            followersOrFansModel.notFollow(uid: sender.uid!,token: token)
             sender.setTitle("未关注", for: .normal)
         }
         else if sender.titleLabel?.text == "未关注"
         {
-            followersOrFansModel.addFollow(uid: sender.uid!)
+            followersOrFansModel.addFollow(uid: sender.uid!,token: token)
             sender.setTitle("已关注", for: .normal)
         }
         //此处做测试等下需要删除
         else if sender.titleLabel?.text == "自己"
         {
-            followersOrFansModel.addFollow(uid: sender.uid!)
+            followersOrFansModel.addFollow(uid: sender.uid!,token: token)
             sender.setTitle("已关注", for: .normal)
         }
     }
@@ -99,11 +101,11 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         
         if uid != nil
         {
-            followersOrFansModel.GetFollowersOrFansList(uid: uid!)
+            followersOrFansModel.GetFollowersOrFansList(uid: uid!,token: token)
         }else
         {
             //token需要更改
-            followersOrFansModel.GetFollowersOrFansList(token: "2222")
+            followersOrFansModel.GetFollowersOrFansList(token: token)
             
         }
        
@@ -111,7 +113,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         //增加下拉更新与加载更多
         self.UserTableView.refreshControl = UIRefreshControl()
         self.UserTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
-        self.UserTableView.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新活动")
+        self.UserTableView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
         //增加读取更多数据的按钮
         addGetMorebtn()
         
@@ -149,10 +151,22 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! UserInformationTableViewCell
         cell.nameLabel.text = followersOrFansModel.userInformationEnitys[indexPath.row].name
         cell.discriptionTextView.text = followersOrFansModel.userInformationEnitys[indexPath.row].description
-        if followersOrFansModel.userInformationEnitys[indexPath.row].avatar != nil
+        if let media = followersOrFansModel.userInformationEnitys[indexPath.row].avatar
         {
             //在此处异步获取头像照片
-            
+            //在此处下载头像照片
+            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: URL(string: url)!)
+                {
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            cell.avatarImageView.image = image
+                        }
+                    }
+                }
+            }
         }
         cell.followStateButton.uid = followersOrFansModel.userInformationEnitys[indexPath.row].id
         cell.followStateButton.addTarget(self, action: "changeStateOfFollow:", for: .touchUpInside)
@@ -198,6 +212,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             btn.isHidden = false
             
         }
+        
         UserTableView.reloadData()
     }
     
@@ -225,6 +240,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             {
                 controller.uid = (sender as! UserInformationEnity).id
                 controller.title = (sender as! UserInformationEnity).name
+                
             }
         }
             

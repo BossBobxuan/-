@@ -34,20 +34,21 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
     
     //MARK: - viewController lifecycle
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         self.personalInformationModel = PersonalInformationModel(delegate: self)
         
         //此处以后需要更改该token
         if uid != nil
         {
-            personalInformationModel.getUserInformation(uid: uid!)
+            personalInformationModel.getUserInformation(uid: uid!,token: token)
         }else
         {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
             
             
             //此处token需要更改
-            personalInformationModel.getPersonalInformation(token: "222")
+            personalInformationModel.getPersonalInformation(token: token)
         }
         
         
@@ -70,6 +71,22 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
         if let media = personalInformationModel.personalInformationEnity!.avatar
         {
             //在此处下载头像照片
+            print("进入")
+            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            DispatchQueue.global().async {
+                
+                if let data = try? Data(contentsOf: URL(string: url)!)
+                {
+                    print("获取数据")
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            print("显示图片")
+                            self.avatarImageView.image = image
+                        }
+                    }
+                }
+            }
         }
     }
     //此函数用于拉取数据失败的处理
@@ -109,6 +126,7 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
             if let controller = segue.destination as? EditPersonalInformationViewController
             {
                 controller.userInformationModel = personalInformationModel
+                controller.avatarimage = avatarImageView.image
             }
         }
     }

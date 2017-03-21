@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */; };
 		B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */; };
-		B010BCA81E8002A70085CD79 /* getTokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010BCA71E8002A70085CD79 /* getTokenProtocol.swift */; };
+		B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029B4E21E801AE7004300E8 /* getTokenExtension.swift */; };
 		B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */; };
 		B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */; };
 		B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39D1E1E4D53001B17F2 /* slideView.swift */; };
@@ -57,7 +57,7 @@
 /* Begin PBXFileReference section */
 		1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.release.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.release.xcconfig"; sourceTree = "<group>"; };
 		B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonalInformationViewController.swift; sourceTree = "<group>"; };
-		B010BCA71E8002A70085CD79 /* getTokenProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTokenProtocol.swift; sourceTree = "<group>"; };
+		B029B4E21E801AE7004300E8 /* getTokenExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTokenExtension.swift; sourceTree = "<group>"; };
 		B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
 		B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitylistViewController.swift; sourceTree = "<group>"; };
 		B056B39D1E1E4D53001B17F2 /* slideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slideView.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */,
-				B010BCA71E8002A70085CD79 /* getTokenProtocol.swift */,
+				B029B4E21E801AE7004300E8 /* getTokenExtension.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -456,9 +456,9 @@
 				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
-				B010BCA81E8002A70085CD79 /* getTokenProtocol.swift in Sources */,
 				B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */,
 				B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */,
+				B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */,
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,

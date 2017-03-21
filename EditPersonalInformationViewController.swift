@@ -8,12 +8,12 @@
 
 import UIKit
 import Photos
-class EditPersonalInformationViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, getTokenProtocol, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate//要实现ImagePicker协议必须增加navigation的协议
+class EditPersonalInformationViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate//要实现ImagePicker协议必须增加navigation的协议
 {
     //MARK: - outlet
     var userInformationModel: PersonalInformationModel!
-    private var avatar: Int?
     private var pickerViewNowTitle: String = "男"
+    var avatarimage: UIImage?
     @IBOutlet weak var genderPickerParentView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -80,11 +80,20 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     func editFinish(_ sender: UIBarButtonItem)
     {
         userInformationModel.personalInformationEnity?.name = nameTextField.text!
-        userInformationModel.personalInformationEnity?.gender = genderButton.titleLabel!.text!
-        userInformationModel.personalInformationEnity?.description = discriptionTextField!.text!
-        userInformationModel.personalInformationEnity?.avatar = avatar
-        userInformationModel.editUserInformation(token: token)
-        navigationController?.popViewController(animated: true)
+        if genderButton.titleLabel?.text == "男"
+        {
+            userInformationModel.personalInformationEnity?.gender = "0"
+        }else if genderButton.titleLabel?.text == "女"
+        {
+            userInformationModel.personalInformationEnity?.gender = "1"
+        }
+        userInformationModel.personalInformationEnity?.description = discriptionTextField.text!
+        userInformationModel.editUserInformation(token: token, avatar: "\((userInformationModel.personalInformationEnity?.avatar)! as Int)")
+        //MARK: - 使用AFNetworking传入数据时，不能传入可选类型，否则会出错
+        
+        
+        _ = navigationController?.popViewController(animated: true)
+       
     }
     
     //点击屏幕空白处收起键盘
@@ -107,15 +116,23 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
         //添加成功按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: "editFinish:")
         
-        
+        self.avatarImageView.image = avatarimage
         self.nameTextField.text = userInformationModel.personalInformationEnity?.name
-        if userInformationModel.personalInformationEnity?.avatar != nil
-        {
-            //此处异步获取头像
-        }
+       
         self.discriptionTextField.text = userInformationModel.personalInformationEnity?.description
-        self.genderButton.setTitle("男", for: .normal)
-        self.avatar = userInformationModel.personalInformationEnity?.avatar
+        if let gender = userInformationModel.personalInformationEnity?.gender
+        {
+            if gender == "0"
+            {
+                self.genderButton.setTitle("男", for: .normal)
+            }else if gender == "1"
+            {
+                self.genderButton.setTitle("女", for: .normal)
+            }
+        }
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -164,6 +181,8 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     //MARK: - iamgePicker Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         avatarImageView.image = info[UIImagePickerControllerEditedImage] as! UIImage
+        userInformationModel.uploadImage(image: avatarImageView.image!,token: token)
+        
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

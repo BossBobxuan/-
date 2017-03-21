@@ -15,6 +15,7 @@ class FollowersOrFansModel
     var page: Int = 1
     var type: String
     let manager = AFHTTPSessionManager()
+   
     init(delegate: PullDataDelegate,type: String) {
         self.delegate = delegate
         self.type = type
@@ -23,8 +24,8 @@ class FollowersOrFansModel
     func GetFollowersOrFansList(token: String) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
-       
-        manager.get(requestUrl, parameters: ["token":token,"page":page], progress: {(progress) in }, success: {
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
             
@@ -37,10 +38,10 @@ class FollowersOrFansModel
         page += 1
     }
     
-    func GetFollowersOrFansList(uid: Int) -> Void
+    func GetFollowersOrFansList(uid: Int,token: String) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
-        
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -59,7 +60,7 @@ class FollowersOrFansModel
         page = 1
         userInformationEnitys = []
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
-        
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["token":token,"page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -72,12 +73,12 @@ class FollowersOrFansModel
         })
     }
     
-    func FreshFollowersOrFans(uid: Int) -> Void
+    func FreshFollowersOrFans(uid: Int,token: String) -> Void
     {
         page = 1
-        userInformationEnitys = []
+        self.userInformationEnitys = []
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
-        
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
@@ -91,12 +92,12 @@ class FollowersOrFansModel
     }
     
     //添加关注
-    func addFollow(uid: Int)
+    func addFollow(uid: Int,token: String)
     {
         let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
-        
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         //此处token需要更改
-        manager.post(requestUrl, parameters: ["token": "2222"], progress: {(progress) in }, success: {
+        manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
             (dataTask,response) in
             
             
@@ -109,10 +110,11 @@ class FollowersOrFansModel
         
     }
     //取消关注
-    func notFollow(uid: Int)
+    func notFollow(uid: Int,token: String)
     {
         let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
-        manager.delete(requestUrl, parameters: ["token": "2222"], success: {(dataTask,response) in
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
         
         
         }, failure: {(dataTask,error) in
@@ -128,12 +130,13 @@ class FollowersOrFansModel
         {
             if let followersArray = Dictionary[type + "s"] as? NSArray
             {
+                
                 for follower in followersArray
                 {
                     if let JsonDictionary = follower as? NSDictionary
                     {
-                        //MARK: - 此处gender暂时未nil，以后需要修改
-                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: nil)
+                        //MARK: - 此处gender暂时为nil，以后需要修改
+                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: JsonDictionary["gender"] as! String)
                         userInformationEnitys.append(userInformationEnity)
                         
                     }
