@@ -30,6 +30,8 @@
 		B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */; };
 		B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */; };
 		B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */; };
+		B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */; };
+		B08CE0CD1E82AAB500DA44A3 /* ActiveEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CE0CC1E82AAB500DA44A3 /* ActiveEnity.swift */; };
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
@@ -84,6 +86,8 @@
 		B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowUserViewController.swift; sourceTree = "<group>"; };
 		B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDataDelegate.swift; sourceTree = "<group>"; };
 		B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersOrFansModel.swift; sourceTree = "<group>"; };
+		B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityListModel.swift; sourceTree = "<group>"; };
+		B08CE0CC1E82AAB500DA44A3 /* ActiveEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveEnity.swift; sourceTree = "<group>"; };
 		B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationModel.swift; sourceTree = "<group>"; };
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
@@ -135,10 +139,11 @@
 				B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */,
 				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
 				B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */,
-				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
+				B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */,
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
 				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
+				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 			);
 			name = "用户信息界面";
 			path = ..;
@@ -247,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */,
+				B08CE0CC1E82AAB500DA44A3 /* ActiveEnity.swift */,
 				B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */,
 			);
 			name = Enity;
@@ -457,8 +463,10 @@
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
 				B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */,
+				B08CE0CD1E82AAB500DA44A3 /* ActiveEnity.swift in Sources */,
 				B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */,
 				B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */,
+				B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */,
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,

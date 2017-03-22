@@ -62,7 +62,7 @@ class PersonalInformationModel
         let requestUrl = urlStruct.basicUrl + "user/~me.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         print(avatar)
-        manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender!,"avatar": avatar,"description":personalInformationEnity!.description], progress: {(progress) in }, success: {
+        manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender,"avatar": avatar,"description":personalInformationEnity!.description], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
             

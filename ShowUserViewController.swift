@@ -83,12 +83,8 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             followersOrFansModel.addFollow(uid: sender.uid!,token: token)
             sender.setTitle("已关注", for: .normal)
         }
-        //此处做测试等下需要删除
-        else if sender.titleLabel?.text == "自己"
-        {
-            followersOrFansModel.addFollow(uid: sender.uid!,token: token)
-            sender.setTitle("已关注", for: .normal)
-        }
+        
+      
     }
     
     
@@ -149,7 +145,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(followersOrFansModel.userInformationEnitys.count)
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! UserInformationTableViewCell
         cell.nameLabel.text = followersOrFansModel.userInformationEnitys[indexPath.row].name
         cell.discriptionTextView.text = followersOrFansModel.userInformationEnitys[indexPath.row].description
@@ -191,7 +187,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             //cell.followStateButton.isHidden = true
             //做测试先显示按钮
             cell.followStateButton.setTitle("自己", for: .normal)
-            //cell.followStateButton.isEnabled = false
+            cell.followStateButton.isEnabled = false
         }
         else if relation == "stranger"
         {

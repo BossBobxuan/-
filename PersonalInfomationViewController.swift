@@ -13,31 +13,105 @@ struct seguename {
     static let toUserInformation = "segueToUserInformation"
     static let toEditPersonalInformation = "segueToEditPersonalInformation"
 }
-class PersonalInfomationViewController: UIViewController,PullDataDelegate {
+class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var fansCountsLabel: UILabel!
     @IBOutlet weak var followerCountsLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var activityTypeSegmentControl: UISegmentedControl!
+    
+    private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
+    private var btn:UIButton!//加载更多的按钮
+    private var nowtype: String
+        {
+        if activityTypeSegmentControl.selectedSegmentIndex == 0
+        {
+            //参与
+            return ActivityRequestType.participated
+            
+        }
+        else if activityTypeSegmentControl.selectedSegmentIndex == 1
+        {
+            //感兴趣
+            return ActivityRequestType.wished
+        }
+        else if activityTypeSegmentControl.selectedSegmentIndex == 2
+        {
+            //发布
+            return ActivityRequestType.created
+        }
+        else
+        {
+            return "error"
+        }
+    }
+    
     fileprivate var personalInformationModel: PersonalInformationModel!
+    fileprivate var activityModel: UserActivityListModel!
     var uid: Int?
     
+    @IBOutlet weak var activityListTableView: UITableView!
     //MARK: - Event func
     func editPersonalInformation(_ sender: UIBarButtonItem)
     {
         performSegue(withIdentifier: seguename.toEditPersonalInformation, sender: self)
     }
     //此函数用于改变用户活动列表（感兴趣，参加，发布）
-    @IBAction func needChangeUserActivityShowList(_ sender: UISegmentedControl) {
+    @IBAction func needChangeUserActivityShowList(_ sender: UISegmentedControl)
+    {
+        activityListTableView.reloadData()
     }
+    
+    //下拉更新
+    func pullToRefresh()
+    {
+        print("下拉刷新")
+        
+        if uid != nil
+        {
+            
+            
+        }else
+        {
+            
+            //token需要更改
+           
+            activityModel.refreshUserActivity(token: token,type: nowtype)
+        }
+        
+    }
+    //该方法用于加载更多数据与视图更新
+    func loadMore(_ sender: UIButton)
+    {
+        btn.isHidden = true
+        loadingstateUI.startAnimating()
+        if uid != nil
+        {
+            
+        }else
+        {
+            activityModel.getUserActivity(token: token, type: nowtype)
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
     
     //MARK: - viewController lifecycle
     override func viewDidLoad() {
        
         super.viewDidLoad()
-        self.personalInformationModel = PersonalInformationModel(delegate: self)
+        self.activityListTableView.delegate = self
+        self.activityListTableView.dataSource = self
         
+        self.personalInformationModel = PersonalInformationModel(delegate: self)
+        self.activityModel = UserActivityListModel(delegate: self)
         //此处以后需要更改该token
         if uid != nil
         {
@@ -46,10 +120,18 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
         {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
             
-            
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.participated)
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.wished)
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.created)
             //此处token需要更改
             personalInformationModel.getPersonalInformation(token: token)
         }
+        
+        self.activityListTableView.refreshControl = UIRefreshControl()
+        self.activityListTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
+        self.activityListTableView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
+        //增加读取更多数据的按钮
+        addGetMorebtn()
         
         
         
@@ -96,7 +178,57 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    //MARK: - getUserActivity Delegate
+    func getActivitySuccess() {
+        if self.activityListTableView.refreshControl?.isRefreshing == true
+        {
+            self.activityListTableView.refreshControl?.endRefreshing()
+        }
+        if self.loadingstateUI.isAnimating == true
+        {
+            loadingstateUI.stopAnimating()
+            btn.isHidden = false
+            
+        }
+        activityListTableView.reloadData()
+    }
+    func getActivityfailed() {
+        if self.activityListTableView.refreshControl?.isRefreshing == true
+        {
+            self.activityListTableView.refreshControl?.endRefreshing()
+        }
+        if self.loadingstateUI.isAnimating == true
+        {
+            loadingstateUI.stopAnimating()
+            btn.isHidden = false
+            
+        }
+        let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
+    //MARK: - tableview Delegate
+    
+    
+    //MARK: - tableView DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+            return activityModel.activityEnitys[nowtype]!.count
+        
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "default")
+        
+        cell?.textLabel?.text = activityModel.activityEnitys[nowtype]?[indexPath.row].beginTime.date
+        cell?.detailTextLabel?.text = activityModel.activityEnitys[nowtype]?[indexPath.row].content
+        return cell!
+
+       
+    }
     
     //MARK: - prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,6 +262,24 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
             }
         }
     }
+    
+    //MARK: - other func
+    //添加加载更多的按钮
+    private func addGetMorebtn()
+    {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
+        self.activityListTableView.tableFooterView = view
+        btn = UIButton(type: .system)
+        btn.setTitle("加载更多", for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
+        btn.addTarget(self, action: "loadMore:", for: .touchUpInside)
+        view.addSubview(btn)
+        loadingstateUI = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        loadingstateUI.center = btn.center
+        view.addSubview(loadingstateUI)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -140,4 +290,19 @@ class PersonalInfomationViewController: UIViewController,PullDataDelegate {
     }
     */
 
+}
+
+//MARK: - 添加使时间戳变为格式化时间的拓展
+extension Int
+{
+    var date: String
+        {
+        let timeInterval:TimeInterval = TimeInterval(integerLiteral: Int64(self / 1000))
+        let date = Date(timeIntervalSince1970: timeInterval)
+        
+        //格式话输出
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        return dformatter.string(from: date)
+    }
 }

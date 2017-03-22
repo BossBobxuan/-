@@ -12,7 +12,7 @@ class FollowersOrFansModel
 {
     var userInformationEnitys: [UserInformationEnity] = []
     var delegate: PullDataDelegate
-    var page: Int = 1
+    private var page: Int = 1
     var type: String
     let manager = AFHTTPSessionManager()
    
@@ -72,6 +72,7 @@ class FollowersOrFansModel
             self.delegate.getDataFailed()
             
         })
+        page += 1
     }
     
     func FreshFollowersOrFans(uid: Int,token: String) -> Void
@@ -91,6 +92,7 @@ class FollowersOrFansModel
             self.delegate.getDataFailed()
             
         })
+        page += 1
     }
     
     //添加关注
@@ -138,7 +140,7 @@ class FollowersOrFansModel
                     if let JsonDictionary = follower as? NSDictionary
                     {
                         //MARK: - 此处gender暂时为nil，以后需要修改
-                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: JsonDictionary["gender"] as! String)
+                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: (JsonDictionary["gender"] as! String))
                         userInformationEnitys.append(userInformationEnity)
                         
                     }
