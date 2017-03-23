@@ -71,3 +71,52 @@ class ActiveEnity:NSObject,MKAnnotation
     }
 
 }
+
+//MARK: - extension拓展功能便于获得活动状态，tags等
+extension ActiveEnity
+{
+    var stateString: String
+        {
+        switch self.state {
+        case "0":
+            return "发起中"
+        case "1":
+            return "进行中"
+        case "2":
+            return "已结束"
+        default:
+            return "错误"
+        }
+    }
+    var categoryString: String
+        {
+        switch self.category {
+        case "0":
+            return "全部"
+        case "1":
+            return "聚餐"
+        case "2":
+            return "运动"
+        case "3":
+            return "旅行"
+        case "4":
+            return "电影"
+        case "5":
+            return "音乐"
+        case "6":
+            return "分享会"
+        case "7":
+            return "赛事"
+        case "8":
+            return "桌游"
+        case "9":
+            return "其他"
+            
+        default:
+            return "错误"
+        }
+    }
+}
+
+
+

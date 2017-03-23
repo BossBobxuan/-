@@ -12,6 +12,7 @@ struct seguename {
     static let toFansView = "segueToFansList"
     static let toUserInformation = "segueToUserInformation"
     static let toEditPersonalInformation = "segueToEditPersonalInformation"
+    static let toActicityDetail = "segueToActivityDetail"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -68,7 +69,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     func pullToRefresh()
     {
         print("下拉刷新")
-        
+        activityTypeSegmentControl.isEnabled = false
         if uid != nil
         {
             
@@ -87,6 +88,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     {
         btn.isHidden = true
         loadingstateUI.startAnimating()
+        activityTypeSegmentControl.isEnabled = false
         if uid != nil
         {
             
@@ -183,11 +185,13 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         if self.activityListTableView.refreshControl?.isRefreshing == true
         {
             self.activityListTableView.refreshControl?.endRefreshing()
+            self.activityTypeSegmentControl.isEnabled = true
         }
         if self.loadingstateUI.isAnimating == true
         {
             loadingstateUI.stopAnimating()
             btn.isHidden = false
+            self.activityTypeSegmentControl.isEnabled = true
             
         }
         activityListTableView.reloadData()
@@ -209,7 +213,19 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     }
     
     //MARK: - tableview Delegate
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: seguename.toActicityDetail, sender: activityModel.activityEnitys[nowtype]![indexPath.row])
+        tableView.cellForRow(at: indexPath)!.isSelected = false
+    }
     
     //MARK: - tableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -217,15 +233,35 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            return activityModel.activityEnitys[nowtype]!.count
+        return activityModel.activityEnitys[nowtype]!.count
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "default")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! simplyActivityTableViewCell
+        cell.activityTitleLabel.text = activityModel.activityEnitys[nowtype]![indexPath.row].activityTitle
+        cell.activityBeginTimeLabel.text = activityModel.activityEnitys[nowtype]![indexPath.row].beginTime.date
+        cell.activityStateLabel.text = activityModel.activityEnitys[nowtype]![indexPath.row].stateString
+        //异步获取头像
+        let media = activityModel.activityEnitys[nowtype]![indexPath.row].image
+        let url = urlStruct.basicUrl + "media/" + "\(media)"
+        DispatchQueue.global().async {
+                
+            if let data = try? Data(contentsOf: URL(string: url)!)
+            {
+                    
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data)
+                    {
+                            
+                        cell.activityImageView.image = image
+                    }
+                }
+            }
+        }
         
-        cell?.textLabel?.text = activityModel.activityEnitys[nowtype]?[indexPath.row].beginTime.date
-        cell?.detailTextLabel?.text = activityModel.activityEnitys[nowtype]?[indexPath.row].content
-        return cell!
+        return cell
+        
+        
 
        
     }
@@ -259,6 +295,14 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             {
                 controller.userInformationModel = personalInformationModel
                 controller.avatarimage = avatarImageView.image
+            }
+        }
+        else if segue.identifier == seguename.toActicityDetail
+        {
+            if let controller = segue.destination as? ActicityDetailViewController
+            {
+                
+                controller.activityModel.activityEnity = sender as! ActiveEnity
             }
         }
     }

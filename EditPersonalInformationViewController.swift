@@ -104,6 +104,8 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     //MARK: - viewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "修改个人信息"
+        
         nameTextField.delegate = self
         discriptionTextField.delegate = self
         

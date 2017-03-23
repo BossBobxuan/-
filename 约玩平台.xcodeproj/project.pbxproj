@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */; };
+		B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */; };
+		B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B501E83F9160040493A /* ActicityDetailViewController.swift */; };
+		B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B521E8405FB0040493A /* ActivityDetailModel.swift */; };
 		B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */; };
 		B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029B4E21E801AE7004300E8 /* getTokenExtension.swift */; };
 		B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */; };
@@ -58,6 +61,9 @@
 
 /* Begin PBXFileReference section */
 		1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.release.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.release.xcconfig"; sourceTree = "<group>"; };
+		B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = simplyActivityTableViewCell.swift; path = "约玩平台/simplyActivityTableViewCell.swift"; sourceTree = "<group>"; };
+		B0107B501E83F9160040493A /* ActicityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActicityDetailViewController.swift; path = ../ActicityDetailViewController.swift; sourceTree = "<group>"; };
+		B0107B521E8405FB0040493A /* ActivityDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityDetailModel.swift; path = ../ActivityDetailModel.swift; sourceTree = "<group>"; };
 		B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonalInformationViewController.swift; sourceTree = "<group>"; };
 		B029B4E21E801AE7004300E8 /* getTokenExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTokenExtension.swift; sourceTree = "<group>"; };
 		B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
@@ -143,21 +149,24 @@
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
 				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
+				B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */,
 				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 			);
 			name = "用户信息界面";
 			path = ..;
 			sourceTree = "<group>";
 		};
-		B056B39A1E1E4BCA001B17F2 /* 活动列表界面 */ = {
+		B056B39A1E1E4BCA001B17F2 /* 活动相关界面 */ = {
 			isa = PBXGroup;
 			children = (
+				B0107B501E83F9160040493A /* ActicityDetailViewController.swift */,
 				B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */,
 				B056B39D1E1E4D53001B17F2 /* slideView.swift */,
+				B0107B521E8405FB0040493A /* ActivityDetailModel.swift */,
 				B05F3F821E222F8800777C82 /* ActivityModel.swift */,
 				B05F3F841E223C8900777C82 /* ActivityDisplayTableViewCell.swift */,
 			);
-			name = "活动列表界面";
+			name = "活动相关界面";
 			sourceTree = "<group>";
 		};
 		B05F3F881E223D4C00777C82 /* supportfile */ = {
@@ -198,7 +207,7 @@
 				B096D2B51E7AC5FF00E5D201 /* Enity */,
 				B0355E1B1E7AAE64003429C8 /* 用户信息界面 */,
 				B05F3F881E223D4C00777C82 /* supportfile */,
-				B056B39A1E1E4BCA001B17F2 /* 活动列表界面 */,
+				B056B39A1E1E4BCA001B17F2 /* 活动相关界面 */,
 				B07164591E1CF1AE006A2FCD /* 首次进入注册与登录 */,
 				B07164281E1CF179006A2FCD /* AppDelegate.swift */,
 				B071642C1E1CF179006A2FCD /* Main.storyboard */,
@@ -469,9 +478,12 @@
 				B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */,
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
+				B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */,
+				B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,
 				B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */,
 				B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */,
+				B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
 				B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */,
