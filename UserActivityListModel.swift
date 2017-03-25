@@ -50,6 +50,24 @@ class UserActivityListModel
         
         pageDic[type]!  += 1
     }
+    func getUserActivity(activityId: Int,type: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "user/" + "\(activityId)" + "/activity/" + type + ".json"
+        manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            self.dealwithResponse(response: response,type: type)
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getActivityfailed()
+            
+        })
+        
+        
+        pageDic[type]!  += 1
+    }
     
     
     //用于下拉刷新数据
@@ -74,6 +92,30 @@ class UserActivityListModel
         
         
     }
+    
+    func refreshUserActivity(activityId: Int,type: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "user/" + "\(activityId)" + "/activity/" + type + ".json"
+        pageDic[type]!  = 1
+        
+        manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            self.activityEnitys[type] = []
+            self.dealwithResponse(response: response,type: type)
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getActivityfailed()
+            
+        })
+        pageDic[type]! += 1
+        
+        
+    }
+    
+    
     
     func dealwithResponse(response: Any,type: String)
     {

@@ -34,9 +34,12 @@ class ActicityDetailViewController: UIViewController {
     @IBAction func showWishedList(_ sender: UIButton) {
     }
     
-    @IBAction func showParticipateList(_ sender: UIButton) {
+    @IBAction func showParticipateList(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.toActivityUserIn, sender: self)
     }
     @IBAction func showComment(_ sender: UIButton) {
+        performSegue(withIdentifier: seguename.toComment, sender: self)
     }
     
     @IBAction func showNotification(_ sender: UIButton) {
@@ -97,15 +100,28 @@ class ActicityDetailViewController: UIViewController {
         
     }
     
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == seguename.toActivityUserIn
+        {
+            if let controller = segue.destination as? ShowUserViewController
+            {
+                controller.uid = activityModel.activityEnity.id
+                controller.type = "participant"
+            }
+        }
+        else if segue.identifier == seguename.toComment
+        {
+            if let controller = segue.destination as? commentListViewController
+            {
+                controller.id = activityModel.activityEnity.id
+                controller.type = "activity"
+            }
+        }
     }
-    */
+ 
 
 }

@@ -1,0 +1,78 @@
+//
+//  commentListModel.swift
+//  约玩平台
+//
+//  Created by Bossxuan on 17/3/25.
+//  Copyright © 2017年 Bossxuan. All rights reserved.
+//
+
+import Foundation
+
+class CommentListModel
+{
+    var commentEnitys: [CommentEnity] = []
+    var delegate: PullDataDelegate
+    var page = 1
+    let manager = AFHTTPSessionManager()
+    init(delegate: PullDataDelegate)
+    {
+        self.delegate = delegate
+    }
+    
+    func getCommentList(id: Int,type: String)
+    {
+        let requestUrl = urlStruct.basicUrl + type + "/\(id).json"
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
+            self.dealWithResponse(response: response)
+        
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+        
+        
+        })
+        page += 1
+    }
+    
+    func refreshCommentList(id: Int,type: String)
+    {
+        page = 1
+        let requestUrl = urlStruct.basicUrl + type + "/\(id).json"
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
+            self.commentEnitys = []
+            self.dealWithResponse(response: response)
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+            
+        })
+        page += 1
+    }
+    
+    private func dealWithResponse(response: Any?)
+    {
+        if let originalDictionary = response as? NSDictionary
+        {
+            if let commentArray = originalDictionary["comments"] as? NSArray
+            {
+                for comment in commentArray
+                {
+                    if let commentDictionary = comment as? NSDictionary
+                    {
+                        if let userJsonDictionary = commentDictionary["creator_obj"] as? NSDictionary
+                        {
+                            let userInformationEnity = UserInformationEnity(id: userJsonDictionary["id"] as! Int, user: userJsonDictionary["user"] as! String, name: userJsonDictionary["name"] as! String, avatar: userJsonDictionary["avatar"] as? Int, description: userJsonDictionary["description"] as! String, followersCount: userJsonDictionary["followers_count"] as! Int, fansCount: userJsonDictionary["fans_count"] as! Int, activitiesCount: userJsonDictionary["activities_count"] as! Int, relation: userJsonDictionary["relation"] as! String,gender: (userJsonDictionary["gender"] as! String))
+                            let commentEnity = CommentEnity(id: commentDictionary["id"] as! Int, creator: userInformationEnity, content: commentDictionary["content"] as! String, parent: commentDictionary["parent"] as! Int, attachType: commentDictionary["attach_type"] as! String, attachId: commentDictionary["attach_id"] as! Int, creatAt: commentDictionary["created_at"] as! Int)
+                            commentEnitys.append(commentEnity)
+                        }
+                    }
+                }
+                self.delegate.needUpdateUI()
+            }
+        }
+    }
+    
+    
+}

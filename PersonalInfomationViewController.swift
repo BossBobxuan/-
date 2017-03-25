@@ -12,7 +12,10 @@ struct seguename {
     static let toFansView = "segueToFansList"
     static let toUserInformation = "segueToUserInformation"
     static let toEditPersonalInformation = "segueToEditPersonalInformation"
-    static let toActicityDetail = "segueToActivityDetail"
+    static let toActivityDetail = "segueToActivityDetail"
+    static let toActivityUserIn = "segueToActivityUserIn"
+    static let toComment = "segueToComment"
+    static let commentToUserInformation = "commentSegueToUserInformation"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -72,7 +75,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         activityTypeSegmentControl.isEnabled = false
         if uid != nil
         {
-            
+            activityModel.refreshUserActivity(activityId: uid!,type: nowtype)
             
         }else
         {
@@ -91,7 +94,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         activityTypeSegmentControl.isEnabled = false
         if uid != nil
         {
-            
+            activityModel.getUserActivity(activityId: uid!, type: nowtype)
         }else
         {
             activityModel.getUserActivity(token: token, type: nowtype)
@@ -118,6 +121,12 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         if uid != nil
         {
             personalInformationModel.getUserInformation(uid: uid!,token: token)
+            
+            //MARK: - 若有bug此处考虑更改为fresh
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.participated)
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.wished)
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.created)
+
         }else
         {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
@@ -200,12 +209,13 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         if self.activityListTableView.refreshControl?.isRefreshing == true
         {
             self.activityListTableView.refreshControl?.endRefreshing()
+            self.activityTypeSegmentControl.isEnabled = true
         }
         if self.loadingstateUI.isAnimating == true
         {
             loadingstateUI.stopAnimating()
             btn.isHidden = false
-            
+            self.activityTypeSegmentControl.isEnabled = true
         }
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
@@ -223,7 +233,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         return false
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: seguename.toActicityDetail, sender: activityModel.activityEnitys[nowtype]![indexPath.row])
+        performSegue(withIdentifier: seguename.toActivityDetail, sender: activityModel.activityEnitys[nowtype]![indexPath.row])
         tableView.cellForRow(at: indexPath)!.isSelected = false
     }
     
@@ -297,7 +307,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
                 controller.avatarimage = avatarImageView.image
             }
         }
-        else if segue.identifier == seguename.toActicityDetail
+        else if segue.identifier == seguename.toActivityDetail
         {
             if let controller = segue.destination as? ActicityDetailViewController
             {

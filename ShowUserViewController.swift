@@ -9,9 +9,10 @@
 import UIKit
 
 class ShowUserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PullDataDelegate {
-    var type:String! //表示展示关注者还是被关注者
+    var type:String! //表示展示关注者还是被关注者还是参与者
     var followersOrFansModel: FollowersOrFansModel!
-    var uid: Int?
+    var uid: Int? //可以作为用户id与活动id
+    
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
     private var btn:UIButton!//加载更多的按钮
     @IBOutlet weak var UserTableView: UITableView!

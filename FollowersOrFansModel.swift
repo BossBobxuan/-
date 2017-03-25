@@ -40,7 +40,15 @@ class FollowersOrFansModel
     
     func GetFollowersOrFansList(uid: Int,token: String) -> Void
     {
-        let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
+        var requestUrl = ""
+        if type == "participant"
+        {
+            requestUrl = urlStruct.basicUrl + "activity/" + "\(uid)/" + type + ".json"
+        }else
+        {
+            requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
+
+        }
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
@@ -54,6 +62,9 @@ class FollowersOrFansModel
         })
         page += 1
     }
+    
+   
+    
     //用于下拉刷新获取数据
     func FreshFollowersOrFans(token: String) -> Void
     {
@@ -78,8 +89,16 @@ class FollowersOrFansModel
     func FreshFollowersOrFans(uid: Int,token: String) -> Void
     {
         page = 1
+        var requestUrl = ""
+        if type == "participant"
+        {
+            requestUrl = urlStruct.basicUrl + "activity/" + "\(uid)/" + type + ".json"
+        }else
+        {
+            requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
+            
+        }
         
-        let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)/" + type + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             (dataTask,response) in
