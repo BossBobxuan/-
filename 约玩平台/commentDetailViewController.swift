@@ -1,45 +1,59 @@
 //
-//  commentListViewController.swift
+//  commentDetailViewController.swift
 //  约玩平台
 //
-//  Created by Bossxuan on 17/3/25.
+//  Created by Bossxuan on 17/3/26.
 //  Copyright © 2017年 Bossxuan. All rights reserved.
 //
 
 import UIKit
-
-class commentListViewController: UIViewController, PullDataDelegate, UITableViewDelegate, UITableViewDataSource, replyCommentDelegate {
-    var type: String = "" //获取评论类型
-    var id: Int!
-    var commentListModel: CommentListModel!
+//该页面用于显示指定评论的所有子评论
+class commentDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PullDataDelegate, replyCommentDelegate {
+    var commentId : Int!
+    @IBOutlet weak var childCommentTableView: UITableView!
+    var childCommentListModel: CommentListModel!
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
     private var btn:UIButton!//加载更多的按钮
-    @IBOutlet weak var commentListTableView: UITableView!
-        {
-        didSet{
-            commentListTableView.delegate = self
-            commentListTableView.dataSource = self
-        }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        childCommentTableView.delegate = self
+        childCommentTableView.dataSource = self
+        childCommentListModel = CommentListModel(delegate: self)
+        childCommentListModel.getChildComment(commentId: commentId)
+        
+        self.childCommentTableView.refreshControl = UIRefreshControl()
+        self.childCommentTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
+        self.childCommentTableView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
+        //增加读取更多数据的按钮
+        addGetMorebtn()
+
+        
+        self.navigationItem.title = "子评论详情"
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     //MARK: - event func
-    //点击用户头像跳转到相应的用户信息界面
-    func clickAvatar(_ sender: UITapGestureRecognizer)
-    {
-        performSegue(withIdentifier: seguename.commentToUserInformation, sender: sender.view!.tag)
-    }
-    
-    //进入回复界面
     func replyComment(_ sender: UIButton)
     {
-        performSegue(withIdentifier: seguename.toReplyComment, sender: sender.tag)
+        performSegue(withIdentifier: seguename.childToReplyComment, sender: sender.tag)
+    }
+    func clickAvatar(_ sender: UITapGestureRecognizer)
+    {
+        performSegue(withIdentifier: seguename.childCommentToUserInformation, sender: sender.view!.tag)
     }
     
     
-    //下拉更新
     func pullToRefresh()
     {
         print("下拉刷新")
-        commentListModel.refreshCommentList(id: id, type: type)
+        childCommentListModel.refreshChildComment(commentId: commentId)
         
     }
     //该方法用于加载更多数据与视图更新
@@ -47,55 +61,30 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
     {
         btn.isHidden = true
         loadingstateUI.startAnimating()
-        commentListModel.getCommentList(id: id, type: type)
+        childCommentListModel.getChildComment(commentId: commentId)
         
         
     }
     
-    
-    //MARK: - view controller life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        commentListModel = CommentListModel(delegate: self)
-        commentListModel.getCommentList(id: id, type: type)
-        
-        self.commentListTableView.refreshControl = UIRefreshControl()
-        self.commentListTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
-        self.commentListTableView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
-        //增加读取更多数据的按钮
-        addGetMorebtn()
-        self.navigationItem.title = "评论列表"
-        
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    //MARK: - tableview Delegate
+    //MARK: - tableView delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: seguename.toChildComment, sender: indexPath.row)
         tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
-    
-    
-    //MARK: - tableView DataSource
+    //MARK: - tableView datasource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentListModel.commentEnitys.count
+        return childCommentListModel.commentEnitys.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! commentTableViewCell
-        cell.userNameLabel.text = commentListModel.commentEnitys[indexPath.row].creator.name
-        cell.creatAtLabel.text = commentListModel.commentEnitys[indexPath.row].creatAt.date
-        cell.commentTextView.text = commentListModel.commentEnitys[indexPath.row].content
-        let media = commentListModel.commentEnitys[indexPath.row].creator.avatar!
+        print(childCommentListModel.commentEnitys[indexPath.row].creator.name)
+        cell.userNameLabel.text = childCommentListModel.commentEnitys[indexPath.row].creator.name
+        cell.creatAtLabel.text = childCommentListModel.commentEnitys[indexPath.row].creatAt.date
+        cell.commentTextView.text = childCommentListModel.commentEnitys[indexPath.row].content
+        let media = childCommentListModel.commentEnitys[indexPath.row].creator.avatar!
         let url = urlStruct.basicUrl + "media/" + "\(media)"
         cell.replyButton.tag = indexPath.row//传递在model数组中的位置给reply按钮
         cell.replyButton.addTarget(self, action: "replyComment:", for: .touchUpInside)
@@ -107,38 +96,23 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
                 DispatchQueue.main.async {
                     if let image = UIImage(data: data)
                     {
-                       
+                        
                         cell.userAvatarImageView.image = image
                     }
                 }
             }
         }
         cell.userAvatarImageView.isUserInteractionEnabled = true
-        cell.userAvatarImageView.tag = commentListModel.commentEnitys[indexPath.row].creator.id//用于点击时识别是哪一个点击源
+        cell.userAvatarImageView.tag = childCommentListModel.commentEnitys[indexPath.row].creator.id//用于点击时识别是哪一个点击源
         cell.userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "clickAvatar:"))
         return cell
     }
     
-    //MARK: - Pull Data Delegate
-    func needUpdateUI() {
-        if self.commentListTableView.refreshControl?.isRefreshing == true
-        {
-            self.commentListTableView.refreshControl?.endRefreshing()
-           
-        }
-        if self.loadingstateUI.isAnimating == true
-        {
-            loadingstateUI.stopAnimating()
-            btn.isHidden = false
-            
-            
-        }
-        commentListTableView.reloadData()
-    }
+    //MARK: - pull data delegate
     func getDataFailed() {
-        if self.commentListTableView.refreshControl?.isRefreshing == true
+        if self.childCommentTableView.refreshControl?.isRefreshing == true
         {
-            self.commentListTableView.refreshControl?.endRefreshing()
+            self.childCommentTableView.refreshControl?.endRefreshing()
             
         }
         if self.loadingstateUI.isAnimating == true
@@ -151,9 +125,25 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-
     }
-    //MARK: - reply Comment Delegate    
+    func needUpdateUI() {
+        if self.childCommentTableView.refreshControl?.isRefreshing == true
+        {
+            self.childCommentTableView.refreshControl?.endRefreshing()
+            
+        }
+        if self.loadingstateUI.isAnimating == true
+        {
+            loadingstateUI.stopAnimating()
+            btn.isHidden = false
+            
+            
+        }
+        childCommentTableView.reloadData()
+    }
+    
+    
+    //MARK: - replycomment delegate
     func successToreply()
     {
         let alert = UIAlertController(title: "成功", message: "评论成功", preferredStyle: .alert)
@@ -168,14 +158,11 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
     }
     
     
-    
-    
-    //MARK: - other func
     private func addGetMorebtn()
     {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
-        self.commentListTableView.tableFooterView = view
+        self.childCommentTableView.tableFooterView = view
         btn = UIButton(type: .system)
         btn.setTitle("加载更多", for: .normal)
         btn.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
@@ -185,37 +172,29 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         loadingstateUI.center = btn.center
         view.addSubview(loadingstateUI)
     }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == seguename.commentToUserInformation
+        if segue.identifier == seguename.childCommentToUserInformation
         {
             if let controller = segue.destination as? PersonalInfomationViewController
             {
                 controller.uid = (sender! as! Int)
             }
-        }else if segue.identifier == seguename.toReplyComment
+        }else if segue.identifier == seguename.childToReplyComment
         {
             if let controller = segue.destination as? replyCommentViewController
             {
                 let modelIndex = sender! as! Int
-                controller.attachId = commentListModel.commentEnitys[modelIndex].attachId
-                controller.attachType = commentListModel.commentEnitys[modelIndex].attachType
-                controller.parentCommentId = commentListModel.commentEnitys[modelIndex].id
+                controller.attachId = childCommentListModel.commentEnitys[modelIndex].attachId
+                controller.attachType = childCommentListModel.commentEnitys[modelIndex].attachType
+                controller.parentCommentId = childCommentListModel.commentEnitys[modelIndex].id
                 controller.delegate = self
             }
-        }else if segue.identifier == seguename.toChildComment
-        {
-            if let controller = segue.destination as? commentDetailViewController
-            {
-                controller.commentId = commentListModel.commentEnitys[sender! as! Int].id
-            }
         }
-        
         
         
     }

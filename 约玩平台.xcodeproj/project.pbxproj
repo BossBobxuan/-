@@ -17,6 +17,8 @@
 		B02FA4171E86ABE600062D1E /* commentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02FA4161E86ABE600062D1E /* commentListViewController.swift */; };
 		B02FA4191E86ABF500062D1E /* CommentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02FA4181E86ABF500062D1E /* CommentListModel.swift */; };
 		B02FA41B1E86B49200062D1E /* commentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02FA41A1E86B49200062D1E /* commentTableViewCell.swift */; };
+		B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */; };
+		B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */; };
 		B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */; };
 		B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */; };
 		B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39D1E1E4D53001B17F2 /* slideView.swift */; };
@@ -74,6 +76,8 @@
 		B02FA4161E86ABE600062D1E /* commentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentListViewController.swift; sourceTree = "<group>"; };
 		B02FA4181E86ABF500062D1E /* CommentListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListModel.swift; sourceTree = "<group>"; };
 		B02FA41A1E86B49200062D1E /* commentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentTableViewCell.swift; sourceTree = "<group>"; };
+		B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = replyCommentViewController.swift; sourceTree = "<group>"; };
+		B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentDetailViewController.swift; sourceTree = "<group>"; };
 		B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
 		B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitylistViewController.swift; sourceTree = "<group>"; };
 		B056B39D1E1E4D53001B17F2 /* slideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slideView.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				B02FA4161E86ABE600062D1E /* commentListViewController.swift */,
+				B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */,
+				B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */,
 				B02FA4181E86ABF500062D1E /* CommentListModel.swift */,
 				B02FA41A1E86B49200062D1E /* commentTableViewCell.swift */,
 			);
@@ -509,7 +515,9 @@
 				B02FA41B1E86B49200062D1E /* commentTableViewCell.swift in Sources */,
 				B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
+				B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
+				B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */,
 				B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */,
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
 				B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */,

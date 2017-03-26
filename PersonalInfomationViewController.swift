@@ -16,6 +16,10 @@ struct seguename {
     static let toActivityUserIn = "segueToActivityUserIn"
     static let toComment = "segueToComment"
     static let commentToUserInformation = "commentSegueToUserInformation"
+    static let toReplyComment = "segueToReplyComment"
+    static let toChildComment = "segueToChildComment"
+    static let childToReplyComment = "childSegueToReplyComment"
+    static let childCommentToUserInformation = "childCommentSegueToUserInformation"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet

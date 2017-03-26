@@ -18,7 +18,7 @@ class CommentListModel
     {
         self.delegate = delegate
     }
-    
+    //获取通知，相册与活动评论
     func getCommentList(id: Int,type: String)
     {
         let requestUrl = urlStruct.basicUrl + type + "/\(id).json"
@@ -33,7 +33,6 @@ class CommentListModel
         })
         page += 1
     }
-    
     func refreshCommentList(id: Int,type: String)
     {
         page = 1
@@ -50,12 +49,68 @@ class CommentListModel
         })
         page += 1
     }
+    //获取父评论的子评论
+    func getChildComment(commentId: Int)
+    {
+        let requestUrl = urlStruct.basicUrl + "msg/comment/" + "\(commentId).json"
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
+            self.dealWithChildResponse(response: response)
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+            
+        })
+        page += 1
+    }
+    func refreshChildComment(commentId: Int)
+    {
+        page = 1
+        let requestUrl = urlStruct.basicUrl + "msg/comment/" + "\(commentId).json"
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
+            self.commentEnitys = []
+            self.dealWithChildResponse(response: response)
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+            
+        })
+        page += 1
+    }
     
+    
+    //处理相册通知活动评论的返回数据
     private func dealWithResponse(response: Any?)
     {
         if let originalDictionary = response as? NSDictionary
         {
             if let commentArray = originalDictionary["comments"] as? NSArray
+            {
+                for comment in commentArray
+                {
+                    if let commentDictionary = comment as? NSDictionary
+                    {
+                        if let userJsonDictionary = commentDictionary["creator_obj"] as? NSDictionary
+                        {
+                            let userInformationEnity = UserInformationEnity(id: userJsonDictionary["id"] as! Int, user: userJsonDictionary["user"] as! String, name: userJsonDictionary["name"] as! String, avatar: userJsonDictionary["avatar"] as? Int, description: userJsonDictionary["description"] as! String, followersCount: userJsonDictionary["followers_count"] as! Int, fansCount: userJsonDictionary["fans_count"] as! Int, activitiesCount: userJsonDictionary["activities_count"] as! Int, relation: userJsonDictionary["relation"] as! String,gender: (userJsonDictionary["gender"] as! String))
+                            let commentEnity = CommentEnity(id: commentDictionary["id"] as! Int, creator: userInformationEnity, content: commentDictionary["content"] as! String, parent: commentDictionary["parent"] as! Int, attachType: commentDictionary["attach_type"] as! String, attachId: commentDictionary["attach_id"] as! Int, creatAt: commentDictionary["created_at"] as! Int)
+                            commentEnitys.append(commentEnity)
+                        }
+                    }
+                }
+                self.delegate.needUpdateUI()
+            }
+        }
+    }
+    //处理获取子评论的返回
+    private func dealWithChildResponse(response: Any?)
+    {
+        if let originalDictionary = response as? NSDictionary
+        {
+            if let commentArray = originalDictionary["childs"] as? NSArray
             {
                 for comment in commentArray
                 {
