@@ -20,6 +20,7 @@ struct seguename {
     static let toChildComment = "segueToChildComment"
     static let childToReplyComment = "childSegueToReplyComment"
     static let childCommentToUserInformation = "childCommentSegueToUserInformation"
+    static let toEditActivity = "segueToEditActivity"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -317,6 +318,10 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             {
                 
                 controller.activityModel.activityEnity = sender as! ActiveEnity
+                if uid == nil && nowtype == ActivityRequestType.created//只有是自己创建的活动才有权限修改
+                {
+                    controller.havePowerToEdit = true
+                }
             }
         }
     }

@@ -33,7 +33,10 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
     {
         performSegue(withIdentifier: seguename.toReplyComment, sender: sender.tag)
     }
-    
+    func addComment(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.toReplyComment, sender: nil)
+    }
     
     //下拉更新
     func pullToRefresh()
@@ -67,6 +70,10 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         //增加读取更多数据的按钮
         addGetMorebtn()
         self.navigationItem.title = "评论列表"
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add
+            , target: self, action: "addComment:")
+    
         
 
     }
@@ -202,11 +209,22 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         {
             if let controller = segue.destination as? replyCommentViewController
             {
-                let modelIndex = sender! as! Int
-                controller.attachId = commentListModel.commentEnitys[modelIndex].attachId
-                controller.attachType = commentListModel.commentEnitys[modelIndex].attachType
-                controller.parentCommentId = commentListModel.commentEnitys[modelIndex].id
-                controller.delegate = self
+                
+                
+                if let modelIndex = sender as? Int
+                {
+                    controller.attachId = commentListModel.commentEnitys[modelIndex].attachId
+                    //MARK: - 此处需要注意回复评论的连接对象
+                    controller.attachType = commentListModel.commentEnitys[modelIndex].attachType
+                    controller.parentCommentId = commentListModel.commentEnitys[modelIndex].id
+                    controller.delegate = self
+                }else
+                {
+                    
+                    controller.attachId = id
+                    controller.attachType = "1"//此处为活动
+                    controller.delegate = self
+                }
             }
         }else if segue.identifier == seguename.toChildComment
         {

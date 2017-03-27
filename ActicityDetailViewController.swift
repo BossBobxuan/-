@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActicityDetailViewController: UIViewController {
+class ActicityDetailViewController: UIViewController, PullDataDelegate {
     //MARK: - outlet
     
     @IBOutlet weak var activityTitleLabel: UILabel!
@@ -28,10 +28,31 @@ class ActicityDetailViewController: UIViewController {
     @IBOutlet weak var participateButton: UIButton!
     @IBOutlet weak var tagsScrollView: UIScrollView!
     //MARK: - var and let
-    var activityModel: ActivityDetailModel = ActivityDetailModel()
-    
+    var activityModel: ActivityDetailModel! = ActivityDetailModel()
+    var havePowerToEdit: Bool = false
     //MARK: - event func
+    func toEditActivity()
+    {
+        performSegue(withIdentifier: seguename.toEditActivity, sender: activityModel)
+    }
+    //点击表示对活动感兴趣
     @IBAction func showWishedList(_ sender: UIButton) {
+        //MARK: - 此处需要先进行setImage才有效果
+        if sender.currentImage == #imageLiteral(resourceName: "interest.png")
+        {
+            sender.setImage(#imageLiteral(resourceName: "interestclicked.png"), for: .normal)
+            wishedCountLabel.text = "\(activityModel.activityEnity.wisherCount + 1)"
+            activityModel.interestActivity(token: token)
+            sender.isEnabled = false
+            
+        }else if sender.currentImage == #imageLiteral(resourceName: "interestclicked.png")
+        {
+            sender.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
+            wishedCountLabel.text = "\(activityModel.activityEnity.wisherCount - 1)"
+            activityModel.uninterestActivity(token: token)
+            sender.isEnabled = false
+        }
+        
     }
     
     @IBAction func showParticipateList(_ sender: UIButton)
@@ -45,16 +66,14 @@ class ActicityDetailViewController: UIViewController {
     @IBAction func showNotification(_ sender: UIButton) {
     }
    
-    @IBAction func addWish(_ sender: UIButton) {
-    }
-    
+ 
     @IBAction func participateActivity(_ sender: UIButton) {
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        activityModel.delegate = self
         // Do any additional setup after loading the view.
         navigationItem.title = activityModel.activityEnity.activityTitle
         activityTitleLabel.text = activityModel.activityEnity.activityTitle
@@ -69,6 +88,11 @@ class ActicityDetailViewController: UIViewController {
         photoCountLabel.text = "\(activityModel.activityEnity.photoCount)"
         notificationCountLabel.text = "\(activityModel.activityEnity.notificationCount)"
         feeLabel.text = "\(activityModel.activityEnity.fee)"
+        
+        if havePowerToEdit
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: "toEditActivity")
+        }
         
         
         addTagsIntoScrollView()
@@ -99,7 +123,19 @@ class ActicityDetailViewController: UIViewController {
         }
         
     }
-    
+    //MARK: - pull Data Delegate
+    func needUpdateUI() {
+        print(wishedCountLabel.text!)
+        activityModel.activityEnity.wisherCount = Int(wishedCountLabel.text!)!
+        wishedButton.isEnabled = true
+        
+    }
+    func getDataFailed() {
+        let alert = UIAlertController(title: "无法关注活动", message: "请检查网络连接", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        wishedButton.isEnabled = true
+    }
     
     // MARK: - Navigation
 
@@ -120,6 +156,9 @@ class ActicityDetailViewController: UIViewController {
                 controller.id = activityModel.activityEnity.id
                 controller.type = "activity"
             }
+        }else if segue.identifier == seguename.toEditActivity
+        {
+            
         }
     }
  
