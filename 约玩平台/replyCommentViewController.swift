@@ -26,7 +26,7 @@ class replyCommentViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "回复评论"
+        self.navigationItem.title = "评论"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: "replyComment:")
         
         
@@ -49,7 +49,7 @@ class replyCommentViewController: UIViewController {
         }, failure: {(dataTask,error) in
             self.delegate.failToreply()
         })
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     

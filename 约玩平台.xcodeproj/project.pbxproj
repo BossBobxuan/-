@@ -20,6 +20,10 @@
 		B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */; };
 		B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */; };
 		B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */; };
+		B047185C1E8A82C5000488CD /* address.png in Resources */ = {isa = PBXBuildFile; fileRef = B04718581E8A82C5000488CD /* address.png */; };
+		B047185D1E8A82C5000488CD /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = B04718591E8A82C5000488CD /* date.png */; };
+		B047185E1E8A82C5000488CD /* dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = B047185A1E8A82C5000488CD /* dollar.png */; };
+		B047185F1E8A82C5000488CD /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = B047185B1E8A82C5000488CD /* label.png */; };
 		B047D7191E892FE900A928EF /* clicklike.png in Resources */ = {isa = PBXBuildFile; fileRef = B047D7151E892FE900A928EF /* clicklike.png */; };
 		B047D71A1E892FE900A928EF /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = B047D7161E892FE900A928EF /* comment.png */; };
 		B047D71B1E892FE900A928EF /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = B047D7171E892FE900A928EF /* notification.png */; };
@@ -52,6 +56,7 @@
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
+		B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +92,10 @@
 		B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = replyCommentViewController.swift; sourceTree = "<group>"; };
 		B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentDetailViewController.swift; sourceTree = "<group>"; };
 		B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
+		B04718581E8A82C5000488CD /* address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = address.png; sourceTree = "<group>"; };
+		B04718591E8A82C5000488CD /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
+		B047185A1E8A82C5000488CD /* dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollar.png; sourceTree = "<group>"; };
+		B047185B1E8A82C5000488CD /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		B047D7151E892FE900A928EF /* clicklike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clicklike.png; sourceTree = "<group>"; };
 		B047D7161E892FE900A928EF /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		B047D7171E892FE900A928EF /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
@@ -126,6 +135,7 @@
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
 		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
+		B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
 		D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-约玩平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +211,7 @@
 			children = (
 				B0107B501E83F9160040493A /* ActicityDetailViewController.swift */,
 				B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */,
+				B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */,
 				B056B39D1E1E4D53001B17F2 /* slideView.swift */,
 				B0107B521E8405FB0040493A /* ActivityDetailModel.swift */,
 				B05F3F821E222F8800777C82 /* ActivityModel.swift */,
@@ -216,6 +227,10 @@
 				B047D71D1E89346D00A928EF /* photo.png */,
 				B047D7231E893F9E00A928EF /* interestclicked.png */,
 				B047D7151E892FE900A928EF /* clicklike.png */,
+				B04718581E8A82C5000488CD /* address.png */,
+				B04718591E8A82C5000488CD /* date.png */,
+				B047185A1E8A82C5000488CD /* dollar.png */,
+				B047185B1E8A82C5000488CD /* label.png */,
 				B047D7161E892FE900A928EF /* comment.png */,
 				B047D7211E893F9B00A928EF /* interest.png */,
 				B047D7171E892FE900A928EF /* notification.png */,
@@ -442,14 +457,18 @@
 				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
 				B047D71E1E89346D00A928EF /* photo.png in Resources */,
 				B047D7221E893F9B00A928EF /* interest.png in Resources */,
+				B047185C1E8A82C5000488CD /* address.png in Resources */,
 				B047D71C1E892FE900A928EF /* participate.png in Resources */,
 				B047D71B1E892FE900A928EF /* notification.png in Resources */,
 				B05F3F8A1E22681700777C82 /* location.png in Resources */,
 				B047D7241E893F9E00A928EF /* interestclicked.png in Resources */,
 				B047D7191E892FE900A928EF /* clicklike.png in Resources */,
 				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
+				B047185D1E8A82C5000488CD /* date.png in Resources */,
+				B047185F1E8A82C5000488CD /* label.png in Resources */,
 				B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */,
 				B047D71A1E892FE900A928EF /* comment.png in Resources */,
+				B047185E1E8A82C5000488CD /* dollar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +549,7 @@
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B02FA4191E86ABF500062D1E /* CommentListModel.swift in Sources */,
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
+				B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */,
 				B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */,
 				B02FA4171E86ABE600062D1E /* commentListViewController.swift in Sources */,
 				B02FA4141E86A87700062D1E /* CommentEnity.swift in Sources */,
