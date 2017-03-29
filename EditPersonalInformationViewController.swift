@@ -88,7 +88,7 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
             userInformationModel.personalInformationEnity?.gender = "1"
         }
         userInformationModel.personalInformationEnity?.description = discriptionTextField.text!
-        userInformationModel.editUserInformation(token: token, avatar: "\((userInformationModel.personalInformationEnity?.avatar)! as Int)")
+        userInformationModel.editUserInformation(token: token)
         //MARK: - 使用AFNetworking传入数据时，不能传入可选类型，否则会出错
         
         

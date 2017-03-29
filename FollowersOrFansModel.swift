@@ -31,9 +31,15 @@ class FollowersOrFansModel
             
             
         }, failure: {(dataTask,error) in
-            print(error)
-            self.delegate.getDataFailed()
             
+            if  ((error as! NSError).userInfo["com.alamofire.serialization.response.error.response"] as! HTTPURLResponse).statusCode == 400
+            {
+                self.delegate.needUpdateUI()//MARK: - 此处防止请求不到数据，更改接口后可以删除
+            }else
+            {
+                print(error)
+                self.delegate.getDataFailed()
+            }
         })
         page += 1
     }
@@ -108,6 +114,7 @@ class FollowersOrFansModel
             
         }, failure: {(dataTask,error) in
             print(error)
+            
             self.delegate.getDataFailed()
             
         })

@@ -57,12 +57,11 @@ class PersonalInformationModel
         })
         
     }
-    func editUserInformation(token: String,avatar: String) -> Void
+    func editUserInformation(token: String) -> Void
     {
         let requestUrl = urlStruct.basicUrl + "user/~me.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-        print(avatar)
-        manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender,"avatar": avatar,"description":personalInformationEnity!.description], progress: {(progress) in }, success: {
+        manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender,"description":personalInformationEnity!.description], progress: {(progress) in }, success: {
             (dataTask,response) in
             self.dealwithResponse(response: response)
             
@@ -102,7 +101,20 @@ class PersonalInformationModel
         if let JsonDictionary = response as? NSDictionary
         {
             let mediaid = JsonDictionary["media_id"] as! Int
-            self.editUserInformation(token: token, avatar: "\(mediaid)")
+            let requestUrl = urlStruct.basicUrl + "user/~me.json"
+            print(mediaid)
+            manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+            
+            manager.post(requestUrl, parameters: ["avatar":mediaid], progress: {(progress) in }, success: {
+                (dataTask,response) in
+                
+                
+                
+            }, failure: {(dataTask,error) in
+                print(error)
+                self.delegate.getDataFailed()
+                
+            })
             
         }
     }

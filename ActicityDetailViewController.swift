@@ -158,7 +158,11 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             }
         }else if segue.identifier == seguename.toEditActivity
         {
-            
+            if let controller = segue.destination as? EditActivityViewController
+            {
+                controller.activityDetailModel = self.activityModel
+                
+            }
         }
     }
  
