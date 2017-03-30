@@ -48,6 +48,31 @@ class ActivityDetailModel {
         })
     }
     
+    func editActivity(token: String)
+    {
+        var tagString = ""
+        for tag in activityEnity.tags
+        {
+            tagString += tag as! String + "&"
+        }
+        
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)" + ".json"
+        
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        
+        manager.post(requestUrl, parameters: ["title": activityEnity.activityTitle ,"beginTime":activityEnity.beginTime ,"endTime":activityEnity.endTime,"address":activityEnity.address,"latitude":activityEnity.latitude,"longitude":activityEnity.longitude,"fee": "\(activityEnity.fee)","category":activityEnity.category,"content":activityEnity.content,"tags": tagString], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            print("success")
+            self.delegate.needUpdateUI()
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+    }
+    
     func editActivityImage(image: UIImage,token: String)
     {
         let data = UIImagePNGRepresentation(image)

@@ -57,6 +57,7 @@
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
 		B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */; };
+		B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
 		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
 		B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
+		B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
 		D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-约玩平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +214,7 @@
 				B0107B501E83F9160040493A /* ActicityDetailViewController.swift */,
 				B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */,
 				B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */,
+				B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */,
 				B056B39D1E1E4D53001B17F2 /* slideView.swift */,
 				B0107B521E8405FB0040493A /* ActivityDetailModel.swift */,
 				B05F3F821E222F8800777C82 /* ActivityModel.swift */,
@@ -574,6 +577,7 @@
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
 				B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */,
 				B05F3F851E223C8900777C82 /* ActivityDisplayTableViewCell.swift in Sources */,
+				B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

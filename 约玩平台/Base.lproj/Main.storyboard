@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="65D-uR-Jgh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Opr-F8-ZZa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -857,6 +857,47 @@
             </objects>
             <point key="canvasLocation" x="2957.5999999999999" y="3877.5112443778112"/>
         </scene>
+        <!--Location Select View Controller-->
+        <scene sceneID="owc-a5-xTu">
+            <objects>
+                <viewController id="w7u-UM-3jg" customClass="LocationSelectViewController" customModule="约玩平台" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aBI-EY-QxI"/>
+                        <viewControllerLayoutGuide type="bottom" id="guE-co-TsL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jvn-IA-bDL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RV0-Ec-evr">
+                                <rect key="frame" x="16" y="72" width="343" height="538"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pG0-JW-TBG" appends="YES" id="mpz-OJ-2bm"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="RV0-Ec-evr" secondAttribute="trailing" id="7jf-go-Uc8"/>
+                            <constraint firstItem="guE-co-TsL" firstAttribute="top" secondItem="RV0-Ec-evr" secondAttribute="bottom" constant="8" symbolic="YES" id="BNj-SP-Y7P"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="RV0-Ec-evr" secondAttribute="leading" id="Tbp-DR-Y0V"/>
+                            <constraint firstItem="RV0-Ec-evr" firstAttribute="top" secondItem="aBI-EY-QxI" secondAttribute="bottom" constant="8" symbolic="YES" id="l4E-0h-gLt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityLocationMapView" destination="RV0-Ec-evr" id="ssG-cf-GE9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ej4-bO-Gzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="pG0-JW-TBG">
+                    <connections>
+                        <action selector="longPressAddLocation:" destination="w7u-UM-3jg" id="Nle-Ld-Wmw"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1549.5999999999999" y="3877.5112443778112"/>
+        </scene>
         <!--Edit Activity View Controller-->
         <scene sceneID="Qmf-u2-gmM">
             <objects>
@@ -869,49 +910,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="BHF-vR-xbd">
-                                <rect key="frame" x="16" y="20" width="343" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="sbd-DX-0Wc"/>
-                                </constraints>
-                            </scrollView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVy-DL-2vK">
-                                <rect key="frame" x="16" y="101" width="343" height="100"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVy-DL-2vK">
+                                <rect key="frame" x="16" y="145" width="343" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="H7g-te-bMp"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="BHF-vR-xbd">
+                                <rect key="frame" x="16" y="64" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="sbd-DX-0Wc"/>
+                                </constraints>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Of-MM-Dde">
-                                <rect key="frame" x="314" y="209" width="45" height="30"/>
+                                <rect key="frame" x="314" y="253" width="45" height="30"/>
                                 <state key="normal" title="+ 标签"/>
                                 <connections>
+                                    <action selector="addTags:" destination="65D-uR-Jgh" eventType="touchUpInside" id="v7j-qz-Eaq"/>
                                     <action selector="participateActivity:" destination="aW7-NR-fpn" eventType="touchUpInside" id="hTV-pr-I4T"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sZ-eS-C6R">
-                                <rect key="frame" x="244" y="209" width="62" height="30"/>
+                                <rect key="frame" x="244" y="253" width="62" height="30"/>
                                 <state key="normal" title="选择地点"/>
+                                <connections>
+                                    <action selector="selectLocation:" destination="65D-uR-Jgh" eventType="touchUpInside" id="2cR-Y2-pdg"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uyD-dS-aRL">
-                                <rect key="frame" x="16" y="209" width="30" height="30"/>
+                                <rect key="frame" x="16" y="253" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uyD-dS-aRL" secondAttribute="height" multiplier="1:1" id="4Yq-hs-bHY"/>
                                     <constraint firstAttribute="width" constant="30" id="rHb-Wt-dwU"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBZ-Ow-5U5">
-                                <rect key="frame" x="54" y="209" width="31" height="30"/>
+                                <rect key="frame" x="54" y="253" width="31" height="30"/>
                                 <state key="normal" title="编辑"/>
                                 <connections>
                                     <action selector="editActivityImage:" destination="65D-uR-Jgh" eventType="touchUpInside" id="X1M-RX-OaJ"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ouv-h7-cmk">
-                                <rect key="frame" x="16" y="247" width="343" height="170"/>
+                                <rect key="frame" x="16" y="291" width="343" height="170"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG3-q8-MoT">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -929,7 +973,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uai-Ln-9l3">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入费用" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uai-Ln-9l3">
                                                 <rect key="frame" x="67" y="0.0" width="276" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -966,7 +1010,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMX-jf-ef6">
                                                 <rect key="frame" x="313" y="-1.5" width="30" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="选择"/>
                                                 <connections>
                                                     <action selector="needSelectCategory:" destination="65D-uR-Jgh" eventType="touchUpInside" id="a2J-yP-AnT"/>
                                                 </connections>
@@ -999,7 +1043,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-AJ-VJp">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-AJ-VJp">
                                                 <rect key="frame" x="67" y="0.0" width="276" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1034,9 +1078,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKZ-HD-VQg">
-                                                <rect key="frame" x="310" y="-2" width="33" height="24"/>
+                                                <rect key="frame" x="313" y="-2" width="30" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="选取"/>
                                                 <connections>
                                                     <action selector="needSelectBeginTime:" destination="65D-uR-Jgh" eventType="touchUpInside" id="RUk-gL-Wg6"/>
                                                 </connections>
@@ -1070,9 +1114,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbo-dP-iMj">
-                                                <rect key="frame" x="310" y="-1" width="33" height="24"/>
+                                                <rect key="frame" x="313" y="-1" width="30" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="选取"/>
                                                 <connections>
                                                     <action selector="needSelectEndTime:" destination="65D-uR-Jgh" eventType="touchUpInside" id="cu0-yA-cKw"/>
                                                 </connections>
@@ -1093,7 +1137,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydq-fP-mjm">
-                                <rect key="frame" x="16" y="567" width="343" height="100"/>
+                                <rect key="frame" x="16" y="518" width="343" height="100"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dC8-TH-3af">
                                         <rect key="frame" x="0.0" y="40" width="343" height="60"/>
@@ -1132,7 +1176,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1A-io-XKw">
-                                <rect key="frame" x="16" y="559" width="343" height="100"/>
+                                <rect key="frame" x="16" y="510" width="343" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-K3-Nuh">
                                         <rect key="frame" x="312" y="0.0" width="31" height="30"/>
@@ -1167,8 +1211,8 @@
                                     <constraint firstAttribute="height" constant="100" id="r7W-wh-hLI"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52F-Kr-K92">
-                                <rect key="frame" x="16" y="63" width="343" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入活动标题" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52F-Kr-K92">
+                                <rect key="frame" x="16" y="107" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1210,6 +1254,7 @@
                         <outlet property="activityBeginAndEndTimeDatePicker" destination="dC8-TH-3af" id="6xM-xd-wdB"/>
                         <outlet property="activityImageImageView" destination="uyD-dS-aRL" id="sqs-py-b6q"/>
                         <outlet property="activityTitleTextField" destination="52F-Kr-K92" id="f84-me-3sM"/>
+                        <outlet property="addressTextField" destination="PZa-AJ-VJp" id="2p7-02-bGI"/>
                         <outlet property="beginTimeButton" destination="GKZ-HD-VQg" id="FuR-mm-3qw"/>
                         <outlet property="categoryPickerParentView" destination="O1A-io-XKw" id="WRJ-0U-ADe"/>
                         <outlet property="categoryPickerView" destination="exD-fH-iwh" id="tIW-MX-cgx"/>
@@ -1219,6 +1264,7 @@
                         <outlet property="endTimeButton" destination="Jbo-dP-iMj" id="Mea-pC-xCo"/>
                         <outlet property="feeTextField" destination="Uai-Ln-9l3" id="nxF-dG-Ef0"/>
                         <outlet property="tagsScrollView" destination="BHF-vR-xbd" id="fFh-YP-whB"/>
+                        <segue destination="w7u-UM-3jg" kind="show" identifier="segueToLocationSelect" id="S0R-T3-tw1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bH-sT-qVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1819,7 +1865,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="dEa-nz-adj" secondAttribute="trailing" id="vGJ-Ui-Pv3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="热门活动" id="m7B-za-Y5o"/>
+                    <navigationItem key="navigationItem" title="热门活动" id="m7B-za-Y5o">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cd7-Hc-dbf">
+                            <connections>
+                                <segue destination="65D-uR-Jgh" kind="show" identifier="segueToAddActivity" id="jZv-JX-T4c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityTableView" destination="Isd-Gd-Xik" id="QNG-Ku-3oC"/>
                         <outlet property="selecteScrollView" destination="dEa-nz-adj" id="zo7-i8-lPD"/>
@@ -1963,5 +2015,6 @@
         <segue reference="OyB-rE-ZOf"/>
         <segue reference="4Ro-V4-upw"/>
         <segue reference="kGL-hZ-nU3"/>
+        <segue reference="jZv-JX-T4c"/>
     </inferredMetricsTieBreakers>
 </document>

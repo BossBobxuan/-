@@ -106,13 +106,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     func addTagsIntoScrollView()
     {
         var i = 0
-        tagsScrollView.contentSize.width = CGFloat(40 * (activityModel.activityEnity.tags.count + 1))
+        tagsScrollView.contentSize.width = CGFloat(50 * (activityModel.activityEnity.tags.count + 1))
         for tag in activityModel.activityEnity.tags
         {
             if let tagString = tag as? String
             {
                 print("1111")
-                let tagLabel = UILabel(frame: CGRect(x: CGFloat(40 * i), y: tagsScrollView.bounds.origin.y, width: CGFloat(30), height: tagsScrollView.bounds.height))
+                let tagLabel = UILabel(frame: CGRect(x: CGFloat(50 * i), y: tagsScrollView.bounds.origin.y, width: CGFloat(40), height: tagsScrollView.bounds.height))
                 tagLabel.font = UIFont(name: "Arial", size: 15)
                 tagLabel.textColor = UIColor.black
                 tagLabel.text = tagString

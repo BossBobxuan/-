@@ -21,6 +21,8 @@ struct seguename {
     static let childToReplyComment = "childSegueToReplyComment"
     static let childCommentToUserInformation = "childCommentSegueToUserInformation"
     static let toEditActivity = "segueToEditActivity"
+    static let toLocationSelect = "segueToLocationSelect"
+    static let toAddActivity = "segueToAddActivity"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet

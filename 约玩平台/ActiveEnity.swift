@@ -69,6 +69,7 @@ class ActiveEnity:NSObject,MKAnnotation
         self.creatAt = creatAt
         
     }
+  
 
 }
 

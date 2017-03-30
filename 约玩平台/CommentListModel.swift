@@ -18,6 +18,7 @@ class CommentListModel
     {
         self.delegate = delegate
     }
+    //MARK: - 以下需要添加token
     //获取通知，相册与活动评论
     func getCommentList(id: Int,type: String)
     {
