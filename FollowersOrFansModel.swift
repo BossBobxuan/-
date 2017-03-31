@@ -11,7 +11,7 @@ import Foundation
 class FollowersOrFansModel
 {
     var userInformationEnitys: [UserInformationEnity] = []
-    var delegate: PullDataDelegate
+    weak var delegate: PullDataDelegate!
     private var page: Int = 1
     var type: String
     let manager = AFHTTPSessionManager()

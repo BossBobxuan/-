@@ -11,7 +11,7 @@ import Foundation
 class CommentListModel
 {
     var commentEnitys: [CommentEnity] = []
-    var delegate: PullDataDelegate
+    weak var delegate: PullDataDelegate!
     var page = 1
     let manager = AFHTTPSessionManager()
     init(delegate: PullDataDelegate)

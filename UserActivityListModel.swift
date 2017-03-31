@@ -7,7 +7,7 @@
 //
 
 import Foundation
-protocol getUserActivityDelegate {
+protocol getUserActivityDelegate:AnyObject {
     
     func getActivitySuccess() -> Void
     func getActivityfailed() -> Void
@@ -22,7 +22,7 @@ struct ActivityRequestType
 class UserActivityListModel
 {
     var activityEnitys: [String:[ActiveEnity]] = [ActivityRequestType.created:[],ActivityRequestType.participated:[],ActivityRequestType.wished:[]]
-    var delegate: getUserActivityDelegate
+    weak var delegate: getUserActivityDelegate!
     let manager = AFHTTPSessionManager()
     private var pageDic: [String: Int] = [ActivityRequestType.created: 1,ActivityRequestType.wished: 1,ActivityRequestType.participated: 1]
     init(delegate: getUserActivityDelegate) {

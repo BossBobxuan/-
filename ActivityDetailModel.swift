@@ -11,7 +11,7 @@ import Foundation
 class ActivityDetailModel {
     var activityEnity: ActiveEnity!
     let manager = AFHTTPSessionManager()
-    var delegate: PullDataDelegate!
+    weak var delegate: PullDataDelegate!
     
    
     func interestActivity(token: String)

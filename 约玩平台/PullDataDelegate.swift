@@ -7,7 +7,8 @@
 //
 
 import Foundation
-protocol PullDataDelegate {
+protocol PullDataDelegate: AnyObject
+{
     func needUpdateUI() -> Void
     func getDataFailed() -> Void
 }

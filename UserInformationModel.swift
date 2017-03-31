@@ -17,7 +17,7 @@ struct urlStruct {
 class PersonalInformationModel
 {
     var personalInformationEnity: UserInformationEnity?
-    var delegate: PullDataDelegate
+    weak var delegate: PullDataDelegate!
     let manager = AFHTTPSessionManager()
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
