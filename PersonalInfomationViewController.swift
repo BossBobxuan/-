@@ -23,6 +23,8 @@ struct seguename {
     static let toEditActivity = "segueToEditActivity"
     static let toLocationSelect = "segueToLocationSelect"
     static let toAddActivity = "segueToAddActivity"
+    static let toNotificationTableView = "segueToNotificationTableView"
+    static let notificationToComment = "notificationSegueToCommentList"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -320,6 +322,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             {
                 
                 controller.activityModel.activityEnity = sender as! ActiveEnity
+                
                 if uid == nil && nowtype == ActivityRequestType.created//只有是自己创建的活动才有权限修改
                 {
                     controller.havePowerToEdit = true

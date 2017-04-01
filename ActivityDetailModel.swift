@@ -47,6 +47,43 @@ class ActivityDetailModel {
             
         })
     }
+    func participateActivity(token: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            print("success")
+            self.delegate.needUpdateUI()
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+    }
+    
+    func unparticipateActivity(token: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.delete(requestUrl, parameters: [],  success: {
+            (dataTask,response) in
+            self.delegate.needUpdateUI()
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+        
+        
+        
+    }
+    
     
     func editActivity(token: String)
     {

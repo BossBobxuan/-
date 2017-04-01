@@ -222,7 +222,17 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
                 {
                     
                     controller.attachId = id
-                    controller.attachType = "1"//此处为活动
+                    switch type {
+                    case "activity":
+                        controller.attachType = "1"//此处为活动
+                    case "notification":
+                        controller.attachType = "3"
+                    case "photo":
+                        controller.attachType = "2"
+                    default:
+                        controller.attachType = "2"
+                    }
+                    
                     controller.delegate = self
                 }
             }

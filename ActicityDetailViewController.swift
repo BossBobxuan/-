@@ -11,6 +11,7 @@ import UIKit
 class ActicityDetailViewController: UIViewController, PullDataDelegate {
     //MARK: - outlet
     
+    @IBOutlet weak var activityImageImageView: UIImageView!
     @IBOutlet weak var activityTitleLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var wishedCountLabel: UILabel!
@@ -35,6 +36,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     {
         performSegue(withIdentifier: seguename.toEditActivity, sender: activityModel)
     }
+    //分享活动
+    func shareActivity(_ sender: UIBarButtonItem)
+    {
+        
+    }
+    
+    
     //点击表示对活动感兴趣
     @IBAction func showWishedList(_ sender: UIButton) {
         //MARK: - 此处需要先进行setImage才有效果
@@ -64,10 +72,23 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     }
     
     @IBAction func showNotification(_ sender: UIButton) {
+        performSegue(withIdentifier: seguename.toNotificationTableView, sender: self)
+      
     }
    
  
     @IBAction func participateActivity(_ sender: UIButton) {
+        if participateButton.titleLabel?.text == "+ 参加"
+        {
+            activityModel.participateActivity(token: token)
+            participateButton.isEnabled = false
+            participateButton.setTitle("已参加", for: .normal)
+        }else if participateButton.titleLabel?.text == "已参加"
+        {
+            activityModel.unparticipateActivity(token: token)
+            participateButton.isEnabled = false
+            participateButton.setTitle("+ 参加", for: .normal)
+        }
     }
     
     
@@ -88,11 +109,70 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         photoCountLabel.text = "\(activityModel.activityEnity.photoCount)"
         notificationCountLabel.text = "\(activityModel.activityEnity.notificationCount)"
         feeLabel.text = "\(activityModel.activityEnity.fee)"
+        commentCountLabel.text = "\(activityModel.activityEnity.commentCount)"
         
+        
+        let bar = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: "shareActivity:")
+        self.navigationItem.rightBarButtonItems = [bar]
         if havePowerToEdit
         {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: "toEditActivity")
+            self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "toEditActivity"))
         }
+        
+        let media = activityModel.activityEnity.image
+        let url = urlStruct.basicUrl + "media/" + "\(media)"
+        DispatchQueue.global().async {
+            
+            if let data = try? Data(contentsOf: URL(string: url)!)
+            {
+                
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data)
+                    {
+                        
+                        self.activityImageImageView.image = image
+                    }
+                }
+            }
+        }
+        
+        //以下用来获取活动状态
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityModel.activityEnity.id).json"
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            print("success")
+            if let JsonDic = response as? NSDictionary
+            {
+                if let wish = JsonDic["wish_relation"] as? String
+                {
+                    switch wish
+                    {
+                        case "0": self.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
+                        case "1": self.wishedButton.setImage(#imageLiteral(resourceName: "interestclicked.png"), for: .normal)
+                        default: self.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
+                    }
+                }
+                if let participate = JsonDic["participate_relation"] as? String
+                {
+                    switch participate
+                    {
+                        case "0": self.participateButton.setTitle("+ 参加", for: .normal)
+                        case "1": self.participateButton.setTitle("已参加", for: .normal)
+                    default: break 
+                    }
+                }
+            }
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        })
         
         
         addTagsIntoScrollView()
@@ -116,6 +196,8 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 tagLabel.font = UIFont(name: "Arial", size: 15)
                 tagLabel.textColor = UIColor.black
                 tagLabel.text = tagString
+                tagLabel.layer.borderWidth = 1.0
+                tagLabel.layer.cornerRadius = 8
                 print(tagString)
                 tagsScrollView.addSubview(tagLabel)
             }
@@ -128,12 +210,14 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         print(wishedCountLabel.text!)
         activityModel.activityEnity.wisherCount = Int(wishedCountLabel.text!)!
         wishedButton.isEnabled = true
-        
+        participateButton.isEnabled = true
     }
     func getDataFailed() {
         let alert = UIAlertController(title: "无法关注活动", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        wishedCountLabel.text = "\(activityModel.activityEnity.wisherCount)"
+        participateButton.isEnabled = true
         wishedButton.isEnabled = true
     }
     
@@ -162,6 +246,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             {
                 controller.activityDetailModel = self.activityModel
                 
+            }
+        }else if segue.identifier == seguename.toNotificationTableView
+        {
+            if let controller = segue.destination as? NotificationListViewController
+            {
+                controller.activityId = activityModel.activityEnity.id
+                controller.havePowerToEdit = self.havePowerToEdit
             }
         }
     }

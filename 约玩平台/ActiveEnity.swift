@@ -31,6 +31,7 @@ class ActiveEnity:NSObject,MKAnnotation
     var tags: NSArray
     var content: String
     var notificationCount: Int
+    var commentCount: Int
     var photoCount: Int
     var creatAt: Int //此处为Unix时间戳
     
@@ -45,7 +46,7 @@ class ActiveEnity:NSObject,MKAnnotation
     }
     
     
-    init(id: Int,activityTitle: String,image: Int,state: String,wisherCount: Int,wisherTotal: Int,participantCount: Int,creator: UserInformationEnity,beginTime: Int,endTime: Int,address: String,latitude: Double,longitude: Double,fee: Int,category: String,tags: NSArray,content: String,notificationCount: Int,photoCount: Int,creatAt: Int)
+    init(id: Int,activityTitle: String,image: Int,state: String,wisherCount: Int,wisherTotal: Int,participantCount: Int,creator: UserInformationEnity,beginTime: Int,endTime: Int,address: String,latitude: Double,longitude: Double,fee: Int,category: String,tags: NSArray,content: String,notificationCount: Int,photoCount: Int,creatAt: Int,commentCount: Int)
     {
         self.id = id
         self.activityTitle = activityTitle
@@ -67,7 +68,7 @@ class ActiveEnity:NSObject,MKAnnotation
         self.notificationCount = notificationCount
         self.photoCount = photoCount
         self.creatAt = creatAt
-        
+        self.commentCount = commentCount
     }
   
 

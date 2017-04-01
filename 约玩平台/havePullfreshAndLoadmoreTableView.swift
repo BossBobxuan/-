@@ -59,7 +59,7 @@ class havePullfreshAndLoadmoreTableView: UITableView {
     }
     
     //在拉取数据成功后需要调用该方法来停止菊花的旋转
-    func updateUIWhenPullDataSuccess() -> Void
+    func updateTableViewUIWhenPullDataEnd() -> Void
     {
         if self.refreshControl?.isRefreshing == true
         {
