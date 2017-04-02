@@ -9,9 +9,15 @@
 import UIKit
 
 class ActivityDisplayTableViewCell: UITableViewCell {
-    @IBOutlet weak var ownernameLabel: UILabel!
-    @IBOutlet weak var activityNameLabel: UILabel!
-    @IBOutlet weak var interestednumberLabel: UILabel!
+    @IBOutlet weak var activityImageImageView: UIImageView!
+    
+    @IBOutlet weak var activityTitleLabel: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var beginDateCount: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -25,6 +25,9 @@ struct seguename {
     static let toAddActivity = "segueToAddActivity"
     static let toNotificationTableView = "segueToNotificationTableView"
     static let notificationToComment = "notificationSegueToCommentList"
+    static let toActivityLocation = "segueToActivityLocation"
+    static let hotActivityToDetail = "hotActivityToDetail"
+    static let hotActivityToCommentList = "hotActivityToCommentList"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -35,6 +38,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var activityTypeSegmentControl: UISegmentedControl!
     
+    @IBOutlet weak var followButton: UIButton!
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
     private var btn:UIButton!//加载更多的按钮
     private var nowtype: String
@@ -113,8 +117,43 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         
     }
     
-    
-    
+    @IBAction func addFollowOrCancel(_ sender: UIButton) {
+        if sender.titleLabel?.text == "关注"
+        {
+            personalInformationModel.followUser(uid: uid!,token: token)
+            sender.setTitle("已关注", for: .normal)
+            sender.isEnabled = false
+        }else if sender.titleLabel?.text == "已关注"
+        {
+            personalInformationModel.notFollowUser(uid: uid!, token: token)
+            sender.setTitle("关注", for: .normal)
+            sender.isEnabled = false
+        }
+    }
+    //MARK: - 此处不太好，但是可以解决实时更新的问题
+    override func viewWillAppear(_ animated: Bool) {
+        if uid != nil
+        {
+            personalInformationModel.getUserInformation(uid: uid!,token: token)
+            
+            //MARK: - 若有bug此处考虑更改为fresh
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.participated)
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.wished)
+            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.created)
+            
+            
+            
+        }else
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
+            followButton.isHidden = true
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.participated)
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.wished)
+            activityModel.getUserActivity(token: token, type: ActivityRequestType.created)
+            //此处token需要更改
+            personalInformationModel.getPersonalInformation(token: token)
+        }
+    }
     
     
     //MARK: - viewController lifecycle
@@ -127,25 +166,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         self.personalInformationModel = PersonalInformationModel(delegate: self)
         self.activityModel = UserActivityListModel(delegate: self)
         //此处以后需要更改该token
-        if uid != nil
-        {
-            personalInformationModel.getUserInformation(uid: uid!,token: token)
-            
-            //MARK: - 若有bug此处考虑更改为fresh
-            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.participated)
-            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.wished)
-            activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.created)
-
-        }else
-        {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
-            
-            activityModel.getUserActivity(token: token, type: ActivityRequestType.participated)
-            activityModel.getUserActivity(token: token, type: ActivityRequestType.wished)
-            activityModel.getUserActivity(token: token, type: ActivityRequestType.created)
-            //此处token需要更改
-            personalInformationModel.getPersonalInformation(token: token)
-        }
+       
         
         self.activityListTableView.refreshControl = UIRefreshControl()
         self.activityListTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
@@ -170,6 +191,23 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         self.descriptionTextView.text = personalInformationModel.personalInformationEnity!.description
         self.fansCountsLabel.text = "\(personalInformationModel.personalInformationEnity!.fansCount)"
         self.followerCountsLabel.text = "\(personalInformationModel.personalInformationEnity!.followersCount)"
+        if uid != nil
+        {
+            if personalInformationModel.personalInformationEnity?.relation == "follower" || personalInformationModel.personalInformationEnity?.relation == "friend"
+            {
+                followButton.setTitle("已关注", for: .normal)
+            }else if personalInformationModel.personalInformationEnity?.relation == "myself"
+            {
+                followButton.isHidden = true
+            }
+            else
+            {
+                followButton.setTitle("关注", for: .normal)
+            }
+        }
+        
+        
+        
         if let media = personalInformationModel.personalInformationEnity!.avatar
         {
             //在此处下载头像照片
@@ -190,6 +228,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
                 }
             }
         }
+        followButton.isEnabled = true
     }
     //此函数用于拉取数据失败的处理
     func getDataFailed()
@@ -197,6 +236,17 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        if !followButton.isEnabled//此处为真则代表是该按钮的请求失败，需要更改回请求前的状态
+        {
+            if followButton.titleLabel?.text == "已关注"
+            {
+                followButton.setTitle("关注", for: .normal)
+            }else if followButton.titleLabel?.text == "关注"
+            {
+                followButton.setTitle("已关注", for: .normal)
+            }
+            followButton.isEnabled = true
+        }
     }
     //MARK: - getUserActivity Delegate
     func getActivitySuccess() {

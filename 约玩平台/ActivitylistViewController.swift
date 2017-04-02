@@ -21,15 +21,17 @@ class nowlocationAnnotation:NSObject,MKAnnotation
         nowcoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
-class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MKMapViewDelegate,CLLocationManagerDelegate,GetDataSuccessDelegate {
+class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,MKMapViewDelegate,CLLocationManagerDelegate,PullDataDelegate {
     
-    fileprivate let key:[String] = ["室内","户外","安静","激烈"]
-    fileprivate var model:ActivityModel?
-    fileprivate var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
-    fileprivate var btn:UIButton!//加载更多的按钮
-    fileprivate var locationManager:CLLocationManager = CLLocationManager()
+    fileprivate let key:[String] = ["全部","聚餐","运动","旅行","电影","音乐","分享会","赛事","桌游","其他"]
+    fileprivate var model: ActivityListModel!
+    fileprivate var loadingstateUI: UIActivityIndicatorView!//加载更多的状态菊花
+    fileprivate var btn: UIButton!//加载更多的按钮
+    fileprivate var locationManager: CLLocationManager = CLLocationManager()
     fileprivate var nowlocation: nowlocationAnnotation!
-    var activityMap:MKMapView!
+    var activityMap: MKMapView!
+    private var nowType: String = "全部"//用于标记当前显示的活动类型
+    private var beShowingActivity: [ActiveEnity] = []
     @IBOutlet weak var activityTableView: UITableView!
     @IBOutlet weak var slideview: slideView!
     @IBOutlet var containerinslideView: [UIView]!
@@ -38,28 +40,43 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     //该方法在选择标签时调用在此处更改展示内容
     func interestingLabelBeSelect(_ sender: UIButton)
     {
-        print(sender.title(for: .normal)!)
+        nowType = sender.titleLabel!.text!
+        beShowingActivity.removeAll()
+        for activity in model.activeEnitys
+        {
+            if activity.categoryString == nowType
+            {
+                beShowingActivity.append(activity)
+            }
+        }
+        activityTableView.reloadData()
     }
     //该方法用于下拉刷新时的数据获取与视图更新
     func pullToRefresh()
     {
         print("下拉刷新")
-        model?.getdata(url: constants.url)
-        self.activityTableView.refreshControl?.endRefreshing()
+        model.refreshActivity()
+        
     }
     //该方法用于加载更多数据与视图更新
     func loadMore(_ sender: UIButton)
     {
         btn.isHidden = true
         loadingstateUI.startAnimating()
-        model?.getdata(url: constants.url)
+        model.getActivity()
     }
+    func toComment(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.hotActivityToCommentList, sender: sender.tag)
+    }
+    
+    
     // MARK: - viewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         slideview.containerviews = containerinslideView
-        addbtn(key: key,btnwidth: 80)
+        addbtn(key: key,btnwidth: 50)
         //获取定位权限
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -78,14 +95,23 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         activityMap.mapType = .standard
         
         //初始化model
-        model = ActivityModel(delegate: self)
-        model!.getdata(url: constants.url)
+        model = ActivityListModel(delegate: self)
+        model.getActivity()
         //以下代码用于增加tableview的下拉刷新行为
         self.activityTableView.refreshControl = UIRefreshControl()
         self.activityTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
         self.activityTableView.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新活动")
         //增加读取更多数据的按钮
         addGetMorebtn()
+        
+        for activity in model.activeEnitys
+        {
+            if activity.categoryString == nowType
+            {
+                beShowingActivity.append(activity)
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,7 +127,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     // MARK: - talbeView Datasource and delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model!.enitys.count
+        return beShowingActivity.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -114,13 +140,42 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDisplayCell") as! ActivityDisplayTableViewCell
-        cell.ownernameLabel.text = model!.enitys[indexPath.row].ownername
-        cell.activityNameLabel.text = model!.enitys[indexPath.row].activityTitle
-        cell.interestednumberLabel.text = "\(model!.enitys[indexPath.row].interestednumber)"
+        cell.activityTitleLabel.text = beShowingActivity[indexPath.row].activityTitle
+        cell.contentTextView.text = beShowingActivity[indexPath.row].content
+        cell.commentCountLabel.text = "\(beShowingActivity[indexPath.row].commentCount)"
+        cell.statusLabel.text = beShowingActivity[indexPath.row].stateString
+        cell.beginDateCount.text = beShowingActivity[indexPath.row].beginTime.date
+        cell.addressLabel.text = beShowingActivity[indexPath.row].address
+        cell.commentButton.tag = indexPath.row
+        cell.commentButton.addTarget(self, action: "toComment:", for: .touchUpInside)
+        
+        //异步获取图片
+        let media = beShowingActivity[indexPath.row].image
+        let url = urlStruct.basicUrl + "media/" + "\(media)"
+        DispatchQueue.global().async {
+            
+            if let data = try? Data(contentsOf: URL(string: url)!)
+            {
+                
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data)
+                    {
+                        
+                        cell.activityImageImageView.image = image
+                    }
+                }
+            }
+        }
+        
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 200
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = false
+        performSegue(withIdentifier: seguename.hotActivityToDetail, sender: beShowingActivity[indexPath.row])
     }
     // MARK: - mapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -139,11 +194,12 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             return view
         }
     }
-    // MARK: - GetDataSuccessDelegate
-    func errordisplay() {
-        let alert = UIAlertController(title: "无法连接", message: "请检查网络连接  ", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        performSegue(withIdentifier: seguename.hotActivityToDetail, sender: view.annotation as! ActiveEnity)
+    }
+    // MARK: - PullDataSuccessDelegate
+    func getDataFailed()
+    {
         if self.activityTableView.refreshControl?.isRefreshing == true
         {
             self.activityTableView.refreshControl?.endRefreshing()
@@ -154,9 +210,16 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             btn.isHidden = false
             
         }
+        
+        let alert = UIAlertController(title: "无法连接", message: "请检查网络连接  ", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
     }
     //请求数据成功后的回调
-    func needreload() {
+    func needUpdateUI() {
+        
+    
         if self.activityTableView.refreshControl?.isRefreshing == true
         {
             self.activityTableView.refreshControl?.endRefreshing()
@@ -168,7 +231,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             
         }
         activityTableView.reloadData()
-        activityMap.addAnnotations((model?.enitys)!)
+        activityMap.addAnnotations(beShowingActivity)
         
         
     }
@@ -179,9 +242,12 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         for i in 0 ..< key.count
         {
             let btn = UIButton(type: .system)
-            btn.frame = CGRect(x: CGFloat(Int(btnwidth) * i + 10 * i), y: selecteScrollView.bounds.origin.y, width: 40, height: selecteScrollView.frame.height)
+            btn.frame = CGRect(x: CGFloat(Int(btnwidth) * i + 10 * i), y: selecteScrollView.bounds.origin.y, width: 50, height: selecteScrollView.frame.height)
             btn.addTarget(self, action: "interestingLabelBeSelect:", for: .touchUpInside)
             btn.setTitle(key[i], for: .normal)
+            btn.titleLabel?.font = UIFont(name: "Arial", size: 12)
+            btn.layer.borderWidth = 0.5
+            btn.layer.cornerRadius = 8
             selecteScrollView.addSubview(btn)
         }
     }
@@ -200,14 +266,29 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         view.addSubview(loadingstateUI)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == seguename.hotActivityToCommentList
+        {
+            if let controller = segue.destination as? commentListViewController
+            {
+                controller.id = beShowingActivity[sender as! Int].id
+                controller.type = "activity"
+            }
+        }else if segue.identifier == seguename.hotActivityToDetail
+        {
+            if let controller = segue.destination as? ActicityDetailViewController
+            {
+                controller.activityModel.activityEnity = sender as! ActiveEnity
+            }
+        }
+        
     }
-    */
+    
 
 }

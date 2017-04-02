@@ -34,6 +34,7 @@ class LocationSelectViewController: UIViewController,MKMapViewDelegate {
                 longitude = coordinate.longitude
                 latitude = coordinate.latitude
                 activityLocationMapView.addAnnotation(annotation)
+                
             }
         }
     }

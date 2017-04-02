@@ -96,6 +96,38 @@ class PersonalInformationModel
 
       
     }
+    
+    func followUser(uid: Int,token: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        //此处token需要更改
+        manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+    }
+    func notFollowUser(uid: Int,token: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
+            
+        })
+    }
+    
+    
     private func uploadImageSuccess(response: Any?,token: String) -> Void
     {
         if let JsonDictionary = response as? NSDictionary

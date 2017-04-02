@@ -10,7 +10,7 @@ import Foundation
 class NotificationListModel
 {
     var notificationEnitys: [NotificationEnity] = []
-    var delegate: PullDataDelegate
+    weak var delegate: PullDataDelegate!
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
