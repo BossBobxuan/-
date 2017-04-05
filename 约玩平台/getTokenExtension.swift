@@ -11,7 +11,10 @@ extension UIViewController
 {
     var token: String
         {
-            return "0e8bdb4e-8d1d-41e8-96a5-ad9c4311bb98"
+            let user = UserDefaults.standard
+            print(user.object(forKey: "token") as! String)
+            return user.object(forKey: "token") as! String
+            //return "0e8bdb4e-8d1d-41e8-96a5-ad9c4311bb98"
             //MARK : - 此处需要用userDefault获取token
     }
 }

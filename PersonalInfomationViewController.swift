@@ -28,6 +28,9 @@ struct seguename {
     static let toActivityLocation = "segueToActivityLocation"
     static let hotActivityToDetail = "hotActivityToDetail"
     static let hotActivityToCommentList = "hotActivityToCommentList"
+    static let signupToMain = "signUpToMain"
+    static let logInToMain = "loginToMain"
+    static let firstViewToMain = "firstViewToMain"
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -130,7 +133,25 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             sender.isEnabled = false
         }
     }
+    //退出登录
+    func exitLogin(_ sender: UIBarButtonItem)
+    {
+        let alert = UIAlertController(title: "是否退出登录", message: "", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "是", style: .default, handler: {(alert) in
+            let userd = UserDefaults.standard
+            userd.removeObject(forKey: "token")
+            userd.removeObject(forKey: "refreshToken")
+            let _ = self.navigationController!.tabBarController!.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(yesAction)
+        alert.addAction(UIAlertAction(title: "否", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     //MARK: - 此处不太好，但是可以解决实时更新的问题
+    
+    
+    
+    //MARK: - viewController lifecycle
     override func viewWillAppear(_ animated: Bool) {
         if uid != nil
         {
@@ -145,7 +166,9 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             
         }else
         {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
+            let editBar = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
+            let exitBar = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: "exitLogin:")
+            self.navigationItem.rightBarButtonItems = [editBar,exitBar]
             followButton.isHidden = true
             activityModel.getUserActivity(token: token, type: ActivityRequestType.participated)
             activityModel.getUserActivity(token: token, type: ActivityRequestType.wished)
@@ -154,9 +177,10 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             personalInformationModel.getPersonalInformation(token: token)
         }
     }
+        
     
-    
-    //MARK: - viewController lifecycle
+        
+        
     override func viewDidLoad() {
        
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-class EditActivityViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, selectLocationDelegate, PullDataDelegate {
+class EditActivityViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, selectLocationDelegate, PullDataDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     //MARK: - outlet
     @IBOutlet weak var tagsScrollView: UIScrollView!
@@ -31,6 +31,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             categoryPickerView.dataSource = self
         }
     }
+    @IBOutlet weak var deleteActivityButton: UIButton!
     
     @IBOutlet weak var catogeryButton: UIButton!
     //MARK: - let and var
@@ -128,6 +129,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     
     @IBAction func editActivityImage(_ sender: UIButton) {
         //若不收起键盘会崩溃尚未解决
+        self.resignFirstResponder()
         let imagePicker = UIImagePickerController()
         PHPhotoLibrary.requestAuthorization({(status) in
             if status == PHAuthorizationStatus.authorized
@@ -148,8 +150,34 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         })
     }
     
+    @IBAction func deleteActivity(_ sender: UIButton) {
+        let manager = AFHTTPSessionManager()
+        let alert = UIAlertController(title: "正在删除活动", message: "请稍等", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityDetailModel!.activityEnity.id).json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.delete(requestUrl, parameters: [],  success: {
+            (dataTask,response) in
+            alert.dismiss(animated: true, completion: nil)
+            let _ = self.navigationController?.popViewController(animated: true)
+            
+            
+            
+        }, failure: {(dataTask,error) in
+            print(error)
+            alert.dismiss(animated: true, completion: nil)
+            let alert1 = UIAlertController(title: "删除失败", message: "请检查网络连接", preferredStyle: .alert)
+            alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            self.present(alert1, animated: true, completion: nil)
+            
+        })
+        
+        
+        
+    }
     func editDone(_ sender: UIBarButtonItem)
     {
+        print("done")
         if activityDetailModel != nil
         {
             activityDetailModel?.activityEnity.activityTitle = activityTitleTextField.text!
@@ -166,41 +194,68 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             activityDetailModel!.editActivity(token: token)
         }else
         {
-            let alert = UIAlertController(title: "正在发布活动", message: "请等待", preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
-            var tagString = ""
-            for tag in tagsArray
+            if latitude == nil || longitude == nil
             {
-                tagString += tag + "&"
+                let alert1 = UIAlertController(title: "请选择活动地点", message: "", preferredStyle: .alert)
+                alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                self.present(alert1, animated: true, completion: nil)
+            }else if imageMediaId == nil
+            {
+                let alert1 = UIAlertController(title: "请上传照片", message: "", preferredStyle: .alert)
+                alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                self.present(alert1, animated: true, completion: nil)
+            }else if feeTextField.text == ""
+            {
+                let alert1 = UIAlertController(title: "请输入活动花费", message: "", preferredStyle: .alert)
+                alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                self.present(alert1, animated: true, completion: nil)
             }
+            else
+            {
             
-            let requestUrl = urlStruct.basicUrl + "user/~me/activity.json"
-            let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-            manager.post(requestUrl, parameters: ["title": activityTitleTextField.text!,"image": imageMediaId!,"beginTime":beginTimeStamp * 1000,"endTime":endTimeStamp * 1000,"address":addressTextField.text!,"latitude":latitude!,"longitude":longitude!,"fee": Int(feeTextField.text!)!,"category":categoryPickerView.selectedRow(inComponent: 0),"content":contentTextView.text,"tags": tagString], progress: {(progress) in }, success: {
-                (dataTask,response) in
-                print("success")
-                alert.dismiss(animated: true, completion: {})
-                let _ = self.navigationController?.popViewController(animated: true)
+                let alert = UIAlertController(title: "正在发布活动", message: "请等待", preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                var tagString = ""
+                for tag in tagsArray
+                {
+                    tagString += tag + "&"
+                }
+                
+                let requestUrl = urlStruct.basicUrl + "user/~me/activity.json"
+                let manager = AFHTTPSessionManager()
+                manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+                manager.post(requestUrl, parameters: ["title": activityTitleTextField.text!,"image": imageMediaId!,"beginTime":beginTimeStamp * 1000,"endTime":endTimeStamp * 1000,"address":addressTextField.text!,"latitude":latitude!,"longitude":longitude!,"fee": Int(feeTextField.text!)!,"category":categoryPickerView.selectedRow(inComponent: 0),"content":contentTextView.text!,"tags": tagString], progress: {(progress) in }, success: {
+                    (dataTask,response) in
+                    print("success")
+                    alert.dismiss(animated: true, completion: {})
+                    let _ = self.navigationController?.popViewController(animated: true)
                 
                 
-            }, failure: {(dataTask,error) in
-                print(error)
-                alert.dismiss(animated: true, completion: {
-                    let alert1 = UIAlertController(title: "无法创建活动", message: "请检查网络连接或补全活动信息", preferredStyle: .alert)
-                    alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                }, failure: {(dataTask,error) in
+                    print(error)
+                    alert.dismiss(animated: true, completion: {
+                        let alert1 = UIAlertController(title: "无法创建活动", message: "请检查网络连接或补全活动信息", preferredStyle: .alert)
+                        alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                        self.present(alert1, animated: true, completion: nil)
+                    })
+                
                 })
-                
-            })
+            }
         }
-        
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityTitleTextField.delegate = self
+        self.feeTextField.delegate = self
+        self.addressTextField.delegate = self
+        self.contentTextView.delegate = self
+        
+        
+        
+        
         if activityDetailModel != nil//证明为修改活动
         {
             self.activityDetailModel?.delegate = self
@@ -245,7 +300,10 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         }else
         {
             //MARK: - 稍等处理
+            self.categoryPickerView.selectRow(0, inComponent: 0, animated: true)//添加初始值防止崩溃
+            
             self.navigationItem.title = "创建活动"
+            self.deleteActivityButton.isHidden = true
         }
         
         self.categoryPickerParentView.isHidden = true
@@ -265,14 +323,15 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     
     //MARK: - imagepicker delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        activityImageImageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        let image = info[UIImagePickerControllerEditedImage] as? UIImage
         if activityDetailModel != nil
         {
-            activityDetailModel!.editActivityImage(image: activityImageImageView.image!, token: token)
+            activityDetailModel!.editActivityImage(image: image!, token: token)
+            activityImageImageView.image = image
         }else
         {
             let manager = AFHTTPSessionManager()
-            let data = UIImagePNGRepresentation(activityImageImageView.image!)
+            let data = UIImagePNGRepresentation(image!)
             let requestUrl = urlStruct.basicUrl + "media.json"
             manager.post(requestUrl, parameters: [], constructingBodyWith: {(fromData) in
                 
@@ -282,6 +341,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                 if let JsonDictionary = response as? NSDictionary
                 {
                     self.imageMediaId = (JsonDictionary["media_id"] as! Int)
+                    self.activityImageImageView.image = image!
                 }
                 
                 
@@ -318,7 +378,8 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     {
         var i = 0
         tagsScrollView.subviews.forEach({(view) in view.removeFromSuperview()})//清空所有子视图
-        tagsScrollView.contentSize.width = CGFloat(50 * (tagsArray.count + 1))
+        //tagsScrollView.contentSize.width = CGFloat(50 * (tagsArray.count + 1))
+        var nextWidth: CGFloat = 0.0
         if activityDetailModel != nil
         {
             activityDetailModel?.activityEnity.tags = tagsArray as NSArray
@@ -326,30 +387,41 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             {
                 
                 print("1111")
-                let tagLabel = UILabel(frame: CGRect(x: CGFloat(50 * i), y: tagsScrollView.bounds.origin.y, width: CGFloat(40), height: tagsScrollView.bounds.height))
+                let tagLabel = UILabel()
                 tagLabel.font = UIFont(name: "Arial", size: 15)
                 tagLabel.textColor = UIColor.black
                 tagLabel.text = tagString
+                let size = tagLabel.sizeThatFits(UIScreen.main.bounds.size)
+                tagLabel.frame = CGRect(x: nextWidth, y: tagsScrollView.bounds.origin.y, width: size.width, height: tagsScrollView.bounds.height)
                 print(tagString)
+                nextWidth = nextWidth + 10 + size.width
+                tagLabel.layer.borderWidth = 0.5
+                tagLabel.layer.cornerRadius = 8
                 tagsScrollView.addSubview(tagLabel)
                 
                 i += 1
             }
+            tagsScrollView.contentSize.width = nextWidth
         }else
         {
             for tagString in tagsArray
             {
                 
-                print("1111")
-                let tagLabel = UILabel(frame: CGRect(x: CGFloat(50 * i), y: tagsScrollView.bounds.origin.y, width: CGFloat(40), height: tagsScrollView.bounds.height))
+                let tagLabel = UILabel()
                 tagLabel.font = UIFont(name: "Arial", size: 15)
                 tagLabel.textColor = UIColor.black
                 tagLabel.text = tagString
+                let size = tagLabel.sizeThatFits(UIScreen.main.bounds.size)
+                tagLabel.frame = CGRect(x: nextWidth, y: tagsScrollView.bounds.origin.y, width: size.width, height: tagsScrollView.bounds.height)
                 print(tagString)
+                nextWidth = nextWidth + 10 + size.width
+                tagLabel.layer.borderWidth = 0.5
+                tagLabel.layer.cornerRadius = 8
                 tagsScrollView.addSubview(tagLabel)
                 
                 i += 1
             }
+            tagsScrollView.contentSize.width = nextWidth
         }
         
     }
@@ -383,6 +455,17 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         self.longitude = longitude
         print(self.latitude)
     }
+    //MARK: - textFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    //点击其他视图其他地方收起键盘
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.resignFirstResponder()
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

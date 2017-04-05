@@ -757,7 +757,7 @@
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmu";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
@@ -772,7 +772,7 @@
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmu";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;

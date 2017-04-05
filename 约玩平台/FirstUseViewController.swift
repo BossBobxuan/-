@@ -14,6 +14,16 @@ class FirstUseViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+       
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let userd = UserDefaults.standard
+        print(userd.object(forKey: "token"))
+        if userd.object(forKey: "token") != nil
+        {
+            print("1")
+            performSegue(withIdentifier: seguename.firstViewToMain, sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
