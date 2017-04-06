@@ -31,6 +31,11 @@ struct seguename {
     static let signupToMain = "signUpToMain"
     static let logInToMain = "loginToMain"
     static let firstViewToMain = "firstViewToMain"
+    static let timelineToUser = "timeLineToUser"
+    static let timeLineToActivity = "timeLineToActivity"
+    static let timeLIneToNotification = "timeLIneToNotification"
+    static let timeLIneToComment = "timeLIneToComment"
+    
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
     //MARK: - outlet
@@ -236,6 +241,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         {
             //在此处下载头像照片
             print("进入")
+            
             let url = urlStruct.basicUrl + "media/" + "\(media)"
             DispatchQueue.global().async {
                 

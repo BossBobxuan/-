@@ -15,7 +15,7 @@ protocol havePullfreshAndLoadmoreTableViewDelegate {
 //增加了下拉刷新与加载更多的tableview，使用时需要将控制器设置为其delegate并实现havePullfreshAndLoadmoreTableViewDelegate协议，在协议的方法中书写下拉更新与加载更多的函数
 class havePullfreshAndLoadmoreTableView: UITableView {
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
-    private var btn:UIButton!//加载更多的按钮
+    var btn:UIButton!//加载更多的按钮
     var pullDataDelegate: havePullfreshAndLoadmoreTableViewDelegate!
     
     required init?(coder aDecoder: NSCoder) {

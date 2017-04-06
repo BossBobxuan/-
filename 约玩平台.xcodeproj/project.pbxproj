@@ -66,6 +66,13 @@
 		B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
+		B0F762721E966B8E00E0169A /* timelineCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762711E966B8E00E0169A /* timelineCommentTableViewCell.swift */; };
+		B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762731E966BA200E0169A /* timelineActivityTableViewCell.swift */; };
+		B0F762761E966BB000E0169A /* timelineUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762751E966BB000E0169A /* timelineUserTableViewCell.swift */; };
+		B0F762781E966BC100E0169A /* timelineNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762771E966BC100E0169A /* timelineNotificationTableViewCell.swift */; };
+		B0F7627A1E966BCE00E0169A /* timelinePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762791E966BCE00E0169A /* timelinePhotoTableViewCell.swift */; };
+		B0F7627C1E966D4400E0169A /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F7627B1E966D4400E0169A /* TimeLineViewController.swift */; };
+		B0F7627E1E966DB300E0169A /* timeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F7627D1E966DB300E0169A /* timeLineModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +159,13 @@
 		B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
+		B0F762711E966B8E00E0169A /* timelineCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelineCommentTableViewCell.swift; sourceTree = "<group>"; };
+		B0F762731E966BA200E0169A /* timelineActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelineActivityTableViewCell.swift; sourceTree = "<group>"; };
+		B0F762751E966BB000E0169A /* timelineUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelineUserTableViewCell.swift; sourceTree = "<group>"; };
+		B0F762771E966BC100E0169A /* timelineNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelineNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		B0F762791E966BCE00E0169A /* timelinePhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelinePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		B0F7627B1E966D4400E0169A /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		B0F7627D1E966DB300E0169A /* timeLineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timeLineModel.swift; sourceTree = "<group>"; };
 		D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-约玩平台.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.debug.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +300,7 @@
 		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
 			isa = PBXGroup;
 			children = (
+				B0F762701E9669F300E0169A /* 用户动态 */,
 				B02FA4151E86ABB100062D1E /* 评论相关 */,
 				B0355E1B1E7AAE64003429C8 /* 用户信息界面 */,
 				B056B39A1E1E4BCA001B17F2 /* 活动相关界面 */,
@@ -351,6 +366,20 @@
 				B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */,
 			);
 			name = Enity;
+			sourceTree = "<group>";
+		};
+		B0F762701E9669F300E0169A /* 用户动态 */ = {
+			isa = PBXGroup;
+			children = (
+				B0F762711E966B8E00E0169A /* timelineCommentTableViewCell.swift */,
+				B0F762731E966BA200E0169A /* timelineActivityTableViewCell.swift */,
+				B0F762751E966BB000E0169A /* timelineUserTableViewCell.swift */,
+				B0F762771E966BC100E0169A /* timelineNotificationTableViewCell.swift */,
+				B0F762791E966BCE00E0169A /* timelinePhotoTableViewCell.swift */,
+				B0F7627B1E966D4400E0169A /* TimeLineViewController.swift */,
+				B0F7627D1E966DB300E0169A /* timeLineModel.swift */,
+			);
+			name = "用户动态";
 			sourceTree = "<group>";
 		};
 		FD0A758884871EC04E41FC42 /* Frameworks */ = {
@@ -562,10 +591,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F7627A1E966BCE00E0169A /* timelinePhotoTableViewCell.swift in Sources */,
 				B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */,
 				B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */,
 				B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */,
 				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
+				B0F7627C1E966D4400E0169A /* TimeLineViewController.swift in Sources */,
 				B047D7201E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift in Sources */,
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */,
@@ -573,8 +604,10 @@
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
 				B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */,
 				B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */,
+				B0F762761E966BB000E0169A /* timelineUserTableViewCell.swift in Sources */,
 				B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */,
 				B02FA4171E86ABE600062D1E /* commentListViewController.swift in Sources */,
+				B0F7627E1E966DB300E0169A /* timeLineModel.swift in Sources */,
 				B02FA4141E86A87700062D1E /* CommentEnity.swift in Sources */,
 				B08CE0CD1E82AAB500DA44A3 /* ActiveEnity.swift in Sources */,
 				B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */,
@@ -582,6 +615,7 @@
 				B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */,
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
+				B0F762721E966B8E00E0169A /* timelineCommentTableViewCell.swift in Sources */,
 				B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */,
 				B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,
@@ -594,6 +628,8 @@
 				B0221BC31E8FFD270021BB40 /* NotificationListModel.swift in Sources */,
 				B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
+				B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */,
+				B0F762781E966BC100E0169A /* timelineNotificationTableViewCell.swift in Sources */,
 				B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
 				B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */,
