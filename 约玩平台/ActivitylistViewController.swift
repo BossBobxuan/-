@@ -41,6 +41,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     func interestingLabelBeSelect(_ sender: UIButton)
     {
         nowType = sender.titleLabel!.text!
+        activityMap.removeAnnotations(beShowingActivity)
         beShowingActivity.removeAll()
         for activity in model.activeEnitys
         {
@@ -49,6 +50,8 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
                 beShowingActivity.append(activity)
             }
         }
+        activityMap.addAnnotations(beShowingActivity)
+        activityMap.showAnnotations(beShowingActivity, animated: true)
         activityTableView.reloadData()
     }
     //该方法用于下拉刷新时的数据获取与视图更新
@@ -111,6 +114,9 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
                 beShowingActivity.append(activity)
             }
         }
+        
+        activityMap.addAnnotations(beShowingActivity)
+        activityMap.showAnnotations(beShowingActivity, animated: true)
         
     }
 
@@ -230,6 +236,16 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             btn.isHidden = false
             
         }
+        beShowingActivity.removeAll()
+        for activity in model.activeEnitys
+        {
+            if activity.categoryString == nowType
+            {
+                beShowingActivity.append(activity)
+            }
+        }
+        
+        
         activityTableView.reloadData()
         activityMap.addAnnotations(beShowingActivity)
         

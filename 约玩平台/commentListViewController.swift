@@ -166,6 +166,7 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         let alert = UIAlertController(title: "成功", message: "评论成功", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        pullToRefresh()
     }
     func failToreply()
     {

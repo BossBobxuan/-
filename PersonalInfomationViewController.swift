@@ -35,6 +35,7 @@ struct seguename {
     static let timeLineToActivity = "timeLineToActivity"
     static let timeLIneToNotification = "timeLIneToNotification"
     static let timeLIneToComment = "timeLIneToComment"
+    static let toActivityPhoto = "segueToActivityPhoto"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -79,6 +80,9 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     
     @IBOutlet weak var activityListTableView: UITableView!
     //MARK: - Event func
+    
+    
+    
     func editPersonalInformation(_ sender: UIBarButtonItem)
     {
         performSegue(withIdentifier: seguename.toEditPersonalInformation, sender: self)

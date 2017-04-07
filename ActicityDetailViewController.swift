@@ -41,6 +41,9 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     {
         
     }
+    @IBAction func toPhotoViewController(_ sender: UIButton) {
+        performSegue(withIdentifier: seguename.toActivityPhoto, sender: nil)
+    }
     
     
     //点击表示对活动感兴趣
