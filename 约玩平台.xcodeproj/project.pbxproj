@@ -12,6 +12,8 @@
 		B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B501E83F9160040493A /* ActicityDetailViewController.swift */; };
 		B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B521E8405FB0040493A /* ActivityDetailModel.swift */; };
 		B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */; };
+		B01BE23C1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */; };
+		B01BE23E1E97C37800B1FB76 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B01BE23D1E97C37800B1FB76 /* icon.png */; };
 		B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */; };
 		B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */; };
 		B0221BC11E8FFB470021BB40 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */; };
@@ -99,6 +101,8 @@
 		B0107B501E83F9160040493A /* ActicityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActicityDetailViewController.swift; path = ../ActicityDetailViewController.swift; sourceTree = "<group>"; };
 		B0107B521E8405FB0040493A /* ActivityDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityDetailModel.swift; path = ../ActivityDetailModel.swift; sourceTree = "<group>"; };
 		B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonalInformationViewController.swift; sourceTree = "<group>"; };
+		B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c37cea0a6e642c5a8ad0457a8f2a6c75.jpg; sourceTree = "<group>"; };
+		B01BE23D1E97C37800B1FB76 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationEnity.swift; sourceTree = "<group>"; };
 		B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
 		B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstUseViewController.swift; sourceTree = "<group>"; };
 		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B0765C531E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		B0765C541E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowUserViewController.swift; sourceTree = "<group>"; };
 		B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDataDelegate.swift; sourceTree = "<group>"; };
 		B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersOrFansModel.swift; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 				B047D7181E892FE900A928EF /* participate.png */,
 				B05F3F861E223D3D00777C82 /* interested.png */,
 				B05F3F891E22681700777C82 /* location.png */,
+				B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */,
 			);
 			name = supportfile;
 			sourceTree = "<group>";
@@ -320,6 +327,7 @@
 				B05F3F881E223D4C00777C82 /* supportfile */,
 				B08AFDE21E7D553A004C9C96 /* Protocol */,
 				B071642C1E1CF179006A2FCD /* Main.storyboard */,
+				B01BE23D1E97C37800B1FB76 /* icon.png */,
 				B07164281E1CF179006A2FCD /* AppDelegate.swift */,
 				B07164321E1CF179006A2FCD /* Assets.xcassets */,
 				B07164341E1CF179006A2FCD /* LaunchScreen.storyboard */,
@@ -527,6 +535,8 @@
 				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
 				B047185D1E8A82C5000488CD /* date.png in Resources */,
 				B047185F1E8A82C5000488CD /* label.png in Resources */,
+				B01BE23C1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg in Resources */,
+				B01BE23E1E97C37800B1FB76 /* icon.png in Resources */,
 				B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */,
 				B047D71A1E892FE900A928EF /* comment.png in Resources */,
 				B047185E1E8A82C5000488CD /* dollar.png in Resources */,
@@ -689,6 +699,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B071642D1E1CF179006A2FCD /* Base */,
+				B0765C531E97B2E700C32E9A /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -697,6 +708,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B07164351E1CF179006A2FCD /* Base */,
+				B0765C541E97B2E700C32E9A /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -708,6 +720,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -758,6 +771,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

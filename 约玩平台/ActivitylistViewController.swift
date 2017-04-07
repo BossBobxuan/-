@@ -45,7 +45,11 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         beShowingActivity.removeAll()
         for activity in model.activeEnitys
         {
-            if activity.categoryString == nowType
+            if nowType == "全部"
+            {
+                beShowingActivity.append(activity)
+            }
+            else if activity.categoryString == nowType && nowType != "全部"
             {
                 beShowingActivity.append(activity)
             }
@@ -109,7 +113,11 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         
         for activity in model.activeEnitys
         {
-            if activity.categoryString == nowType
+            if nowType == "全部"
+            {
+                beShowingActivity.append(activity)
+            }
+            else if activity.categoryString == nowType && nowType != "全部"
             {
                 beShowingActivity.append(activity)
             }
@@ -158,22 +166,29 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         //异步获取图片
         let media = beShowingActivity[indexPath.row].image
         let url = urlStruct.basicUrl + "media/" + "\(media)"
-        DispatchQueue.global().async {
+        
+        if let image = self.getImageFromCaches(mediaId: media)
+        {
+            cell.activityImageImageView.image = image
+        }else
+        {
             
-            if let data = try? Data(contentsOf: URL(string: url)!)
-            {
+            DispatchQueue.global().async {
                 
-                DispatchQueue.main.async {
-                    if let image = UIImage(data: data)
-                    {
-                        
-                        cell.activityImageImageView.image = image
+                if let data = try? Data(contentsOf: URL(string: url)!)
+                {
+                    print("获取数据")
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            print("显示图片")
+                            cell.activityImageImageView.image = image
+                            self.saveImageCaches(image: image, mediaId: media)
+                        }
                     }
                 }
             }
         }
-        
-        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -239,16 +254,22 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         beShowingActivity.removeAll()
         for activity in model.activeEnitys
         {
-            if activity.categoryString == nowType
+            if nowType == "全部"
+            {
+                beShowingActivity.append(activity)
+            }
+            else if activity.categoryString == nowType && nowType != "全部"
             {
                 beShowingActivity.append(activity)
             }
         }
         
         
+        
+        
         activityTableView.reloadData()
         activityMap.addAnnotations(beShowingActivity)
-        
+        activityMap.showAnnotations(beShowingActivity, animated: true)
         
     }
     // MARK: - other func

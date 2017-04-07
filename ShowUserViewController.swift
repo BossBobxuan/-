@@ -155,13 +155,24 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
             //在此处异步获取头像照片
             //在此处下载头像照片
             let url = urlStruct.basicUrl + "media/" + "\(media)"
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: URL(string: url)!)
-                {
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            cell.avatarImageView.image = image
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
                         }
                     }
                 }

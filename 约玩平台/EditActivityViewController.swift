@@ -283,16 +283,24 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             //注册地理位置
             longitude = activityDetailModel!.activityEnity.longitude
             latitude = activityDetailModel!.activityEnity.latitude
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                self.activityImageImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url)!)
-                {
+                DispatchQueue.global().async {
                     
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            self.activityImageImageView.image = image
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                self.activityImageImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
                         }
                     }
                 }
@@ -450,10 +458,11 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
 
     }
     // MARK: - selectlocation Delegate
-    func selectLocationDone(latitude: Double, longitude: Double) {
+    func selectLocationDone(latitude: Double, longitude: Double, address: String) {
         self.latitude = latitude
         self.longitude = longitude
-        print(self.latitude)
+        self.addressTextField.text = address
+        
     }
     //MARK: - textFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

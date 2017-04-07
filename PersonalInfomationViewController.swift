@@ -247,16 +247,24 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             print("进入")
             
             let url = urlStruct.basicUrl + "media/" + "\(media)"
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                self.avatarImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url)!)
-                {
-                    print("获取数据")
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            print("显示图片")
-                            self.avatarImageView.image = image
+                DispatchQueue.global().async {
+                
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                self.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
                         }
                     }
                 }
@@ -269,6 +277,16 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     {
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "重试", style: .default, handler: {(_) in
+            if self.uid != nil
+            {
+                self.personalInformationModel.getUserInformation(uid: self.uid!, token: self.token)
+                
+            }else
+            {
+                self.personalInformationModel.getPersonalInformation(token: self.token)
+            }
+        }))
         self.present(alert, animated: true, completion: nil)
         if !followButton.isEnabled//此处为真则代表是该按钮的请求失败，需要更改回请求前的状态
         {
@@ -311,6 +329,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             self.activityTypeSegmentControl.isEnabled = true
         }
         let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
+       
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -347,21 +366,28 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         //异步获取头像
         let media = activityModel.activityEnitys[nowtype]![indexPath.row].image
         let url = urlStruct.basicUrl + "media/" + "\(media)"
-        DispatchQueue.global().async {
+        if let image = self.getImageFromCaches(mediaId: media)
+        {
+            cell.activityImageView.image = image
+        }else
+        {
+            
+            DispatchQueue.global().async {
                 
-            if let data = try? Data(contentsOf: URL(string: url)!)
-            {
-                    
-                DispatchQueue.main.async {
-                    if let image = UIImage(data: data)
-                    {
-                            
-                        cell.activityImageView.image = image
+                if let data = try? Data(contentsOf: URL(string: url)!)
+                {
+                    print("获取数据")
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            print("显示图片")
+                            cell.activityImageView.image = image
+                            self.saveImageCaches(image: image, mediaId: media)
+                        }
                     }
                 }
             }
         }
-        
         return cell
         
         

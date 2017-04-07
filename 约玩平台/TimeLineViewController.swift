@@ -67,16 +67,24 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             cell.userNameLabel.text = (model.Enitys[indexPath.row] as! UserInformationEnity).name
             let media = (model.Enitys[indexPath.row] as! UserInformationEnity).avatar!
             let url = urlStruct.basicUrl + "media/" + "\(media)"
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                cell.userAvatarImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url)!)
-                {
+                DispatchQueue.global().async {
                     
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.userAvatarImageView.image = image
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.userAvatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
                         }
                     }
                 }
@@ -84,16 +92,24 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
-            DispatchQueue.global().async {
-                print("2")
-                if let data = try? Data(contentsOf: URL(string: url2)!)
-                {
+            if let image = self.getImageFromCaches(mediaId: media2!)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
                     
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.avatarImageView.image = image
+                    if let data = try? Data(contentsOf: URL(string: url2)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media2!)
+                            }
                         }
                     }
                 }
@@ -105,16 +121,24 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             cell.activityTitleLabel.text = (model.Enitys[indexPath.row] as! ActiveEnity).activityTitle
             let media = (model.Enitys[indexPath.row] as! ActiveEnity).image
             let url = urlStruct.basicUrl + "media/" + "\(media)"
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                cell.activityImageImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url)!)
-                {
+                DispatchQueue.global().async {
                     
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.activityImageImageView.image = image
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.activityImageImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
                         }
                     }
                 }
@@ -122,16 +146,24 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media2!)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url2)!)
-                {
-                    print("2")
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.avatarImageView.image = image
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url2)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media2!)
+                            }
                         }
                     }
                 }
@@ -146,19 +178,29 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             cell.nameLabel.text = model.userName + "发布通知"
             cell.notificationTitle.text = (model.Enitys[indexPath.row] as! NotificationEnity).title
             cell.contentTextView.text = (model.Enitys[indexPath.row] as! NotificationEnity).content
+            cell.contentTextView.isSelectable = false
+            cell.contentTextView.isEditable = false
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media2!)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url2)!)
-                {
-                    print("2")
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.avatarImageView.image = image
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url2)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media2!)
+                            }
                         }
                     }
                 }
@@ -168,20 +210,30 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! timelineCommentTableViewCell
             cell.nameLabel.text = model.userName + "发表评论"
             cell.commentTextView.text = (model.Enitys[indexPath.row] as! CommentEnity).content
+            cell.commentTextView.isEditable = false
+            cell.commentTextView.isSelectable = false
             let media2 = model.userAvatarId
             print(model.userAvatarId)
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
-            DispatchQueue.global().async {
+            if let image = self.getImageFromCaches(mediaId: media2!)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
                 
-                if let data = try? Data(contentsOf: URL(string: url2)!)
-                {
-                    print("2")
-                    DispatchQueue.main.async {
-                        if let image = UIImage(data: data)
-                        {
-                            
-                            cell.avatarImageView.image = image
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url2)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media2!)
+                            }
                         }
                     }
                 }

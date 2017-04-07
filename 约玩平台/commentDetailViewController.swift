@@ -88,16 +88,24 @@ class commentDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let url = urlStruct.basicUrl + "media/" + "\(media)"
         cell.replyButton.tag = indexPath.row//传递在model数组中的位置给reply按钮
         cell.replyButton.addTarget(self, action: "replyComment:", for: .touchUpInside)
-        DispatchQueue.global().async {
+        if let image = self.getImageFromCaches(mediaId: media)
+        {
+            cell.userAvatarImageView.image = image
+        }else
+        {
             
-            if let data = try? Data(contentsOf: URL(string: url)!)
-            {
+            DispatchQueue.global().async {
                 
-                DispatchQueue.main.async {
-                    if let image = UIImage(data: data)
-                    {
-                        
-                        cell.userAvatarImageView.image = image
+                if let data = try? Data(contentsOf: URL(string: url)!)
+                {
+                    print("获取数据")
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            print("显示图片")
+                            cell.userAvatarImageView.image = image
+                            self.saveImageCaches(image: image, mediaId: media)
+                        }
                     }
                 }
             }
