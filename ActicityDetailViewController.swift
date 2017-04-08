@@ -276,7 +276,14 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 controller.latitude = activityModel.activityEnity.latitude
                 controller.longitude = activityModel.activityEnity.longitude
             }
+        }else if segue.identifier == seguename.toActivityPhoto
+        {
+            if let controller = segue.destination as? ActivityPhotoListViewController
+            {
+                controller.activityId = self.activityModel.activityEnity.id
+            }
         }
+            
     }
  
 

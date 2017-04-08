@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */; };
+		B00038C91E98FEBD00ED2228 /* PhotoEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00038C81E98FEBD00ED2228 /* PhotoEnity.swift */; };
+		B00038CB1E98FFC700ED2228 /* ActivityPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00038CA1E98FFC700ED2228 /* ActivityPhotoModel.swift */; };
+		B00038CD1E991A7800ED2228 /* activityuploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00038CC1E991A7800ED2228 /* activityuploadPhotoViewController.swift */; };
 		B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */; };
 		B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B501E83F9160040493A /* ActicityDetailViewController.swift */; };
 		B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0107B521E8405FB0040493A /* ActivityDetailModel.swift */; };
@@ -97,6 +100,9 @@
 
 /* Begin PBXFileReference section */
 		1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-约玩平台.release.xcconfig"; path = "Pods/Target Support Files/Pods-约玩平台/Pods-约玩平台.release.xcconfig"; sourceTree = "<group>"; };
+		B00038C81E98FEBD00ED2228 /* PhotoEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEnity.swift; sourceTree = "<group>"; };
+		B00038CA1E98FFC700ED2228 /* ActivityPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPhotoModel.swift; sourceTree = "<group>"; };
+		B00038CC1E991A7800ED2228 /* activityuploadPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activityuploadPhotoViewController.swift; sourceTree = "<group>"; };
 		B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = simplyActivityTableViewCell.swift; sourceTree = "<group>"; };
 		B0107B501E83F9160040493A /* ActicityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActicityDetailViewController.swift; path = ../ActicityDetailViewController.swift; sourceTree = "<group>"; };
 		B0107B521E8405FB0040493A /* ActivityDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityDetailModel.swift; path = ../ActivityDetailModel.swift; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				B02962C01E97849C00EB38CC /* ActivityPhotoListViewController.swift */,
+				B00038CC1E991A7800ED2228 /* activityuploadPhotoViewController.swift */,
+				B00038CA1E98FFC700ED2228 /* ActivityPhotoModel.swift */,
 			);
 			name = "活动照片";
 			sourceTree = "<group>";
@@ -383,6 +391,7 @@
 				B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */,
 				B02FA4131E86A87700062D1E /* CommentEnity.swift */,
 				B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */,
+				B00038C81E98FEBD00ED2228 /* PhotoEnity.swift */,
 			);
 			name = Enity;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 				B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */,
 				B02FA4191E86ABF500062D1E /* CommentListModel.swift in Sources */,
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
+				B00038C91E98FEBD00ED2228 /* PhotoEnity.swift in Sources */,
 				B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */,
 				B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */,
 				B0F762761E966BB000E0169A /* timelineUserTableViewCell.swift in Sources */,
@@ -634,12 +644,14 @@
 				B08CE0CD1E82AAB500DA44A3 /* ActiveEnity.swift in Sources */,
 				B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */,
 				B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */,
+				B00038CD1E991A7800ED2228 /* activityuploadPhotoViewController.swift in Sources */,
 				B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */,
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
 				B0F762721E966B8E00E0169A /* timelineCommentTableViewCell.swift in Sources */,
 				B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */,
 				B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */,
+				B00038CB1E98FFC700ED2228 /* ActivityPhotoModel.swift in Sources */,
 				B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */,
 				B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */,
 				B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */,
