@@ -251,7 +251,9 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             btn.isHidden = false
             
         }
+        activityMap.removeAnnotations(beShowingActivity)
         beShowingActivity.removeAll()
+        
         for activity in model.activeEnitys
         {
             if nowType == "全部"

@@ -61,6 +61,7 @@ class havePullfreshAndLoadmoreTableView: UITableView {
     //在拉取数据成功后需要调用该方法来停止菊花的旋转
     func updateTableViewUIWhenPullDataEnd() -> Void
     {
+        
         if self.refreshControl?.isRefreshing == true
         {
             self.refreshControl?.endRefreshing()
@@ -68,6 +69,7 @@ class havePullfreshAndLoadmoreTableView: UITableView {
         }
         if self.loadingstateUI.isAnimating == true
         {
+           
             loadingstateUI.stopAnimating()
             btn.isHidden = false
             

@@ -44,6 +44,10 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
         })
     }
     
+    func imageTap(_ sender: UITapGestureRecognizer)
+    {
+        performSegue(withIdentifier: seguename.photoListToDetail, sender: sender.view!)
+    }
     
     
     
@@ -65,6 +69,7 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
         print(activityId)
         
     }
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -92,12 +97,17 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
         {
             self.containerScrollView.refreshControl?.endRefreshing()
         }
+        var j = 0
         for enity in photoModel.enitys
         {
             print("1")
             i += 1
             let imageView = UIImageView(frame: CGRect(x: nextX, y: nextY, width: UIScreen.main.bounds.size.width / 3.0, height: UIScreen.main.bounds.size.width / 3.0))
             imageView.layer.borderWidth = 0.5
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "imageTap:"))
+            imageView.tag = j
+            imageView.gestureRecognizers?[0].isEnabled = false
             self.containerScrollView.addSubview(imageView)
             if i == 3
             {
@@ -114,6 +124,7 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
             if let image = self.getImageFromCaches(mediaId: media)
             {
                 imageView.image = image
+                imageView.gestureRecognizers?[0].isEnabled = true
             }else
             {
                 
@@ -127,12 +138,15 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
                             {
                                 print("显示图片")
                                 imageView.image = image
+                                imageView.gestureRecognizers?[0].isEnabled = true
                                 self.saveImageCaches(image: image, mediaId: media)
                             }
                         }
                     }
                 }
             }
+            
+            j += 1
 
         }
         containerScrollView.contentSize.height = nextY + 10.0
@@ -177,14 +191,24 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == seguename.photoListToDetail
+        {
+            if let controller = segue.destination as? photoDetailViewController
+            {
+                let imageView = sender as! UIImageView
+                controller.enity = photoModel.enitys[imageView.tag]
+                controller.temImage = imageView.image!
+            }
+                
+        }
     }
-    */
+    
 
 }

@@ -90,8 +90,23 @@ class timeLineModel
                                 Enitys.append(activityEnity)
                             }
                         }
-                    case "2": break
+                    case "2":
                         //MARK: - 照片尚未创建此处缺失
+                        if let Dic = dictionary["attach_obj"] as? NSDictionary
+                        {
+                            if let userJsonDictionary = Dic["creator_obj"] as? NSDictionary
+                            {
+                                let userInformationEnity = UserInformationEnity(id: userJsonDictionary["id"] as! Int, user: userJsonDictionary["user"] as! String, name: userJsonDictionary["name"] as! String, avatar: userJsonDictionary["avatar"] as? Int, description: userJsonDictionary["description"] as! String, followersCount: userJsonDictionary["followers_count"] as! Int, fansCount: userJsonDictionary["fans_count"] as! Int, activitiesCount: userJsonDictionary["activities_count"] as! Int, relation: userJsonDictionary["relation"] as! String,gender: (userJsonDictionary["gender"] as! String))
+                            
+                                let photo = PhotoEnity(id: Dic["id"] as! Int, creator: userInformationEnity, activityId: Dic["activity_id"] as! Int, mediaId: Dic["media_id"] as! Int, description: Dic["description"] as? String, creatAt: Dic["created_at"] as! Int, commentCount: Dic["comment_count"] as! Int)
+                                Enitys.append(photo)
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
                     case "3":
                         if let NotificationJsonDictionary = dictionary["attach_obj"] as? NSDictionary
                         {

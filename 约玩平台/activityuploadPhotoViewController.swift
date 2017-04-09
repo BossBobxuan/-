@@ -23,9 +23,9 @@ class activityuploadPhotoViewController: UIViewController, PullDataDelegate {
     
     func done(_ sender: UIBarButtonItem)
     {
+       
         
-        
-        if descriptionTextField.text! != ""
+        if descriptionTextField.text != ""
         {
             model.uploadImage(activityId: activityId, description: descriptionTextField.text! , image: image, token: token)
         }else

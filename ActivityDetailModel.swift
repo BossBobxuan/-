@@ -135,7 +135,7 @@ class ActivityDetailModel {
         if let JsonDictionary = response as? NSDictionary
         {
             let mediaid = JsonDictionary["media_id"] as! Int
-            let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)"
+            let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id).json"
             print(mediaid)
             manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
             

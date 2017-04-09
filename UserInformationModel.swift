@@ -104,7 +104,7 @@ class PersonalInformationModel
         //此处token需要更改
         manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
             (dataTask,response) in
-            
+            self.delegate.needUpdateUI()
             
             
         }, failure: {(dataTask,error) in
@@ -118,7 +118,7 @@ class PersonalInformationModel
         let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
-            
+            self.delegate.needUpdateUI()
             
         }, failure: {(dataTask,error) in
             print(error)

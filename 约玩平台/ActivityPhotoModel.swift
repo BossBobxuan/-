@@ -51,25 +51,23 @@ class ActivityPhotoModel {
     {
         let data = UIImagePNGRepresentation(image)
         let requestUrl = urlStruct.basicUrl + "media.json"
-        if description != nil
-        {
-            manager.post(requestUrl, parameters: [], constructingBodyWith: {(fromData) in
+        manager.post(requestUrl, parameters: [], constructingBodyWith: {(fromData) in
             
-                fromData.appendPart(withFileData: data!, name: "file", fileName: "avatar", mimeType: "application/x-www-form-urlencoded")
-            }, progress: {(progress) in }, success: {
-                (dataTask,response) in
-                print("upload")
-                self.uploadImageSuccess(mediaId: (response as! NSDictionary)["media_id"] as! Int, activityId: activityId, description: description, token: token)
+            fromData.appendPart(withFileData: data!, name: "file", fileName: "avatar", mimeType: "application/x-www-form-urlencoded")
+        }, progress: {(progress) in }, success: {
+            (dataTask,response) in
+            print("upload")
+            self.uploadImageSuccess(mediaId: (response as! NSDictionary)["media_id"] as! Int, activityId: activityId, description: description, token: token)
             
             
             
-            }, failure: {(dataTask,error) in
-                print(error)
-                self.delegate.getDataFailed()
+        }, failure: {(dataTask,error) in
+            print(error)
+            self.delegate.getDataFailed()
             
             
-            })
-        }
+        })
+        
     }
     private func uploadImageSuccess(mediaId: Int,activityId: Int,description: String?,token: String)
     {

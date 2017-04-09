@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDelegate, UITableViewDataSource, havePullfreshAndLoadmoreTableViewDelegate{
+class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDelegate, UITableViewDataSource, havePullfreshAndLoadmoreTableViewDelegate,UITextFieldDelegate{
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var timeLineTableView: havePullfreshAndLoadmoreTableView!
     var model: timeLineModel!
@@ -23,7 +23,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         model.getUserTimeLine(token: token)
         timeLineTableView.btn.isHidden = true//不使用加载更多
         
-        
+        self.searchTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +33,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false
+        
         switch model.status[indexPath.row] {
         case "0":
             performSegue(withIdentifier: seguename.timelineToUser, sender: indexPath.row)
@@ -40,7 +41,11 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             performSegue(withIdentifier: seguename.timeLineToActivity, sender: indexPath.row)
         case "2":
             //MARK : - 图片暂时缺失
-            break
+            if (tableView.cellForRow(at: indexPath) as! timelinePhotoTableViewCell).photoImageView.image != nil
+            {
+            
+                performSegue(withIdentifier: seguename.timeLineToPhotoDetail, sender: indexPath)
+            }
         case "3":
             performSegue(withIdentifier: seguename.timeLIneToNotification, sender: indexPath.row)
         case "4":
@@ -171,7 +176,59 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             return cell
         case "2":
             //MARK: - 尚未添加图片
-            let cell = UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! timelinePhotoTableViewCell
+            cell.nameLabel.text = model.userName + "上传图片"
+            let media2 = model.userAvatarId
+            let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
+            print(url2)
+            if let image = self.getImageFromCaches(mediaId: media2!)
+            {
+                cell.avatarImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url2)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media2!)
+                            }
+                        }
+                    }
+                }
+            }
+            let media = (model.Enitys[indexPath.row] as! PhotoEnity).mediaId
+            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                cell.photoImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                cell.photoImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
             return cell
         case "3":
             let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell") as! timelineNotificationTableViewCell
@@ -245,6 +302,10 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("go")
+        performSegue(withIdentifier: seguename.timeLineToSearch, sender: nil)
+    }
     
     
     
@@ -309,6 +370,13 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             if let controller = segue.destination as? ActicityDetailViewController
             {
                 controller.activityModel.activityEnity = (model.Enitys[sender! as! Int] as! ActiveEnity)
+            }
+        }else if segue.identifier == seguename.timeLineToPhotoDetail
+        {
+            if let controller = segue.destination as? photoDetailViewController
+            {
+                controller.enity = model.Enitys[(sender! as! IndexPath).row] as! PhotoEnity
+                controller.temImage = (timeLineTableView.cellForRow(at: (sender! as! IndexPath)) as! timelinePhotoTableViewCell).photoImageView.image
             }
         }
         

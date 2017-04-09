@@ -36,6 +36,12 @@ struct seguename {
     static let timeLIneToNotification = "timeLIneToNotification"
     static let timeLIneToComment = "timeLIneToComment"
     static let toActivityPhoto = "segueToActivityPhoto"
+    static let photoListToDetail = "photoListToDetail"
+    static let photoDetailToComment = "photoDetailToComment"
+    static let timeLineToPhotoDetail = "timeLineToPhotoDetail"
+    static let timeLineToSearch = "timeLineToSearch"
+    static let searchToUserInformation = "searchToUserInformation"
+    static let searchToActivityDetail = "searchToActivityDetail"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {

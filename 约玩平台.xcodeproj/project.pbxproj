@@ -58,6 +58,9 @@
 		B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */; };
 		B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645C1E1CF326006A2FCD /* LoginViewController.swift */; };
 		B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645E1E1CF339006A2FCD /* SignUpViewController.swift */; };
+		B07AE40F1E9A5BFD003D0F58 /* photoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */; };
+		B07AE4121E9A78FE003D0F58 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */; };
+		B07AE4141E9A7C19003D0F58 /* searchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE4131E9A7C19003D0F58 /* searchModel.swift */; };
 		B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */; };
 		B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */; };
 		B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */; };
@@ -158,6 +161,9 @@
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B0765C531E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		B0765C541E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoDetailViewController.swift; sourceTree = "<group>"; };
+		B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B07AE4131E9A7C19003D0F58 /* searchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchModel.swift; sourceTree = "<group>"; };
 		B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowUserViewController.swift; sourceTree = "<group>"; };
 		B08AFDE31E7D5590004C9C96 /* PullDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullDataDelegate.swift; sourceTree = "<group>"; };
 		B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersOrFansModel.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 			children = (
 				B02962C01E97849C00EB38CC /* ActivityPhotoListViewController.swift */,
 				B00038CC1E991A7800ED2228 /* activityuploadPhotoViewController.swift */,
+				B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */,
 				B00038CA1E98FFC700ED2228 /* ActivityPhotoModel.swift */,
 			);
 			name = "活动照片";
@@ -325,6 +332,7 @@
 		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
 			isa = PBXGroup;
 			children = (
+				B07AE4101E9A78E8003D0F58 /* 搜索 */,
 				B02962BF1E97847C00EB38CC /* 活动照片 */,
 				B0F762701E9669F300E0169A /* 用户动态 */,
 				B02FA4151E86ABB100062D1E /* 评论相关 */,
@@ -372,6 +380,15 @@
 				B071645E1E1CF339006A2FCD /* SignUpViewController.swift */,
 			);
 			name = "首次进入注册与登录";
+			sourceTree = "<group>";
+		};
+		B07AE4101E9A78E8003D0F58 /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */,
+				B07AE4131E9A7C19003D0F58 /* searchModel.swift */,
+			);
+			name = "搜索";
 			sourceTree = "<group>";
 		};
 		B08AFDE21E7D553A004C9C96 /* Protocol */ = {
@@ -658,8 +675,10 @@
 				B02FA41B1E86B49200062D1E /* commentTableViewCell.swift in Sources */,
 				B0221BC11E8FFB470021BB40 /* NotificationTableViewCell.swift in Sources */,
 				B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */,
+				B07AE4141E9A7C19003D0F58 /* searchModel.swift in Sources */,
 				B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */,
 				B0221BC31E8FFD270021BB40 /* NotificationListModel.swift in Sources */,
+				B07AE4121E9A78FE003D0F58 /* SearchViewController.swift in Sources */,
 				B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */,
@@ -671,6 +690,7 @@
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
 				B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */,
 				B05F3F851E223C8900777C82 /* ActivityDisplayTableViewCell.swift in Sources */,
+				B07AE40F1E9A5BFD003D0F58 /* photoDetailViewController.swift in Sources */,
 				B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

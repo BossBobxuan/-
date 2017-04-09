@@ -143,6 +143,7 @@ class LocationSelectViewController: UIViewController,MKMapViewDelegate,UITextFie
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(textField.text!, completionHandler: {(placemarks,error) in
+            self.activityLocationMapView.removeAnnotations(self.activityLocationMapView.annotations)
             if placemarks?.count == 0 || error != nil
             {
                 let alert = UIAlertController(title: "找不到该地点", message: "", preferredStyle: .alert)
