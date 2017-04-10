@@ -138,12 +138,12 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     @IBAction func addFollowOrCancel(_ sender: UIButton) {
         if sender.titleLabel?.text == "关注"
         {
-            personalInformationModel.followUser(uid: uid!,token: token)
+            personalInformationModel.followUser(uid: uid!,token: token,success:{sender.isEnabled = true})
             sender.setTitle("已关注", for: .normal)
             sender.isEnabled = false
         }else if sender.titleLabel?.text == "已关注"
         {
-            personalInformationModel.notFollowUser(uid: uid!, token: token)
+            personalInformationModel.notFollowUser(uid: uid!, token: token,success:{sender.isEnabled = true})
             sender.setTitle("关注", for: .normal)
             sender.isEnabled = false
         }

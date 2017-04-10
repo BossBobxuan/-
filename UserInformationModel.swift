@@ -97,14 +97,14 @@ class PersonalInformationModel
       
     }
     
-    func followUser(uid: Int,token: String)
+    func followUser(uid: Int,token: String,success:@escaping () -> Void)
     {
         let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         //此处token需要更改
         manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
             (dataTask,response) in
-            self.delegate.needUpdateUI()
+            success()
             
             
         }, failure: {(dataTask,error) in
@@ -113,12 +113,12 @@ class PersonalInformationModel
             
         })
     }
-    func notFollowUser(uid: Int,token: String)
+    func notFollowUser(uid: Int,token: String,success:@escaping () -> Void)
     {
         let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
-            self.delegate.needUpdateUI()
+            success()
             
         }, failure: {(dataTask,error) in
             print(error)

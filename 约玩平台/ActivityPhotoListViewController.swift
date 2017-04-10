@@ -183,7 +183,7 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
     
     //MARK: - 上拉刷新
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y >= scrollView.contentSize.height
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
         {
             print("yes")
             photoModel.getActivityPhotoList(activityId: activityId)

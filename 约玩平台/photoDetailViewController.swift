@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class photoDetailViewController: UIViewController {
     var enity: PhotoEnity!
@@ -44,6 +45,42 @@ class photoDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "否", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    func saveImage(_ sender: UILongPressGestureRecognizer)
+    {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "保存", style: .default, handler: {(alert) in
+            PHPhotoLibrary.requestAuthorization({(status) in
+                if status == PHAuthorizationStatus.authorized
+                {
+                    let data = UIImageJPEGRepresentation(self.imageView.image!, 0.9)
+                    
+                    UIImageWriteToSavedPhotosAlbum(UIImage(data: data!)!, self, "imageWasSavedSuccessfully:didFinishedwitherror:context:", nil)
+                    
+                }
+                else if status == PHAuthorizationStatus.denied
+                {
+                    let alert1 = UIAlertController(title: "没有访问相册权限", message: "请前往设置打开设置权限", preferredStyle: .alert)
+                    alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                    self.present(alert1, animated: true, completion: nil)
+                }
+                
+            })
+        
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func imageWasSavedSuccessfully(_ image: UIImage,didFinishedwitherror: NSError!,context: UnsafeMutableRawPointer)
+    {
+        let alert = UIAlertController(title: "保存图片到相册", message: nil, preferredStyle: .alert)
+        alert.view.alpha = 0.5
+        self.present(alert, animated: true, completion: nil)
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(_) in alert.dismiss(animated: true, completion: nil)})
+        
+        
+    }
+    
     
     
     override func viewDidLoad() {
@@ -54,7 +91,8 @@ class photoDetailViewController: UIViewController {
         self.navigationItem.title = enity.creatAt.date
         self.descriptionLabel.text = enity.description
         self.commentCountLabel.text = "\(enity.commentCount)"
-        
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "saveImage:"))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: "deleteImage:")
         
     }
