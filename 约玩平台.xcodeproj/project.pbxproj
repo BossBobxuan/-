@@ -30,6 +30,11 @@
 		B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */; };
 		B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */; };
 		B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */; };
+		B036EE6D1E9E566100C50BA8 /* PrivateEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036EE6C1E9E566100C50BA8 /* PrivateEnity.swift */; };
+		B036EE701E9E57AF00C50BA8 /* privateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036EE6F1E9E57AF00C50BA8 /* privateModel.swift */; };
+		B036EE721E9E5E3700C50BA8 /* msgTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036EE711E9E5E3700C50BA8 /* msgTableViewCell.swift */; };
+		B036EE741E9E5F5600C50BA8 /* msgListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036EE731E9E5F5600C50BA8 /* msgListViewController.swift */; };
+		B036EE761E9E68F100C50BA8 /* msgDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036EE751E9E68F100C50BA8 /* msgDetailViewController.swift */; };
 		B047185C1E8A82C5000488CD /* address.png in Resources */ = {isa = PBXBuildFile; fileRef = B04718581E8A82C5000488CD /* address.png */; };
 		B047185D1E8A82C5000488CD /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = B04718591E8A82C5000488CD /* date.png */; };
 		B047185E1E8A82C5000488CD /* dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = B047185A1E8A82C5000488CD /* dollar.png */; };
@@ -125,6 +130,11 @@
 		B03210AC1E87F2CE00A68282 /* replyCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = replyCommentViewController.swift; sourceTree = "<group>"; };
 		B03210AE1E87FAA900A68282 /* commentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentDetailViewController.swift; sourceTree = "<group>"; };
 		B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
+		B036EE6C1E9E566100C50BA8 /* PrivateEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateEnity.swift; sourceTree = "<group>"; };
+		B036EE6F1E9E57AF00C50BA8 /* privateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privateModel.swift; sourceTree = "<group>"; };
+		B036EE711E9E5E3700C50BA8 /* msgTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgTableViewCell.swift; sourceTree = "<group>"; };
+		B036EE731E9E5F5600C50BA8 /* msgListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgListViewController.swift; sourceTree = "<group>"; };
+		B036EE751E9E68F100C50BA8 /* msgDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgDetailViewController.swift; sourceTree = "<group>"; };
 		B04718581E8A82C5000488CD /* address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = address.png; sourceTree = "<group>"; };
 		B04718591E8A82C5000488CD /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
 		B047185A1E8A82C5000488CD /* dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollar.png; sourceTree = "<group>"; };
@@ -264,6 +274,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		B036EE6E1E9E579B00C50BA8 /* IM */ = {
+			isa = PBXGroup;
+			children = (
+				B036EE6F1E9E57AF00C50BA8 /* privateModel.swift */,
+				B036EE711E9E5E3700C50BA8 /* msgTableViewCell.swift */,
+				B036EE731E9E5F5600C50BA8 /* msgListViewController.swift */,
+				B036EE751E9E68F100C50BA8 /* msgDetailViewController.swift */,
+			);
+			name = IM;
+			sourceTree = "<group>";
+		};
 		B056B39A1E1E4BCA001B17F2 /* 活动相关界面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +353,7 @@
 		B07164271E1CF179006A2FCD /* 约玩平台 */ = {
 			isa = PBXGroup;
 			children = (
+				B036EE6E1E9E579B00C50BA8 /* IM */,
 				B07AE4101E9A78E8003D0F58 /* 搜索 */,
 				B02962BF1E97847C00EB38CC /* 活动照片 */,
 				B0F762701E9669F300E0169A /* 用户动态 */,
@@ -409,6 +431,7 @@
 				B02FA4131E86A87700062D1E /* CommentEnity.swift */,
 				B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */,
 				B00038C81E98FEBD00ED2228 /* PhotoEnity.swift */,
+				B036EE6C1E9E566100C50BA8 /* PrivateEnity.swift */,
 			);
 			name = Enity;
 			sourceTree = "<group>";
@@ -642,17 +665,20 @@
 				B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */,
 				B02962C11E97849C00EB38CC /* ActivityPhotoListViewController.swift in Sources */,
 				B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */,
+				B036EE6D1E9E566100C50BA8 /* PrivateEnity.swift in Sources */,
 				B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */,
 				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
 				B0F7627C1E966D4400E0169A /* TimeLineViewController.swift in Sources */,
 				B047D7201E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift in Sources */,
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */,
+				B036EE761E9E68F100C50BA8 /* msgDetailViewController.swift in Sources */,
 				B02FA4191E86ABF500062D1E /* CommentListModel.swift in Sources */,
 				B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */,
 				B00038C91E98FEBD00ED2228 /* PhotoEnity.swift in Sources */,
 				B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */,
 				B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */,
+				B036EE741E9E5F5600C50BA8 /* msgListViewController.swift in Sources */,
 				B0F762761E966BB000E0169A /* timelineUserTableViewCell.swift in Sources */,
 				B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */,
 				B02FA4171E86ABE600062D1E /* commentListViewController.swift in Sources */,
@@ -680,12 +706,14 @@
 				B0221BC31E8FFD270021BB40 /* NotificationListModel.swift in Sources */,
 				B07AE4121E9A78FE003D0F58 /* SearchViewController.swift in Sources */,
 				B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */,
+				B036EE721E9E5E3700C50BA8 /* msgTableViewCell.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */,
 				B0F762781E966BC100E0169A /* timelineNotificationTableViewCell.swift in Sources */,
 				B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
 				B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */,
+				B036EE701E9E57AF00C50BA8 /* privateModel.swift in Sources */,
 				B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */,
 				B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */,
 				B08AFDE41E7D5590004C9C96 /* PullDataDelegate.swift in Sources */,

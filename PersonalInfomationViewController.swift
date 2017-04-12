@@ -42,6 +42,7 @@ struct seguename {
     static let timeLineToSearch = "timeLineToSearch"
     static let searchToUserInformation = "searchToUserInformation"
     static let searchToActivityDetail = "searchToActivityDetail"
+    static let msgLIstToDetail = "msgLIstToDetail"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -487,6 +488,16 @@ extension Int
         //格式话输出
         let dformatter = DateFormatter()
         dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        return dformatter.string(from: date)
+    }
+    var dateNotYear: String
+        {
+        let timeInterval:TimeInterval = TimeInterval(integerLiteral: Int64(self / 1000))
+        let date = Date(timeIntervalSince1970: timeInterval)
+        
+        //格式话输出
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "HH:mm"
         return dformatter.string(from: date)
     }
 }
