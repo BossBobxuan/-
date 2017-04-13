@@ -2621,7 +2621,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDt-aE-NPl" id="81l-aq-bDe">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IQL-yc-QYY">
@@ -3035,7 +3035,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Xv4-H0-owi" kind="relationship" relationship="rootViewController" id="JM3-sf-wrp"/>
+                        <segue destination="Xv4-H0-owi" kind="relationship" relationship="rootViewController" id="BJV-qv-Oyr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdt-ep-ftQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3112,14 +3112,14 @@
         <image name="photo.png" width="607" height="533"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ogD-W3-zJb"/>
-        <segue reference="vJc-kC-3o5"/>
-        <segue reference="pMB-1T-oXr"/>
-        <segue reference="M5R-Vh-UBo"/>
         <segue reference="Fa5-uh-SKe"/>
-        <segue reference="VKn-FQ-zZg"/>
-        <segue reference="4Ro-V4-upw"/>
+        <segue reference="ZhN-rJ-K5T"/>
+        <segue reference="jZv-JX-T4c"/>
+        <segue reference="QBO-2N-wnt"/>
         <segue reference="3YB-kW-QwX"/>
         <segue reference="kGL-hZ-nU3"/>
+        <segue reference="4Ro-V4-upw"/>
+        <segue reference="vJc-kC-3o5"/>
+        <segue reference="ogD-W3-zJb"/>
     </inferredMetricsTieBreakers>
 </document>

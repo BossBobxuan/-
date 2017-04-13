@@ -36,20 +36,20 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     @IBAction func EditAvatar(_ sender: UIButton)
     {
         let imagePicker = UIImagePickerController()
-        PHPhotoLibrary.requestAuthorization({(status) in
+        PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized
             {
                 imagePicker.sourceType = .photoLibrary
                 imagePicker.allowsEditing = true
                 imagePicker.mediaTypes = [kUTTypeImage as String]
                 imagePicker.delegate = self
-                self.present(imagePicker, animated: true, completion: nil)
+                self?.present(imagePicker, animated: true, completion: nil)
             }
             else if status == PHAuthorizationStatus.denied
             {
                 let alert = UIAlertController(title: "没有访问相册权限", message: "请前往设置打开设置权限", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
         
         })

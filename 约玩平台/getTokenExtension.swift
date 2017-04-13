@@ -18,20 +18,25 @@ extension UIViewController
             //MARK : - 此处需要用userDefault获取token
     }
     func getImageFromCaches(mediaId: Int) -> UIImage? {
-        let manager = FileManager()
-        let urls = manager.urls(for: .cachesDirectory, in: .userDomainMask)
+//        let manager = FileManager()
+//        let urls = manager.urls(for: .cachesDirectory, in: .userDomainMask)
         let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         print(path[0])
-        let fileUrl = urls[0].appendingPathComponent("\(mediaId)")
-        if let imagedata = try? Data(contentsOf: fileUrl)
+        let fileString = path[0] + "/\(mediaId)"
+        if let image = UIImage(contentsOfFile: fileString)
         {
-            print("getdatasuccess")
-            if let image = UIImage(data: imagedata)
-            {
-                return image
-            }
-            
+            return image
         }
+//        let fileUrl = urls[0].appendingPathComponent("\(mediaId)")
+//        if let imagedata = try? Data(contentsOf: fileUrl)
+//        {
+//            print("getdatasuccess")
+//            if let image = UIImage(data: imagedata)
+//            {
+//                return image
+//            }
+//            
+//        }
         return nil
     }
     

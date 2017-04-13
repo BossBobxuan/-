@@ -12,7 +12,7 @@ class ActivityListModel
     var activeEnitys: [ActiveEnity] = []
     weak var delegate: PullDataDelegate!
     var page = 1
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
@@ -21,14 +21,14 @@ class ActivityListModel
     {
         let requestUrl = urlStruct.basicUrl + "recommend/activity/hot.json"
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         page += 1
@@ -39,15 +39,15 @@ class ActivityListModel
         page = 1
         let requestUrl = urlStruct.basicUrl + "recommend/activity/hot.json"
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.activeEnitys.removeAll()
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.activeEnitys.removeAll()
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         page += 1

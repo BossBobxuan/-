@@ -41,13 +41,13 @@ class replyCommentViewController: UIViewController {
     func replyComment(_ sender: UIBarButtonItem)
     {
         let parent = parentCommentId ?? 0
-        let manager = AFHTTPSessionManager()
+        let manager = singleClassManager.manager
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         let requestUrl = urlStruct.basicUrl + "msg/comment.json"
-        manager.post(requestUrl, parameters: ["attach_type": attachType,"attach_id": attachId,"parent": parent,"content": replyTextView.text!], progress: {(progress) in }, success: {(dataTask,response) in
-            self.delegate.successToreply()
-        }, failure: {(dataTask,error) in
-            self.delegate.failToreply()
+        manager.post(requestUrl, parameters: ["attach_type": attachType,"attach_id": attachId,"parent": parent,"content": replyTextView.text!], progress: {(progress) in }, success: {[weak self] (dataTask,response) in
+            self?.delegate.successToreply()
+        }, failure: {[weak self] (dataTask,error) in
+            self?.delegate.failToreply()
         })
         let _ = self.navigationController?.popViewController(animated: true)
     }

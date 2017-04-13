@@ -74,6 +74,7 @@
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
+		B0B8439C1E9F14B8004BDC91 /* singleClassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */; };
 		B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */; };
 		B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */; };
 		B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD601E913039004F1113 /* ActivityListModel.swift */; };
@@ -183,6 +184,7 @@
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
 		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
+		B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleClassManager.swift; sourceTree = "<group>"; };
 		B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
 		B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLocationViewController.swift; sourceTree = "<group>"; };
 		B0E5BD601E913039004F1113 /* ActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListModel.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				B05F3F861E223D3D00777C82 /* interested.png */,
 				B05F3F891E22681700777C82 /* location.png */,
 				B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */,
+				B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */,
 			);
 			name = supportfile;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 			files = (
 				B0F7627A1E966BCE00E0169A /* timelinePhotoTableViewCell.swift in Sources */,
 				B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */,
+				B0B8439C1E9F14B8004BDC91 /* singleClassManager.swift in Sources */,
 				B02962C11E97849C00EB38CC /* ActivityPhotoListViewController.swift in Sources */,
 				B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */,
 				B036EE6D1E9E566100C50BA8 /* PrivateEnity.swift in Sources */,
@@ -876,6 +880,7 @@
 			baseConfigurationReference = F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

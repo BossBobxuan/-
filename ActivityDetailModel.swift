@@ -9,24 +9,24 @@
 import Foundation
 
 class ActivityDetailModel {
-    var activityEnity: ActiveEnity!
-    let manager = AFHTTPSessionManager()
+    weak var activityEnity: ActiveEnity!
+    let manager = singleClassManager.manager
     weak var delegate: PullDataDelegate!
-    
+   
    
     func interestActivity(token: String)
     {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "wisher.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             print("success")
-            self.delegate.needUpdateUI()
+            self?.delegate.needUpdateUI()
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -36,14 +36,14 @@ class ActivityDetailModel {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "wisher.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [],  success: {
-            (dataTask,response) in
-            self.delegate.needUpdateUI()
+            [weak self] (dataTask,response) in
+            self?.delegate.needUpdateUI()
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -52,14 +52,14 @@ class ActivityDetailModel {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             print("success")
-            self.delegate.needUpdateUI()
+            self?.delegate.needUpdateUI()
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -69,14 +69,14 @@ class ActivityDetailModel {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [],  success: {
-            (dataTask,response) in
-            self.delegate.needUpdateUI()
+            [weak self] (dataTask,response) in
+            self?.delegate.needUpdateUI()
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         
@@ -98,14 +98,14 @@ class ActivityDetailModel {
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         
         manager.post(requestUrl, parameters: ["title": activityEnity.activityTitle ,"beginTime":activityEnity.beginTime ,"endTime":activityEnity.endTime,"address":activityEnity.address,"latitude":activityEnity.latitude,"longitude":activityEnity.longitude,"fee": "\(activityEnity.fee)","category":activityEnity.category,"content":activityEnity.content,"tags": tagString], progress: {(progress) in }, success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             print("success")
-            self.delegate.needUpdateUI()
+            self?.delegate.needUpdateUI()
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -118,14 +118,14 @@ class ActivityDetailModel {
             
             fromData.appendPart(withFileData: data!, name: "file", fileName: "avatar", mimeType: "application/x-www-form-urlencoded")
         }, progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.uploadImageSuccess(response:response,token: token)
+            [weak self] (dataTask,response) in
+            self?.uploadImageSuccess(response:response,token: token)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }

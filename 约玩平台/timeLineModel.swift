@@ -12,7 +12,7 @@ class timeLineModel
     var Enitys: [Any] = []
     var status: [String] = []//与enitys中的对象通过index一一对应
     weak var delegate: PullDataDelegate!
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     var userAvatarId: Int!
     var userName: String!
     var requestNumber = 0
@@ -25,35 +25,35 @@ class timeLineModel
         requestNumber = 0
         let requestUrl = urlStruct.basicUrl + "user/~me/timeline/home.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-        manager.get(requestUrl, parameters: [], progress: {(progress) in}, success: {(dataTask,response) in
-            self.requestNumber += 1
-            print(self.requestNumber)
-            self.Enitys = []
-            self.status = []
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: [], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.requestNumber += 1
             
-        }, failure: {(dataTask,error) in
+            self?.Enitys.removeAll()
+            self?.status.removeAll()
+            self?.dealWithResponse(response: response)
+            
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
-        manager.get(urlStruct.basicUrl + "user/~me.json", parameters: [], progress: {(progress) in}, success: {(dataTask,response) in
-            self.requestNumber += 1
-            print(self.requestNumber)
+        manager.get(urlStruct.basicUrl + "user/~me.json", parameters: [], progress: {(progress) in}, success: {[weak self](dataTask,response) in
+            self?.requestNumber += 1
+            
             if let Dic = response as? NSDictionary
             {
-                self.userAvatarId = Dic["avatar"] as! Int
-                self.userName = Dic["name"] as! String
+                self?.userAvatarId = Dic["avatar"] as! Int
+                self?.userName = Dic["name"] as! String
             }
-            if self.requestNumber == 2
+            if self?.requestNumber == 2
             {
-                self.delegate.needUpdateUI()
+                self?.delegate.needUpdateUI()
             }
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })

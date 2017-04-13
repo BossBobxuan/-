@@ -30,7 +30,7 @@ class privates {
 class privateModel {
     var Enitys: [privates] = []
     weak var delegate: PullDataDelegate!
-    let manager: AFHTTPSessionManager = AFHTTPSessionManager()
+    let manager: AFHTTPSessionManager = singleClassManager.manager
     var page = 1
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
@@ -39,12 +39,12 @@ class privateModel {
     func getMessageList(token: String) -> Void {
         let requestUrl = urlStruct.basicUrl + "msg/private.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.dealWithResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -56,13 +56,13 @@ class privateModel {
         page = 1
         let requestUrl = urlStruct.basicUrl + "msg/private.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
-        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.Enitys = []
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.Enitys.removeAll()
+            self?.dealWithResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self](dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })

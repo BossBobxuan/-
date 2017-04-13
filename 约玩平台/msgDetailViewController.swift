@@ -61,12 +61,12 @@ class msgDetailViewController: UIViewController {
 //            }
 //        }))
 //        timer.activate()
-        timer = Timer(timeInterval: 1, repeats: true, block: {[unowned self](_) in
+        timer = Timer(timeInterval: 1, repeats: true, block: {[weak self](_) in
             
             print("timer")
-            self.model.popLast()
+            self?.model.popLast()
             DispatchQueue.main.async {
-                self.showMsgList(array: self.model)
+                self?.showMsgList(array: (self?.model)!)
             }
         })//此处需要释放
         DispatchQueue.global().async {
@@ -94,6 +94,7 @@ class msgDetailViewController: UIViewController {
     
     private func showMsgList(array model: [testModel])
     {
+        nextY = 0
         for enity in model
         {
             if enity.direction == "0"//我发送的

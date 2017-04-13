@@ -24,21 +24,21 @@ class photoDetailViewController: UIViewController {
     func deleteImage(_ sender: UIBarButtonItem)
     {
         let alert = UIAlertController(title: "是否删除图片", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "是", style: .default, handler: {(alert) in
+        alert.addAction(UIAlertAction(title: "是", style: .default, handler: {[weak self] (alert) in
             let alert1 = UIAlertController(title: "正在删除图片", message: nil, preferredStyle: .alert)
-            self.present(alert1, animated: true, completion: nil)
-            let requestUrl = urlStruct.basicUrl + "photo/" + "\(self.enity.id).json"
-            let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue(self.token, forHTTPHeaderField: "token")
+            self?.present(alert1, animated: true, completion: nil)
+            let requestUrl = urlStruct.basicUrl + "photo/" + "\(self?.enity.id).json"
+            let manager = singleClassManager.manager
+            manager.requestSerializer.setValue(self?.token, forHTTPHeaderField: "token")
             manager.delete(requestUrl, parameters: nil, success: {(response,datatask) in
-                alert1.dismiss(animated: true, completion: {let _ = self.navigationController?.popViewController(animated: true)})
+                alert1.dismiss(animated: true, completion: {let _ = self?.navigationController?.popViewController(animated: true)})
             
             
             }, failure: {(datatask,error) in
                 print(error)
                 let alert = UIAlertController(title: "删除失败", message: "请检查网络连接", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             })
         
         }))

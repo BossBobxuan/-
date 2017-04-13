@@ -23,7 +23,7 @@ class UserActivityListModel
 {
     var activityEnitys: [String:[ActiveEnity]] = [ActivityRequestType.created:[],ActivityRequestType.participated:[],ActivityRequestType.wished:[]]
     weak var delegate: getUserActivityDelegate!
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     private var pageDic: [String: Int] = [ActivityRequestType.created: 1,ActivityRequestType.wished: 1,ActivityRequestType.participated: 1]
     init(delegate: getUserActivityDelegate) {
         self.delegate = delegate
@@ -36,14 +36,14 @@ class UserActivityListModel
        
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response,type: type)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response,type: type)
                 
                 
                 
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getActivityfailed()
+            self?.delegate.getActivityfailed()
                 
         })
 
@@ -54,14 +54,14 @@ class UserActivityListModel
     {
         let requestUrl = urlStruct.basicUrl + "user/" + "\(activityId)" + "/activity/" + type + ".json"
         manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response,type: type)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response,type: type)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getActivityfailed()
+            self?.delegate.getActivityfailed()
             
         })
         
@@ -77,15 +77,15 @@ class UserActivityListModel
         pageDic[type]!  = 1
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.activityEnitys[type] = []
-            self.dealwithResponse(response: response,type: type)
+            [weak self] (dataTask,response) in
+            self?.activityEnitys[type]?.removeAll()
+            self?.dealwithResponse(response: response,type: type)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getActivityfailed()
+            self?.delegate.getActivityfailed()
             
         })
         pageDic[type]! += 1
@@ -99,15 +99,15 @@ class UserActivityListModel
         pageDic[type]!  = 1
         
         manager.get(requestUrl, parameters: ["page":pageDic[type]], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.activityEnitys[type] = []
-            self.dealwithResponse(response: response,type: type)
+            [weak self] (dataTask,response) in
+            self?.activityEnitys[type]?.removeAll()
+            self?.dealwithResponse(response: response,type: type)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getActivityfailed()
+            self?.delegate.getActivityfailed()
             
         })
         pageDic[type]! += 1

@@ -15,20 +15,20 @@ class NotificationListModel
         self.delegate = delegate
     }
     var page = 1
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     func getNotification(activityId: Int)
     {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityId)" + "/notification.json"
         
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         
@@ -42,15 +42,15 @@ class NotificationListModel
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityId)" + "/notification.json"
         
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.notificationEnitys.removeAll()
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.notificationEnitys.removeAll()
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         

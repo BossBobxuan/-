@@ -59,21 +59,21 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     @IBAction func addTags(_ sender: UIButton) {
         let alert = UIAlertController(title: "标签", message: "请选择动作", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "添加标签", style: .default, handler: {
-            (_) in
+            [weak self] (_) in
             let alert1 = UIAlertController(title: "添加标签", message: "请输入添加标签", preferredStyle: .alert)
             alert1.addTextField(configurationHandler: {(_) in })
             alert1.addAction(UIAlertAction(title: "添加", style: .default, handler: {(alert) in
-                self.tagsArray.append(alert1.textFields![0].text!)
-                self.addTagsIntoScrollView()
+                self?.tagsArray.append(alert1.textFields![0].text!)
+                self?.addTagsIntoScrollView()
             }))
             alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: {(_) in }))
-            self.present(alert1, animated: true, completion: {})
+            self?.present(alert1, animated: true, completion: {})
         }))
-        alert.addAction(UIAlertAction(title: "清除标签", style: .default, handler: {(_) in
-            self.tagsArray.removeAll()
-            self.addTagsIntoScrollView()
+        alert.addAction(UIAlertAction(title: "清除标签", style: .default, handler: {[weak self] (_) in
+            self?.tagsArray.removeAll()
+            self?.addTagsIntoScrollView()
         }))
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: {(_) in }))
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: {[weak self] (_) in }))
         self.present(alert, animated: true, completion: {})
         
         
@@ -131,44 +131,45 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         //若不收起键盘会崩溃尚未解决
         self.resignFirstResponder()
         let imagePicker = UIImagePickerController()
-        PHPhotoLibrary.requestAuthorization({(status) in
+        PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized
             {
                 imagePicker.sourceType = .photoLibrary
                 imagePicker.allowsEditing = true
                 imagePicker.mediaTypes = [kUTTypeImage as String]
                 imagePicker.delegate = self
-                self.present(imagePicker, animated: true, completion: nil)
+                self?.present(imagePicker, animated: true, completion: nil)
             }
             else if status == PHAuthorizationStatus.denied
             {
                 let alert = UIAlertController(title: "没有访问相册权限", message: "请前往设置打开设置权限", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
             
         })
     }
     
     @IBAction func deleteActivity(_ sender: UIButton) {
-        let manager = AFHTTPSessionManager()
+        let manager = singleClassManager.manager
         let alert = UIAlertController(title: "正在删除活动", message: "请稍等", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityDetailModel!.activityEnity.id).json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [],  success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             alert.dismiss(animated: true, completion: nil)
-            let _ = self.navigationController?.popViewController(animated: true)
+            let _ = self?.navigationController?.popViewController(animated: true)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
+            //MARK: - 此处弹窗可能出错
             alert.dismiss(animated: true, completion: nil)
             let alert1 = UIAlertController(title: "删除失败", message: "请检查网络连接", preferredStyle: .alert)
             alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-            self.present(alert1, animated: true, completion: nil)
+            self?.present(alert1, animated: true, completion: nil)
             
         })
         
@@ -222,21 +223,21 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                 }
                 
                 let requestUrl = urlStruct.basicUrl + "user/~me/activity.json"
-                let manager = AFHTTPSessionManager()
+                let manager = singleClassManager.manager
                 manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
                 manager.post(requestUrl, parameters: ["title": activityTitleTextField.text!,"image": imageMediaId!,"beginTime":beginTimeStamp * 1000,"endTime":endTimeStamp * 1000,"address":addressTextField.text!,"latitude":latitude!,"longitude":longitude!,"fee": Int(feeTextField.text!)!,"category":categoryPickerView.selectedRow(inComponent: 0),"content":contentTextView.text!,"tags": tagString], progress: {(progress) in }, success: {
-                    (dataTask,response) in
+                    [weak self] (dataTask,response) in
                     print("success")
                     alert.dismiss(animated: true, completion: {})
-                    let _ = self.navigationController?.popViewController(animated: true)
+                    let _ = self?.navigationController?.popViewController(animated: true)
                 
                 
-                }, failure: {(dataTask,error) in
+                }, failure: {[weak self] (dataTask,error) in
                     print(error)
                     alert.dismiss(animated: true, completion: {
                         let alert1 = UIAlertController(title: "无法创建活动", message: "请检查网络连接或补全活动信息", preferredStyle: .alert)
                         alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                        self.present(alert1, animated: true, completion: nil)
+                        self?.present(alert1, animated: true, completion: nil)
                     })
                 
                 })
@@ -338,27 +339,27 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             activityImageImageView.image = image
         }else
         {
-            let manager = AFHTTPSessionManager()
+            let manager = singleClassManager.manager
             let data = UIImagePNGRepresentation(image!)
             let requestUrl = urlStruct.basicUrl + "media.json"
             manager.post(requestUrl, parameters: [], constructingBodyWith: {(fromData) in
                 
                 fromData.appendPart(withFileData: data!, name: "file", fileName: "image", mimeType: "application/x-www-form-urlencoded")
             }, progress: {(progress) in }, success: {
-                (dataTask,response) in
+                [weak self] (dataTask,response) in
                 if let JsonDictionary = response as? NSDictionary
                 {
-                    self.imageMediaId = (JsonDictionary["media_id"] as! Int)
-                    self.activityImageImageView.image = image!
+                    self?.imageMediaId = (JsonDictionary["media_id"] as! Int)
+                    self?.activityImageImageView.image = image!
                 }
                 
                 
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
                 let alert = UIAlertController(title: "上传照片失败", message: "请检查网络连接", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
                 
             })
             

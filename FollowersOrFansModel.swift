@@ -14,7 +14,7 @@ class FollowersOrFansModel
     weak var delegate: PullDataDelegate!
     private var page: Int = 1
     var type: String
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
    
     init(delegate: PullDataDelegate,type: String) {
         self.delegate = delegate
@@ -26,19 +26,19 @@ class FollowersOrFansModel
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             
             if  ((error as! NSError).userInfo["com.alamofire.serialization.response.error.response"] as! HTTPURLResponse).statusCode == 400
             {
-                self.delegate.needUpdateUI()//MARK: - 此处防止请求不到数据，更改接口后可以删除
+                self?.delegate.needUpdateUI()//MARK: - 此处防止请求不到数据，更改接口后可以删除
             }else
             {
                 print(error)
-                self.delegate.getDataFailed()
+                self?.delegate.getDataFailed()
             }
         })
         page += 1
@@ -57,13 +57,13 @@ class FollowersOrFansModel
         }
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         page += 1
@@ -79,14 +79,14 @@ class FollowersOrFansModel
         let requestUrl = urlStruct.basicUrl + "user/~me/" + type + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.userInformationEnitys.removeAll()
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.userInformationEnitys.removeAll()
+            self?.dealwithResponse(response: response)
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         page += 1
@@ -107,15 +107,15 @@ class FollowersOrFansModel
         
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.userInformationEnitys.removeAll()
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.userInformationEnitys.removeAll()
+            self?.dealwithResponse(response: response)
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
             
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         page += 1
@@ -132,9 +132,9 @@ class FollowersOrFansModel
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         
@@ -147,9 +147,9 @@ class FollowersOrFansModel
         manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
         
         
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
         
         })
     }

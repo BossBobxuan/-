@@ -10,19 +10,19 @@ import Foundation
 class ActivityPhotoModel {
     var enitys: [PhotoEnity] = []
     weak var delegate: PullDataDelegate!
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     var page = 1
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
     func getActivityPhotoList(activityId: Int) -> Void {
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityId)/photo.json"
-        manager.get(requestUrl, parameters: ["page":page,"count":9], progress: {(progress) in}, success: {(dataTask,response) in
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page,"count":9], progress: {(progress) in}, success: {[weak self](dataTask,response) in
+            self?.dealWithResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self](dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -34,13 +34,13 @@ class ActivityPhotoModel {
     {
         page = 1
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityId)/photo.json"
-        manager.get(requestUrl, parameters: ["page":page,"count":9], progress: {(progress) in}, success: {(dataTask,response) in
-            self.enitys = []
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page,"count":9], progress: {(progress) in}, success: {[weak self](dataTask,response) in
+            self?.enitys.removeAll()
+            self?.dealWithResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -55,15 +55,15 @@ class ActivityPhotoModel {
             
             fromData.appendPart(withFileData: data!, name: "file", fileName: "avatar", mimeType: "application/x-www-form-urlencoded")
         }, progress: {(progress) in }, success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             print("upload")
-            self.uploadImageSuccess(mediaId: (response as! NSDictionary)["media_id"] as! Int, activityId: activityId, description: description, token: token)
+            self?.uploadImageSuccess(mediaId: (response as! NSDictionary)["media_id"] as! Int, activityId: activityId, description: description, token: token)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -75,24 +75,24 @@ class ActivityPhotoModel {
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         if description != nil
         {
-            manager.post(requestUrl, parameters: ["media_id":"\(mediaId)","description":description!], progress: {(progress) in}, success: {(dataTask,response) in
+            manager.post(requestUrl, parameters: ["media_id":"\(mediaId)","description":description!], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
                 print("uploadImage")
-                self.delegate.needUpdateUI()
+                self?.delegate.needUpdateUI()
             
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
-                self.delegate.getDataFailed()
+                self?.delegate.getDataFailed()
             
             
             })
         }else
         {
-            manager.post(requestUrl, parameters: ["media_id":"\(mediaId)"], progress: {(progress) in}, success: {(dataTask,response) in
-                self.delegate.needUpdateUI()
+            manager.post(requestUrl, parameters: ["media_id":"\(mediaId)"], progress: {(progress) in}, success: {[weak self](dataTask,response) in
+                self?.delegate.needUpdateUI()
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
-                self.delegate.getDataFailed()
+                self?.delegate.getDataFailed()
                 
                 
             })

@@ -26,7 +26,7 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
         let action = UIAlertAction(title: "确定", style: .default, handler: {(alertAction) in
             let alert1 = UIAlertController(title: "正在发布通知", message: "请稍后", preferredStyle: .alert)
             self.present(alert1, animated: true, completion: {})
-            let manager = AFHTTPSessionManager()
+            let manager = singleClassManager.manager
             let requestUrl = urlStruct.basicUrl + "activity/" + "\(self.activityId!)" + "/notification.json"
             manager.requestSerializer.setValue(self.token, forHTTPHeaderField: "token")
             manager.post(requestUrl, parameters: ["title": alert.textFields![0].text!,"content": alert.textFields![1].text!], progress: {(progress) in }, success: {
@@ -93,7 +93,7 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
                 let action = UIAlertAction(title: "确定", style: .default, handler: {(alertAction) in
                     let alert1 = UIAlertController(title: "正在修改通知", message: "请稍后", preferredStyle: .alert)
                     self.present(alert1, animated: true, completion: {})
-                    let manager = AFHTTPSessionManager()
+                    let manager = singleClassManager.manager
                     let requestUrl = urlStruct.basicUrl + "notification/" + "\(self.notificationListModel.notificationEnitys[indexPath.row].id).json"
                     manager.requestSerializer.setValue(self.token, forHTTPHeaderField: "token")
                     manager.post(requestUrl, parameters: ["title": editalert.textFields![0].text!,"content": editalert.textFields![1].text!], progress: {(progress) in }, success: {

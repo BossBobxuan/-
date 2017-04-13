@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
             return "1"
         }
     }
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     var MediaId: Int!
     // MARK: - touch event
     @IBAction func showPicker(_ sender: UIButton) {
@@ -45,20 +45,20 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
     
     @IBAction func editAvatar(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
-        PHPhotoLibrary.requestAuthorization({(status) in
+        PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized
             {
                 imagePicker.sourceType = .photoLibrary
                 imagePicker.allowsEditing = true
                 imagePicker.mediaTypes = [kUTTypeImage as String]
                 imagePicker.delegate = self
-                self.present(imagePicker, animated: true, completion: nil)
+                self?.present(imagePicker, animated: true, completion: nil)
             }
             else if status == PHAuthorizationStatus.denied
             {
                 let alert = UIAlertController(title: "没有访问相册权限", message: "请前往设置打开设置权限", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
             
         })
@@ -98,7 +98,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
             let waitalert = UIAlertController(title: "正在注册", message: "", preferredStyle: .alert)
             self.present(waitalert, animated: true, completion: nil)
             manager.post(requestUrl, parameters: ["user": userTextField.text!,"password": passwordTextField.text!,"gender": genderString, "avatar": MediaId, "description": descriptionTextField.text!,"name": nameTextField.text!], progress: {(progress) in }, success: {
-                (dataTask,response) in
+                [weak self] (dataTask,response) in
                 print("success")
                 print(response)
                 let JsonDic = response as! NSDictionary
@@ -107,15 +107,15 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
                 let userDefault = UserDefaults.standard
                 userDefault.set(token, forKey: "token")//将token存入userDefault中
                 userDefault.set(refreshToken, forKey: "refreshToken")
-                waitalert.dismiss(animated: true, completion: {(_) in self.performSegue(withIdentifier: seguename.signupToMain, sender: nil)})
+                waitalert.dismiss(animated: true, completion: {(_) in self?.performSegue(withIdentifier: seguename.signupToMain, sender: nil)})
                 
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
                 waitalert.dismiss(animated: true, completion: nil)
                 let alert = UIAlertController(title: "注册失败", message: "用户名重复或者网络连接失败", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
                 
             })
         }
@@ -191,20 +191,20 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
                 
                 fromData.appendPart(withFileData: data!, name: "file", fileName: "image", mimeType: "application/x-www-form-urlencoded")
             }, progress: {(progress) in }, success: {
-                (dataTask,response) in
+                [weak self] (dataTask,response) in
                 if let JsonDictionary = response as? NSDictionary
                 {
-                    self.MediaId = (JsonDictionary["media_id"] as! Int)
+                    self?.MediaId = (JsonDictionary["media_id"] as! Int)
                 }
-                self.avatarImageView.image = image!
+                self?.avatarImageView.image = image!
                 
                 
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
                 let alert = UIAlertController(title: "上传照片失败", message: "请检查网络连接", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
                 
             })
             

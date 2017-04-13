@@ -7,7 +7,7 @@
 //
 
 import Foundation
-protocol havePullfreshAndLoadmoreTableViewDelegate {
+protocol havePullfreshAndLoadmoreTableViewDelegate: AnyObject {
     func pullToRefresh() -> Void
     func loadMore() -> Void
 }
@@ -16,7 +16,7 @@ protocol havePullfreshAndLoadmoreTableViewDelegate {
 class havePullfreshAndLoadmoreTableView: UITableView {
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
     var btn:UIButton!//加载更多的按钮
-    var pullDataDelegate: havePullfreshAndLoadmoreTableViewDelegate!
+    weak var pullDataDelegate: havePullfreshAndLoadmoreTableViewDelegate!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

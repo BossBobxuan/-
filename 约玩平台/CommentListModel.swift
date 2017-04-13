@@ -13,7 +13,7 @@ class CommentListModel
     var commentEnitys: [CommentEnity] = []
     weak var delegate: PullDataDelegate!
     var page = 1
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     init(delegate: PullDataDelegate)
     {
         self.delegate = delegate
@@ -23,12 +23,12 @@ class CommentListModel
     func getCommentList(id: Int,type: String)
     {
         let requestUrl = urlStruct.basicUrl + type + "/\(id).json"
-        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.dealWithResponse(response: response)
         
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
         
         
         })
@@ -38,13 +38,13 @@ class CommentListModel
     {
         page = 1
         let requestUrl = urlStruct.basicUrl + type + "/\(id).json"
-        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.commentEnitys = []
-            self.dealWithResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.commentEnitys.removeAll()
+            self?.dealWithResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -54,12 +54,12 @@ class CommentListModel
     func getChildComment(commentId: Int)
     {
         let requestUrl = urlStruct.basicUrl + "msg/comment/" + "\(commentId).json"
-        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.dealWithChildResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.dealWithChildResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -69,13 +69,13 @@ class CommentListModel
     {
         page = 1
         let requestUrl = urlStruct.basicUrl + "msg/comment/" + "\(commentId).json"
-        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.commentEnitys = []
-            self.dealWithChildResponse(response: response)
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.commentEnitys.removeAll()
+            self?.dealWithChildResponse(response: response)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })

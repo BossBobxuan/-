@@ -29,8 +29,9 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     @IBOutlet weak var participateButton: UIButton!
     @IBOutlet weak var tagsScrollView: UIScrollView!
     //MARK: - var and let
-    var activityModel: ActivityDetailModel! = ActivityDetailModel()
+    var activityModel: ActivityDetailModel = ActivityDetailModel()
     var havePowerToEdit: Bool = false
+    let manager = singleClassManager.manager
     //MARK: - event func
     func toEditActivity()
     {
@@ -97,6 +98,7 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("didload")
         activityModel.delegate = self
         // Do any additional setup after loading the view.
         navigationItem.title = activityModel.activityEnity.activityTitle
@@ -149,10 +151,10 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         
         //以下用来获取活动状态
         let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityModel.activityEnity.id).json"
-        let manager = AFHTTPSessionManager()
+        
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
-            (dataTask,response) in
+            [weak self] (dataTask,response) in
             print("success")
             if let JsonDic = response as? NSDictionary
             {
@@ -160,28 +162,28 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 {
                     switch wish
                     {
-                        case "0": self.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
-                        case "1": self.wishedButton.setImage(#imageLiteral(resourceName: "interestclicked.png"), for: .normal)
-                        default: self.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
+                        case "0": self?.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
+                        case "1": self?.wishedButton.setImage(#imageLiteral(resourceName: "interestclicked.png"), for: .normal)
+                        default: self?.wishedButton.setImage(#imageLiteral(resourceName: "interest.png"), for: .normal)
                     }
                 }
                 if let participate = JsonDic["participate_relation"] as? String
                 {
                     switch participate
                     {
-                        case "0": self.participateButton.setTitle("+ 参加", for: .normal)
-                        case "1": self.participateButton.setTitle("已参加", for: .normal)
+                        case "0": self?.participateButton.setTitle("+ 参加", for: .normal)
+                        case "1": self?.participateButton.setTitle("已参加", for: .normal)
                     default: break 
                     }
                 }
             }
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
             let alert = UIAlertController(title: "获取数据失败", message: "请检查网络连接", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self?.present(alert, animated: true, completion: nil)
             
         })
         

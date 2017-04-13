@@ -438,6 +438,8 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             if let controller = segue.destination as? ActicityDetailViewController
             {
                 
+                print("segue")
+                
                 controller.activityModel.activityEnity = sender as! ActiveEnity
                 
                 if uid == nil && nowtype == ActivityRequestType.created//只有是自己创建的活动才有权限修改

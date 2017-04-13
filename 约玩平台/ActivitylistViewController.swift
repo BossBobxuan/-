@@ -29,7 +29,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     fileprivate var btn: UIButton!//加载更多的按钮
     fileprivate var locationManager: CLLocationManager = CLLocationManager()
     fileprivate var nowlocation: nowlocationAnnotation!
-    var activityMap: MKMapView!
+    weak var activityMap: MKMapView!
     private var nowType: String = "全部"//用于标记当前显示的活动类型
     private var beShowingActivity: [ActiveEnity] = []
     @IBOutlet weak var activityTableView: UITableView!

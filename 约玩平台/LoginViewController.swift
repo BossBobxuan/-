@@ -20,12 +20,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil)
         }else
         {
-            let manager = AFHTTPSessionManager()
+            let manager = singleClassManager.manager
             let requestUrl = urlStruct.basicUrl + "token.json"
             let waitalert = UIAlertController(title: "正在登录", message: "", preferredStyle: .alert)
             self.present(waitalert, animated: true, completion: nil)
             manager.post(requestUrl, parameters: ["password": passwordTextField.text!,"user":userTextFIeld.text!,"grant_type":"password"], progress: {(progress) in }, success: {
-                (dataTask,response) in
+                [weak self] (dataTask,response) in
                 print("success")
                 
                 let JsonDic = response as! NSDictionary
@@ -34,15 +34,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 let userDefault = UserDefaults.standard
                 userDefault.set(token, forKey: "token")//将token存入userDefault中
                 userDefault.set(refreshToken, forKey: "refreshToken")
-                waitalert.dismiss(animated: true, completion: {(_) in self.performSegue(withIdentifier: seguename.logInToMain, sender: nil)})
+                waitalert.dismiss(animated: true, completion: {(_) in self?.performSegue(withIdentifier: seguename.logInToMain, sender: nil)})
                 
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
                 waitalert.dismiss(animated: true, completion: {(_) in
                     let alert = UIAlertController(title: "注册失败", message: "输入用户名密码错误或者网络连接失败", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)})
+                    self?.present(alert, animated: true, completion: nil)})
                 
                 
             })

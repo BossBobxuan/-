@@ -11,7 +11,7 @@ class searchModel {
     var Enitys: [String:[Any]] = ["user":[],"activity":[]]
     weak var delegate: PullDataDelegate!
     var page = 1
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
@@ -23,13 +23,13 @@ class searchModel {
         var requestUrl = urlStruct.basicUrl + "search/"
         requestUrl += type + "/" + utf8KeyWord! + ".json"
         print(requestUrl)
-        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {(dataTask,response) in
-            self.Enitys[type]! = []
-            self.dealWithResponse(response: response,type: type)
+        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.Enitys[type]! = []
+            self?.dealWithResponse(response: response,type: type)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })
@@ -44,13 +44,13 @@ class searchModel {
         var requestUrl = urlStruct.basicUrl + "search/"
         requestUrl += type + "/" + utf8KeyWord! + ".json"
         print(requestUrl)
-        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {(dataTask,response) in
+        manager.get(requestUrl, parameters: ["page": page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
             print("page")
-            self.dealWithResponse(response: response,type: type)
+            self?.dealWithResponse(response: response,type: type)
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
             
         })

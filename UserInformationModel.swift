@@ -18,7 +18,7 @@ class PersonalInformationModel
 {
     var personalInformationEnity: UserInformationEnity?
     weak var delegate: PullDataDelegate!
-    let manager = AFHTTPSessionManager()
+    let manager = singleClassManager.manager
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
@@ -28,14 +28,14 @@ class PersonalInformationModel
         let requestUrl = urlStruct.basicUrl + "user/~me.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
-            (dataTask,response) in
-                self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+                self?.dealwithResponse(response: response)
             
         
         
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
                 print(error)
-                self.delegate.getDataFailed()
+                self?.delegate.getDataFailed()
         
         })
         
@@ -45,14 +45,14 @@ class PersonalInformationModel
         let requestUrl = urlStruct.basicUrl + "user/" + "\(uid)" + ".json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         
@@ -62,14 +62,14 @@ class PersonalInformationModel
         let requestUrl = urlStruct.basicUrl + "user/~me.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.post(requestUrl, parameters: ["name":personalInformationEnity!.name,"gender":personalInformationEnity!.gender,"description":personalInformationEnity!.description], progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.dealwithResponse(response: response)
+            [weak self] (dataTask,response) in
+            self?.dealwithResponse(response: response)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -82,14 +82,14 @@ class PersonalInformationModel
             
             fromData.appendPart(withFileData: data!, name: "file", fileName: "avatar", mimeType: "application/x-www-form-urlencoded")
         }, progress: {(progress) in }, success: {
-            (dataTask,response) in
-            self.uploadImageSuccess(response:response,token: token)
+            [weak self] (dataTask,response) in
+            self?.uploadImageSuccess(response:response,token: token)
             
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
         
@@ -107,9 +107,9 @@ class PersonalInformationModel
             success()
             
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -120,9 +120,9 @@ class PersonalInformationModel
         manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
             success()
             
-        }, failure: {(dataTask,error) in
+        }, failure: {[weak self] (dataTask,error) in
             print(error)
-            self.delegate.getDataFailed()
+            self?.delegate.getDataFailed()
             
         })
     }
@@ -142,9 +142,9 @@ class PersonalInformationModel
                 
                 
                 
-            }, failure: {(dataTask,error) in
+            }, failure: {[weak self] (dataTask,error) in
                 print(error)
-                self.delegate.getDataFailed()
+                self?.delegate.getDataFailed()
                 
             })
             
