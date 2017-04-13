@@ -22,12 +22,22 @@ class msgDetailViewController: UIViewController {
         {
             return containScrollView.bounds.width - 8
     }
+    private var borderDisdance: CGFloat
+    {
+        let contentLabel = UILabel()
+        contentLabel.text = "0"
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = .byTruncatingTail
+        let size = contentLabel.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 110, height: 444440))
+        return (40 - size.height) / 2
+    }
     var model: [testModel] = []
+    var timer: Timer!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        for i in 0 ..< 10
+        for i in 0 ..< 20
         {
             if i%2 == 0
             {
@@ -39,6 +49,51 @@ class msgDetailViewController: UIViewController {
                 model.append(enity)
             }
         }
+        showMsgList(array: model)
+//        let timer = DispatchSource.makeTimerSource(flags: .strict, queue: DispatchQueue.main)
+//        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: 1)
+//        timer.setEventHandler(handler: DispatchWorkItem(block: {
+//            print("多线程")
+//            let _ = self.model.popLast()
+//            DispatchQueue.main.async {
+//                print("进入主线程")
+//                self.showMsgList(array: self.model)
+//            }
+//        }))
+//        timer.activate()
+        timer = Timer(timeInterval: 1, repeats: true, block: {[unowned self](_) in
+            
+            print("timer")
+            self.model.popLast()
+            DispatchQueue.main.async {
+                self.showMsgList(array: self.model)
+            }
+        })//此处需要释放
+        DispatchQueue.global().async {
+            print("子线程")
+            RunLoop.current.add(self.timer, forMode: .commonModes)
+            RunLoop.current.run()//必须手动使当前runloop运行
+            
+            
+        }
+        
+        
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        print("2")
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
+    
+    private func showMsgList(array model: [testModel])
+    {
         for enity in model
         {
             if enity.direction == "0"//我发送的
@@ -53,17 +108,17 @@ class msgDetailViewController: UIViewController {
                 contentLabel.lineBreakMode = .byTruncatingTail
                 let size = contentLabel.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 110, height: 444440))
                 
-                contentLabel.frame = CGRect(x: avatar.frame.minX - 8 - size.width, y: nextY, width: size.width, height: size.height)
-                contentLabel.layer.borderWidth = 0.5
-                contentLabel.layer.cornerRadius = 4
-                contentLabel.backgroundColor = UIColor.yellow
+                contentLabel.frame = CGRect(x: borderDisdance, y: borderDisdance, width: size.width, height: size.height)
+                let containView = UIView(frame: CGRect(x: avatar.frame.minX - 8 - (size.width + 2 * borderDisdance), y: nextY, width: size.width + 2 * borderDisdance, height: size.height + 2 * borderDisdance))
+                containView.layer.borderWidth = 0.5
+                containView.layer.cornerRadius = 4
+                containView.backgroundColor = UIColor.yellow
+                containView.addSubview(contentLabel)
                 containScrollView.addSubview(avatar)
-                containScrollView.addSubview(contentLabel)
-                nextY += contentLabel.frame.height + 10
-                if nextY < (avatar.frame.maxY + 10)
-                {
-                    nextY = avatar.frame.maxY + 10
-                }//防止label过小
+                containScrollView.addSubview(containView)
+                
+                nextY = containView.frame.maxY + 10
+                
                 
             }else //对方发送的
             {
@@ -76,27 +131,18 @@ class msgDetailViewController: UIViewController {
                 contentLabel.numberOfLines = 0
                 contentLabel.lineBreakMode = .byTruncatingTail
                 let size = contentLabel.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 110, height: 4444440))
-                contentLabel.frame = CGRect(x: 56, y: nextY, width: size.width, height: size.height)
-                contentLabel.layer.borderWidth = 0.5
-                contentLabel.layer.cornerRadius = 4
+                let containView = UIView(frame: CGRect(x: 56, y: nextY, width: size.width + 2 * borderDisdance, height: size.height + 2 * borderDisdance))
+                contentLabel.frame = CGRect(x: borderDisdance, y: borderDisdance, width: size.width, height: size.height)
+                containView.layer.borderWidth = 0.5
+                containView.layer.cornerRadius = 4
+                containView.addSubview(contentLabel)
                 containScrollView.addSubview(avatar)
-                containScrollView.addSubview(contentLabel)
-                nextY += contentLabel.frame.height + 10
-                if nextY < (avatar.frame.maxY + 10)
-                {
-                    nextY = avatar.frame.maxY + 10
-                }
+                containScrollView.addSubview(containView)
+                nextY = containView.frame.maxY + 10
             }
+            containScrollView.contentSize.height = nextY + 10
+            containScrollView.contentOffset.y = containScrollView.contentSize.height - containScrollView.frame.height
         }
-        
-        
-        
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
