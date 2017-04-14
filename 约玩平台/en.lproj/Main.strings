@@ -1,4 +1,10 @@
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "0Gw-m0-ChA"; */
+"0Gw-m0-ChA.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "0Vn-Xt-w6C"; */
+"0Vn-Xt-w6C.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "1TQ-59-mmT"; */
 "1TQ-59-mmT.text" = "Label";
 
@@ -26,6 +32,12 @@
 /* Class = "UITextField"; placeholder = "输入活动标题"; ObjectID = "52F-Kr-K92"; */
 "52F-Kr-K92.placeholder" = "输入活动标题";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "5Hi-dq-5Ee"; */
+"5Hi-dq-5Ee.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "在此搜索地名"; ObjectID = "5RI-GK-cp5"; */
+"5RI-GK-cp5.placeholder" = "在此搜索地名";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "5SW-H2-sCe"; */
 "5SW-H2-sCe.text" = "Label";
 
@@ -34,6 +46,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "5W7-OE-pMC"; */
 "5W7-OE-pMC.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5d3-2O-0PJ"; */
+"5d3-2O-0PJ.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "5iq-a1-7dA"; */
 "5iq-a1-7dA.text" = "Label";
@@ -53,8 +68,8 @@
 /* Class = "UIButton"; normalTitle = "返回"; ObjectID = "7PK-k0-UNe"; */
 "7PK-k0-UNe.normalTitle" = "返回";
 
-/* Class = "UILabel"; text = "活动详情"; ObjectID = "7oh-jj-nPM"; */
-"7oh-jj-nPM.text" = "活动详情";
+/* Class = "UILabel"; text = "详情"; ObjectID = "7oh-jj-nPM"; */
+"7oh-jj-nPM.text" = "详情";
 
 /* Class = "UIButton"; normalTitle = "查看地点"; ObjectID = "9SV-rN-2i4"; */
 "9SV-rN-2i4.normalTitle" = "查看地点";
@@ -89,8 +104,14 @@
 /* Class = "UIButton"; normalTitle = "选取"; ObjectID = "GKZ-HD-VQg"; */
 "GKZ-HD-VQg.normalTitle" = "选取";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "HOW-Uo-nsf"; */
+"HOW-Uo-nsf.text" = "Label";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "HOl-qv-OeB"; */
 "HOl-qv-OeB.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "He7-GO-X0h"; */
+"He7-GO-X0h.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Ii6-7n-k06"; */
 "Ii6-7n-k06.text" = "Label";
@@ -115,6 +136,9 @@
 
 /* Class = "UITextField"; placeholder = "昵称"; ObjectID = "L5p-PW-3Jl"; */
 "L5p-PW-3Jl.placeholder" = "昵称";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LTf-zk-F7x"; */
+"LTf-zk-F7x.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "感兴趣"; ObjectID = "MaW-OU-gFp"; */
 "MaW-OU-gFp.normalTitle" = "感兴趣";
@@ -148,6 +172,9 @@
 
 /* Class = "UIButton"; normalTitle = "编辑"; ObjectID = "Pcq-aF-Afh"; */
 "Pcq-aF-Afh.normalTitle" = "编辑";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Q5K-HB-B6P"; */
+"Q5K-HB-B6P.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "返回"; ObjectID = "QbE-AS-SG5"; */
 "QbE-AS-SG5.normalTitle" = "返回";
@@ -215,6 +242,12 @@
 /* Class = "UIButton"; normalTitle = "关注"; ObjectID = "Wnn-4r-Wud"; */
 "Wnn-4r-Wud.normalTitle" = "关注";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XOO-xF-idS"; */
+"XOO-xF-idS.normalTitle" = "Button";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "XS3-hW-Oy1"; */
+"XS3-hW-Oy1.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Z9v-94-3de"; */
 "Z9v-94-3de.normalTitle" = "Button";
 
@@ -224,8 +257,14 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zax-sP-ZFo"; */
 "Zax-sP-ZFo.text" = "Label";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zlw-j8-cYW"; */
+"Zlw-j8-cYW.text" = "Label";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZyN-Yq-hln"; */
 "ZyN-Yq-hln.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "au3-Xa-UbJ"; */
+"au3-Xa-UbJ.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "签名"; ObjectID = "aya-yO-d1W"; */
 "aya-yO-d1W.placeholder" = "签名";
@@ -242,11 +281,20 @@
 /* Class = "UINavigationItem"; title = "用户动态"; ObjectID = "c4b-Wl-WDS"; */
 "c4b-Wl-WDS.title" = "用户动态";
 
+/* Class = "UISegmentedControl"; c8K-su-kra.segmentTitles[0] = "活动"; ObjectID = "c8K-su-kra"; */
+"c8K-su-kra.segmentTitles[0]" = "活动";
+
+/* Class = "UISegmentedControl"; c8K-su-kra.segmentTitles[1] = "用户"; ObjectID = "c8K-su-kra"; */
+"c8K-su-kra.segmentTitles[1]" = "用户";
+
 /* Class = "UIButton"; normalTitle = "取消"; ObjectID = "cUi-4V-Nxs"; */
 "cUi-4V-Nxs.normalTitle" = "取消";
 
-/* Class = "UILabel"; text = "费用"; ObjectID = "cnm-6r-xwk"; */
-"cnm-6r-xwk.text" = "费用";
+/* Class = "UILabel"; text = "预计人均费用"; ObjectID = "cnm-6r-xwk"; */
+"cnm-6r-xwk.text" = "预计人均费用";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cuj-Je-pdC"; */
+"cuj-Je-pdC.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "cwI-5w-dWF"; */
 "cwI-5w-dWF.text" = "Label";
@@ -260,11 +308,17 @@
 /* Class = "UILabel"; text = "性别"; ObjectID = "fUg-3x-wnT"; */
 "fUg-3x-wnT.text" = "性别";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "fhM-a3-Ej1"; */
+"fhM-a3-Ej1.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "取消"; ObjectID = "fxq-eG-FNQ"; */
 "fxq-eG-FNQ.normalTitle" = "取消";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gDA-GR-ICt"; */
 "gDA-GR-ICt.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gY3-jT-1Ln"; */
+"gY3-jT-1Ln.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "活动"; ObjectID = "gan-s2-Ocq"; */
 "gan-s2-Ocq.title" = "活动";
@@ -308,6 +362,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "rJX-7q-bWt"; */
 "rJX-7q-bWt.text" = "Label";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "rNG-XA-KOV"; */
+"rNG-XA-KOV.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "完成"; ObjectID = "rr6-K3-Nuh"; */
 "rr6-K3-Nuh.normalTitle" = "完成";
 
@@ -334,6 +391,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "uel-Fq-CEE"; */
 "uel-Fq-CEE.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "v9k-oe-ESv"; */
+"v9k-oe-ESv.text" = "Label";
 
 /* Class = "UILabel"; text = "开始时间"; ObjectID = "vLc-s1-cqH"; */
 "vLc-s1-cqH.text" = "开始时间";

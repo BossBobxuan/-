@@ -27,21 +27,20 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     fileprivate var model: ActivityListModel!
     fileprivate var loadingstateUI: UIActivityIndicatorView!//加载更多的状态菊花
     fileprivate var btn: UIButton!//加载更多的按钮
-    fileprivate var locationManager: CLLocationManager = CLLocationManager()
-    fileprivate var nowlocation: nowlocationAnnotation!
-    weak var activityMap: MKMapView!
+  
+  
     private var nowType: String = "全部"//用于标记当前显示的活动类型
     private var beShowingActivity: [ActiveEnity] = []
     @IBOutlet weak var activityTableView: UITableView!
-    @IBOutlet weak var slideview: slideView!
-    @IBOutlet var containerinslideView: [UIView]!
+   
+
     @IBOutlet weak var selecteScrollView: UIScrollView!
     // MARK: - Event func
     //该方法在选择标签时调用在此处更改展示内容
     func interestingLabelBeSelect(_ sender: UIButton)
     {
         nowType = sender.titleLabel!.text!
-        activityMap.removeAnnotations(beShowingActivity)
+
         beShowingActivity.removeAll()
         for activity in model.activeEnitys
         {
@@ -54,8 +53,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
                 beShowingActivity.append(activity)
             }
         }
-        activityMap.addAnnotations(beShowingActivity)
-        activityMap.showAnnotations(beShowingActivity, animated: true)
+
         activityTableView.reloadData()
     }
     //该方法用于下拉刷新时的数据获取与视图更新
@@ -82,24 +80,13 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        slideview.containerviews = containerinslideView
+       
         addbtn(key: key,btnwidth: 50)
-        //获取定位权限
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        //布局tableview在第一个子视图
-        activityTableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: slideview.frame.size.height)
+        
         activityTableView.delegate = self
         activityTableView.dataSource = self
-        //布局mapview在第二个子视图
-        activityMap = MKMapView()
-        activityMap.frame = CGRect(x: 10, y: 0, width: UIScreen.main.bounds.width - 10, height: slideview.frame.size.height)
-        activityMap.delegate = self
-        containerinslideView[1].addSubview(activityMap)
-        //显示用户位置
-        activityMap.mapType = .standard
+      
+
         
         //初始化model
         model = ActivityListModel(delegate: self)
@@ -111,21 +98,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         //增加读取更多数据的按钮
         addGetMorebtn()
         
-        for activity in model.activeEnitys
-        {
-            if nowType == "全部"
-            {
-                beShowingActivity.append(activity)
-            }
-            else if activity.categoryString == nowType && nowType != "全部"
-            {
-                beShowingActivity.append(activity)
-            }
-        }
-        
-        activityMap.addAnnotations(beShowingActivity)
-        activityMap.showAnnotations(beShowingActivity, animated: true)
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,12 +106,14 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         // Dispose of any resources that can be recreated.
     }
     // MARK: - locationdelegate
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[locations.count - 1]
-        nowlocation = nowlocationAnnotation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        activityMap.addAnnotation(nowlocation)
-        manager.stopUpdatingLocation()
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let location = locations[locations.count - 1]
+//        nowlocation = nowlocationAnnotation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        activityMap.addAnnotation(nowlocation)
+//        manager.stopUpdatingLocation()
+//        
+//    
+//    }
     // MARK: - talbeView Datasource and delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return beShowingActivity.count
@@ -198,26 +173,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         tableView.cellForRow(at: indexPath)?.isSelected = false
         performSegue(withIdentifier: seguename.hotActivityToDetail, sender: beShowingActivity[indexPath.row])
     }
-    // MARK: - mapViewDelegate
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let a = annotation as? nowlocationAnnotation
-        {
-            let view = MKAnnotationView(annotation: a, reuseIdentifier: "locationannotation")
-            view.image = UIImage(named: "location.png")
-            view.canShowCallout = false
-            return view//给当前位置添加自定义标注
-        }else
-        {
-            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "activitypin")
-            let button = UIButton(type: .detailDisclosure)
-            view.canShowCallout = true
-            view.rightCalloutAccessoryView = button
-            return view
-        }
-    }
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        performSegue(withIdentifier: seguename.hotActivityToDetail, sender: view.annotation as! ActiveEnity)
-    }
+ 
     // MARK: - PullDataSuccessDelegate
     func getDataFailed()
     {
@@ -251,7 +207,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             btn.isHidden = false
             
         }
-        activityMap.removeAnnotations(beShowingActivity)
+
         beShowingActivity.removeAll()
         
         for activity in model.activeEnitys
@@ -270,8 +226,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         
         
         activityTableView.reloadData()
-        activityMap.addAnnotations(beShowingActivity)
-        activityMap.showAnnotations(beShowingActivity, animated: true)
+
         
     }
     // MARK: - other func
@@ -284,7 +239,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             btn.frame = CGRect(x: CGFloat(Int(btnwidth) * i + 10 * i), y: selecteScrollView.bounds.origin.y, width: 50, height: selecteScrollView.frame.height)
             btn.addTarget(self, action: "interestingLabelBeSelect:", for: .touchUpInside)
             btn.setTitle(key[i], for: .normal)
-            btn.titleLabel?.font = UIFont(name: "Arial", size: 12)
+//            btn.titleLabel?.font = UIFont(name: "Arial", size: 12)
             btn.layer.borderWidth = 0.5
             btn.layer.cornerRadius = 8
             selecteScrollView.addSubview(btn)
@@ -304,7 +259,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         loadingstateUI.center = btn.center
         view.addSubview(loadingstateUI)
     }
-
+    
     
     // MARK: - Navigation
 

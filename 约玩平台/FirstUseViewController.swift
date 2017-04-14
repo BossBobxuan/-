@@ -18,18 +18,18 @@ class FirstUseViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         let userd = UserDefaults.standard
-        print(userd.object(forKey: "token"))
         if userd.object(forKey: "token") != nil
         {
             print("1")
             performSegue(withIdentifier: seguename.firstViewToMain, sender: nil)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*
