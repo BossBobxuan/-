@@ -34,6 +34,7 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
             //MARK: - 此处进入评论列表
         }else
         {
+            (tableView.cellForRow(at: indexPath) as! msgTableViewCell).notReadCountLabel.isHidden = true
             performSegue(withIdentifier: seguename.msgLIstToDetail, sender: indexPath.row - 1)
         }
     }
@@ -57,7 +58,7 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "msgCell") as! msgTableViewCell
-            cell.nameLabel.text = "\(model.Enitys[indexPath.row - 1].targetId)"//MARK: - 需要更改
+            cell.nameLabel.text = model.Enitys[indexPath.row - 1].targetName//MARK: - 需要更改
             cell.contentLabel.text = model.Enitys[indexPath.row - 1].recent.content
             cell.creatAtLabel.text = model.Enitys[indexPath.row - 1].recent.creatAt.dateNotYear
             if model.Enitys[indexPath.row - 1].privateCount != 0
@@ -120,20 +121,29 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     func getDataFailed() {
         self.msgListTableView.updateTableViewUIWhenPullDataEnd()
-        let alert = UIAlertController(title: "搜索失败", message: "请检查网络连接", preferredStyle: .alert)
+        let alert = UIAlertController(title: "获取列表失败", message: "请检查网络连接", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
 
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == seguename.msgLIstToDetail
+        {
+            if let controller = segue.destination as? msgDetailViewController
+            {
+                controller.uid = model.Enitys[sender! as! Int].targetId
+            }
+        }
+        
+        
     }
-    */
+
 
 }

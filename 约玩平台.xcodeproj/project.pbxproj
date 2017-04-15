@@ -80,6 +80,7 @@
 		B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */; };
 		B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD601E913039004F1113 /* ActivityListModel.swift */; };
 		B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */; };
+		B0F2EEC21EA208DC003FF390 /* DetailPrivateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
 		B0F762721E966B8E00E0169A /* timelineCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F762711E966B8E00E0169A /* timelineCommentTableViewCell.swift */; };
@@ -156,7 +157,6 @@
 		B05F3F841E223C8900777C82 /* ActivityDisplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		B05F3F861E223D3D00777C82 /* interested.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interested.png; sourceTree = "<group>"; };
 		B05F3F891E22681700777C82 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
-		B06673561EA097810029637D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B07164251E1CF179006A2FCD /* 约玩平台.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "约玩平台.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B07164281E1CF179006A2FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B071642D1E1CF179006A2FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,7 +173,6 @@
 		B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstUseViewController.swift; sourceTree = "<group>"; };
 		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B0765C531E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		B0765C541E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoDetailViewController.swift; sourceTree = "<group>"; };
 		B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +191,7 @@
 		B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLocationViewController.swift; sourceTree = "<group>"; };
 		B0E5BD601E913039004F1113 /* ActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListModel.swift; sourceTree = "<group>"; };
 		B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
+		B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPrivateModel.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
 		B0F762711E966B8E00E0169A /* timelineCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timelineCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +286,7 @@
 				B036EE711E9E5E3700C50BA8 /* msgTableViewCell.swift */,
 				B036EE731E9E5F5600C50BA8 /* msgListViewController.swift */,
 				B036EE751E9E68F100C50BA8 /* msgDetailViewController.swift */,
+				B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */,
 			);
 			name = IM;
 			sourceTree = "<group>";
@@ -672,6 +673,7 @@
 				B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */,
 				B0B8439C1E9F14B8004BDC91 /* singleClassManager.swift in Sources */,
 				B02962C11E97849C00EB38CC /* ActivityPhotoListViewController.swift in Sources */,
+				B0F2EEC21EA208DC003FF390 /* DetailPrivateModel.swift in Sources */,
 				B0355E1D1E7AAEA9003429C8 /* PersonalInfomationViewController.swift in Sources */,
 				B036EE6D1E9E566100C50BA8 /* PrivateEnity.swift in Sources */,
 				B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */,
@@ -768,8 +770,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				B071642D1E1CF179006A2FCD /* Base */,
-				B0765C531E97B2E700C32E9A /* zh-Hans */,
-				B06673561EA097810029637D /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

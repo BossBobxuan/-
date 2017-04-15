@@ -43,6 +43,7 @@ struct seguename {
     static let searchToUserInformation = "searchToUserInformation"
     static let searchToActivityDetail = "searchToActivityDetail"
     static let msgLIstToDetail = "msgLIstToDetail"
+    static let msgDetailToUserInformation = "msgDetailToUserInformation"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -169,6 +170,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     
     //MARK: - viewController lifecycle
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if uid != nil
         {
             personalInformationModel.getUserInformation(uid: uid!,token: token)

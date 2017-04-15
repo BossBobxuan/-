@@ -13,12 +13,14 @@ class privates {
     var recent: PrivateEnity
     var privateCount: Int
     var privateTotalCount: Int
-    init(targetId: Int,avatar: Int,recent: PrivateEnity,privateCount: Int,privateTotalCount: Int) {
+    var targetName: String
+    init(targetId: Int,avatar: Int,recent: PrivateEnity,privateCount: Int,privateTotalCount: Int,targetName: String) {
         self.targetId = targetId
         self.avatar = avatar
         self.recent = recent
         self.privateCount = privateCount
         self.privateTotalCount = privateTotalCount
+        self.targetName = targetName
     }
 }
 
@@ -81,7 +83,7 @@ class privateModel {
                     let Dic = element as! NSDictionary
                     let object = Dic["recent"] as! NSDictionary
                     let privateEnity = PrivateEnity(direction: object["direction"] as! String, content: object["content"] as! String, creatAt: object["created_at"] as! Int)
-                    let enity = privates(targetId: Dic["target_id"] as! Int, avatar: Dic["avatar"] as! Int, recent: privateEnity , privateCount: Dic["private_count"] as! Int , privateTotalCount: Dic["private_total_count"] as! Int)
+                    let enity = privates(targetId: Dic["target_id"] as! Int, avatar: Dic["avatar"] as! Int, recent: privateEnity , privateCount: Dic["private_count"] as! Int , privateTotalCount: Dic["private_total_count"] as! Int, targetName: Dic["target_name"] as! String)
                     Enitys.append(enity)
                 }
                 self.delegate.needUpdateUI()
