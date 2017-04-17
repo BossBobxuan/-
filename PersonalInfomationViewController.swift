@@ -44,6 +44,7 @@ struct seguename {
     static let searchToActivityDetail = "searchToActivityDetail"
     static let msgLIstToDetail = "msgLIstToDetail"
     static let msgDetailToUserInformation = "msgDetailToUserInformation"
+    static let photoDetailToActivityDetail = "photoDetailToActivityDetail"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {

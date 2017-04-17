@@ -11,11 +11,19 @@ import Photos
 
 class photoDetailViewController: UIViewController {
     var enity: PhotoEnity!
+    var activityInformationEnity: ActiveEnity?
     var temImage: UIImage!
     @IBOutlet weak var imageView: UIImageView!
 
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var toActivityButton: UIButton!
+    @IBAction func toActivity(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.photoDetailToActivityDetail, sender: activityInformationEnity!)
+    }
+    
+    
     
     @IBAction func toComment(_ sender: UIButton) {
         performSegue(withIdentifier: seguename.photoDetailToComment, sender: self)
@@ -94,6 +102,14 @@ class photoDetailViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "saveImage:"))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: "deleteImage:")
+        if activityInformationEnity != nil
+        {
+            self.toActivityButton.setTitle("#" + activityInformationEnity!.activityTitle + "#", for: .normal)
+        }else
+        {
+            self.toActivityButton.isHidden = true
+        }
+        
         
     }
 
@@ -116,6 +132,12 @@ class photoDetailViewController: UIViewController {
             {
                 controller.type = "photo"
                 controller.id = enity.id
+            }
+        }else if segue.identifier == seguename.photoDetailToActivityDetail
+        {
+            if let controller = segue.destination as? ActicityDetailViewController
+            {
+                controller.activityModel.activityEnity = sender as! ActiveEnity
             }
         }
         

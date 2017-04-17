@@ -13,6 +13,9 @@ class timelinePhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
 
+    @IBOutlet weak var activityButton: UIButton!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    var objectNeedPass: ActiveEnity!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -21,7 +21,6 @@
 		B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */; };
 		B0221BC11E8FFB470021BB40 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */; };
 		B0221BC31E8FFD270021BB40 /* NotificationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BC21E8FFD270021BB40 /* NotificationListModel.swift */; };
-		B0291F171E9FFD0600862C97 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0291F161E9FFD0600862C97 /* testViewController.swift */; };
 		B02962C11E97849C00EB38CC /* ActivityPhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02962C01E97849C00EB38CC /* ActivityPhotoListViewController.swift */; };
 		B029B4E31E801AE7004300E8 /* getTokenExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029B4E21E801AE7004300E8 /* getTokenExtension.swift */; };
 		B02FA4141E86A87700062D1E /* CommentEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02FA4131E86A87700062D1E /* CommentEnity.swift */; };
@@ -124,7 +123,6 @@
 		B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
 		B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		B0221BC21E8FFD270021BB40 /* NotificationListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListModel.swift; sourceTree = "<group>"; };
-		B0291F161E9FFD0600862C97 /* testViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		B02962C01E97849C00EB38CC /* ActivityPhotoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPhotoListViewController.swift; sourceTree = "<group>"; };
 		B029B4E21E801AE7004300E8 /* getTokenExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTokenExtension.swift; sourceTree = "<group>"; };
 		B02FA4131E86A87700062D1E /* CommentEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentEnity.swift; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				B0107B501E83F9160040493A /* ActicityDetailViewController.swift */,
 				B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */,
 				B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */,
-				B0291F161E9FFD0600862C97 /* testViewController.swift */,
 				B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */,
 				B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */,
 				B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */,
@@ -710,7 +707,6 @@
 				B08AFDE11E7D5524004C9C96 /* ShowUserViewController.swift in Sources */,
 				B02FA41B1E86B49200062D1E /* commentTableViewCell.swift in Sources */,
 				B0221BC11E8FFB470021BB40 /* NotificationTableViewCell.swift in Sources */,
-				B0291F171E9FFD0600862C97 /* testViewController.swift in Sources */,
 				B0107B4F1E83EFC30040493A /* simplyActivityTableViewCell.swift in Sources */,
 				B07AE4141E9A7C19003D0F58 /* searchModel.swift in Sources */,
 				B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */,

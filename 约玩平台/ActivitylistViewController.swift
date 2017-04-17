@@ -31,11 +31,42 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
   
     private var nowType: String = "全部"//用于标记当前显示的活动类型
     private var beShowingActivity: [ActiveEnity] = []
+    
+    private var changeDisdance: CGFloat!
+    
     @IBOutlet weak var activityTableView: UITableView!
+    
+    @IBOutlet weak var recommendActivityScrollView: UIScrollView!
+    
+    @IBOutlet weak var recommendUserScrollView: UIScrollView!
+    @IBOutlet weak var selectScrollViewAndTableViewContainerView: UIView!
    
 
     @IBOutlet weak var selecteScrollView: UIScrollView!
     // MARK: - Event func
+    //该方法用于视图下移
+    func ViewneedDown()
+    {
+        if selectScrollViewAndTableViewContainerView.frame.minY != recommendActivityScrollView.frame.minY
+        {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.selectScrollViewAndTableViewContainerView.frame.origin.y -= self.changeDisdance
+            })
+            
+            selectScrollViewAndTableViewContainerView.gestureRecognizers?.removeAll()
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: "viewNeedUp")
+        }
+    }
+    func viewNeedUp()
+    {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.selectScrollViewAndTableViewContainerView.frame.origin.y += self.changeDisdance
+        })
+        self.navigationItem.leftBarButtonItems?.removeAll()
+        self.selectScrollViewAndTableViewContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "ViewneedDown"))
+    }
+    
+    
     //该方法在选择标签时调用在此处更改展示内容
     func interestingLabelBeSelect(_ sender: UIButton)
     {
@@ -85,7 +116,9 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         
         activityTableView.delegate = self
         activityTableView.dataSource = self
-      
+        //初始化视图
+        self.selectScrollViewAndTableViewContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "ViewneedDown"))
+        changeDisdance = selectScrollViewAndTableViewContainerView.frame.minY - recommendActivityScrollView.frame.minY
 
         
         //初始化model
@@ -130,13 +163,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDisplayCell") as! ActivityDisplayTableViewCell
         cell.activityTitleLabel.text = beShowingActivity[indexPath.row].activityTitle
-        cell.contentTextView.text = beShowingActivity[indexPath.row].content
-        cell.commentCountLabel.text = "\(beShowingActivity[indexPath.row].commentCount)"
-        cell.statusLabel.text = beShowingActivity[indexPath.row].stateString
-        cell.beginDateCount.text = beShowingActivity[indexPath.row].beginTime.date
-        cell.addressLabel.text = beShowingActivity[indexPath.row].address
-        cell.commentButton.tag = indexPath.row
-        cell.commentButton.addTarget(self, action: "toComment:", for: .touchUpInside)
+        cell.userNameLabel.text = beShowingActivity[indexPath.row].creator.name
         
         //异步获取图片
         let media = beShowingActivity[indexPath.row].image
@@ -164,10 +191,37 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
                 }
             }
         }
+        let media2 = beShowingActivity[indexPath.row].creator.avatar
+        let url2 = urlStruct.basicUrl + "media/" + "\(media2)"
+        if let image = self.getImageFromCaches(mediaId: media2!)
+        {
+            cell.userAvatarImageView.image = image
+        }else
+        {
+            
+            DispatchQueue.global().async {
+                
+                if let data = try? Data(contentsOf: URL(string: url2)!)
+                {
+                    print("获取数据")
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data)
+                        {
+                            print("显示图片")
+                            cell.userAvatarImageView.image = image
+                            self.saveImageCaches(image: image, mediaId: media2!)
+                        }
+                    }
+                }
+            }
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        let width = tableView.frame.width
+       
+        return (width / 2 + 80)
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.isSelected = false

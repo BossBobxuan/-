@@ -57,7 +57,7 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
         // Do any additional setup after loading the view.
         photoModel = ActivityPhotoModel(delegate: self)
         photoModel.getActivityPhotoList(activityId: activityId)
-      
+        photoModel.getActivityInformation(activityId: activityId)
         self.containerScrollView.refreshControl = UIRefreshControl()
         self.containerScrollView.refreshControl?.addTarget(self, action: "pullToFresh:", for: .valueChanged)
         self.containerScrollView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
@@ -205,6 +205,7 @@ class ActivityPhotoListViewController: UIViewController,PullDataDelegate,UIScrol
                 let imageView = sender as! UIImageView
                 controller.enity = photoModel.enitys[imageView.tag]
                 controller.temImage = imageView.image!
+                controller.activityInformationEnity = photoModel.activityEnity
             }
                 
         }

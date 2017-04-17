@@ -12,6 +12,19 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var timeLineTableView: havePullfreshAndLoadmoreTableView!
     var model: timeLineModel!
+    let manager = singleClassManager.manager
+    func toActivityDetail(_ sender: UIButton)
+    {
+        print(sender.tag)
+        let cell = sender.superview!.superview as! timelinePhotoTableViewCell
+        performSegue(withIdentifier: seguename.timeLineToActivity, sender: cell.objectNeedPass!)
+        
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +51,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         case "0":
             performSegue(withIdentifier: seguename.timelineToUser, sender: indexPath.row)
         case "1":
-            performSegue(withIdentifier: seguename.timeLineToActivity, sender: indexPath.row)
+            performSegue(withIdentifier: seguename.timeLineToActivity, sender: model.Enitys[indexPath.row] as! ActiveEnity)
         case "2":
             //MARK : - 图片暂时缺失
             if (tableView.cellForRow(at: indexPath) as! timelinePhotoTableViewCell).photoImageView.image != nil
@@ -62,6 +75,11 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.Enitys.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let width = tableView.frame.width
+        
+        return (width / 2 + 80)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,8 +139,8 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             }
             return cell
         case "1":
-            let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as! timelineActivityTableViewCell
-            cell.nameLabel.text = model.userName + "创建修改或参与活动"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as! ActivityDisplayTableViewCell
+            cell.userNameLabel.text = model.userName + "添加活动"
             cell.activityTitleLabel.text = (model.Enitys[indexPath.row] as! ActiveEnity).activityTitle
             let media = (model.Enitys[indexPath.row] as! ActiveEnity).image
             let url = urlStruct.basicUrl + "media/" + "\(media)"
@@ -153,7 +171,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             print(url2)
             if let image = self.getImageFromCaches(mediaId: media2!)
             {
-                cell.avatarImageView.image = image
+                cell.userAvatarImageView.image = image
             }else
             {
                 
@@ -166,7 +184,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
                             if let image = UIImage(data: data)
                             {
                                 print("显示图片")
-                                cell.avatarImageView.image = image
+                                cell.userAvatarImageView.image = image
                                 self.saveImageCaches(image: image, mediaId: media2!)
                             }
                         }
@@ -177,7 +195,39 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         case "2":
             //MARK: - 尚未添加图片
             let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! timelinePhotoTableViewCell
-            cell.nameLabel.text = model.userName + "上传图片"
+            cell.nameLabel.text = model.userName + "上传"
+            if let description = (model.Enitys[indexPath.row] as! PhotoEnity).description
+            {
+                cell.descriptionLabel.text = description
+            }else
+            {
+                cell.descriptionLabel.isHidden = true
+            }
+            let requestUrl = urlStruct.basicUrl + "activity/" + "\((model.Enitys[indexPath.row] as! PhotoEnity).activityId).json"
+            manager.get(requestUrl, parameters: [], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+                    if let ActivityJsonDictionary = response as? NSDictionary
+                    {
+                        if let userJsonDictionary = ActivityJsonDictionary["creator_obj"] as? NSDictionary
+                        {
+                            let userInformationEnity = UserInformationEnity(id: userJsonDictionary["id"] as! Int, user: userJsonDictionary["user"] as! String, name: userJsonDictionary["name"] as! String, avatar: userJsonDictionary["avatar"] as? Int, description: userJsonDictionary["description"] as! String, followersCount: userJsonDictionary["followers_count"] as! Int, fansCount: userJsonDictionary["fans_count"] as! Int, activitiesCount: userJsonDictionary["activities_count"] as! Int, relation: userJsonDictionary["relation"] as! String,gender: (userJsonDictionary["gender"] as! String))
+                            
+                            let activityEnity = ActiveEnity(id: ActivityJsonDictionary["id"] as! Int, activityTitle: ActivityJsonDictionary["title"] as! String, image: ActivityJsonDictionary["image"] as! Int, state: ActivityJsonDictionary["state"] as! String, wisherCount: ActivityJsonDictionary["wisher_count"] as! Int, wisherTotal: ActivityJsonDictionary["wisher_total"] as! Int, participantCount: ActivityJsonDictionary["participant_count"] as! Int, creator: userInformationEnity, beginTime: ActivityJsonDictionary["beginTime"] as! Int, endTime: ActivityJsonDictionary["endTime"] as! Int, address: ActivityJsonDictionary["address"] as! String, latitude: (ActivityJsonDictionary["location"] as! NSDictionary)["latitude"] as! Double, longitude: (ActivityJsonDictionary["location"] as! NSDictionary)["longitude"] as! Double, fee: ActivityJsonDictionary["fee"] as! Int, category: ActivityJsonDictionary["category"] as! String, tags: ActivityJsonDictionary["tags"] as! NSArray, content: ActivityJsonDictionary["content"] as! String, notificationCount: ActivityJsonDictionary["notification_count"] as! Int, photoCount: ActivityJsonDictionary["photo_count"] as! Int, creatAt: ActivityJsonDictionary["created_at"] as! Int,commentCount: ActivityJsonDictionary["comment_count"] as! Int)
+                            cell.objectNeedPass = activityEnity
+                            cell.activityButton.setTitle("#" + cell.objectNeedPass.activityTitle + "#", for: .normal)
+                            cell.activityButton.tag = indexPath.row
+                            cell.activityButton.addTarget(self, action: "toActivityDetail:", for: .touchUpInside)
+                        }
+                    }
+                
+                }, failure: {[weak self] (dataTask,error) in
+                    print(error)
+                    self?.getDataFailed()
+                    
+                    
+            })
+            
+            
+            
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
@@ -369,7 +419,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         {
             if let controller = segue.destination as? ActicityDetailViewController
             {
-                controller.activityModel.activityEnity = (model.Enitys[sender! as! Int] as! ActiveEnity)
+                controller.activityModel.activityEnity = sender as! ActiveEnity
             }
         }else if segue.identifier == seguename.timeLineToPhotoDetail
         {
@@ -377,6 +427,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             {
                 controller.enity = model.Enitys[(sender! as! IndexPath).row] as! PhotoEnity
                 controller.temImage = (timeLineTableView.cellForRow(at: (sender! as! IndexPath)) as! timelinePhotoTableViewCell).photoImageView.image
+                controller.activityInformationEnity = (timeLineTableView.cellForRow(at: sender! as! IndexPath) as! timelinePhotoTableViewCell).objectNeedPass
             }
         }
         

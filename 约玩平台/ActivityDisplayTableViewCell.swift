@@ -12,12 +12,9 @@ class ActivityDisplayTableViewCell: UITableViewCell {
     @IBOutlet weak var activityImageImageView: UIImageView!
     
     @IBOutlet weak var activityTitleLabel: UILabel!
-    @IBOutlet weak var commentCountLabel: UILabel!
-    @IBOutlet weak var beginDateCount: UILabel!
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+   
 
     override func awakeFromNib() {
         super.awakeFromNib()
