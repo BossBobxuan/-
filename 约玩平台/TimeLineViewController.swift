@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDelegate, UITableViewDataSource, havePullfreshAndLoadmoreTableViewDelegate,UITextFieldDelegate{
-    @IBOutlet weak var searchTextField: UITextField!
+   
     @IBOutlet weak var timeLineTableView: havePullfreshAndLoadmoreTableView!
     var model: timeLineModel!
     let manager = singleClassManager.manager
@@ -44,7 +44,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         
         timeLineTableView.btn.isHidden = true//不使用加载更多
         
-        self.searchTextField.delegate = self
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -174,6 +174,8 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
                     }
                 }
             }
+            cell.userAvatarImageView.layer.masksToBounds = true
+            cell.userAvatarImageView.layer.cornerRadius = cell.userAvatarImageView.frame.width / 2
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
@@ -238,6 +240,8 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             
             let media2 = model.userAvatarId
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
+            cell.avatarImageView.layer.masksToBounds = true
+            cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.width / 2
             print(url2)
             if let image = self.getImageFromCaches(mediaId: media2!)
             {
@@ -360,10 +364,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("go")
-        performSegue(withIdentifier: seguename.timeLineToSearch, sender: nil)
-    }
+    
     
     
     

@@ -18,7 +18,7 @@ class testModel  {
 class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet weak var containScrollView: UIScrollView!
     var uid: Int!
-    private weak var inputTextField: UITextField!
+    private var inputTextField: UITextField!
     private var beShowingList: [PrivateEnity] = []//缓存来表示当前屏幕上显示的对象
     private var page = 1//表示当前请求的页数
     private var isRequesting: Bool = false//表示是否正在请求避免重复请求
@@ -52,6 +52,10 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
             performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
         }
     }
+    func toUser(_ sender: UIBarButtonItem)
+    {
+        performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
+    }
     func resignKeyBoard()
     {
         print("re")
@@ -66,16 +70,20 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
         
         containScrollView.delegate = self
         containScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "resignKeyBoard"))
+        
         model = DetailPrivateModel(delegate: self)
         model.getPersonalAvatar(token: token)
         model.getMsgDetailList(token: token, uid: uid)
+        print(self.view.frame.maxY)
+        print(self.containScrollView.frame.maxY)
+        print(UIScreen.main.bounds.height)
         self.inputTextField = UITextField(frame: CGRect(x: 8, y: containScrollView.frame.maxY + 5, width: UIScreen.main.bounds.width - 16, height: 25))
         inputTextField.layer.borderWidth = 0.5
         inputTextField.layer.cornerRadius = 5
         self.view.addSubview(inputTextField)
         inputTextField.delegate = self
-//        inputTextField.becomeFirstResponder()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "people.png"), style: .bordered, target: self, action: "toUser:")
         //设置定时器轮询获得新消息
         timer = Timer(timeInterval: 2, repeats: true, block: {[weak self](_) in
             
@@ -124,9 +132,9 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
     //MARK: - textFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25, animations: {
-            self.inputTextField.frame =  CGRect(x: 8, y: self.containScrollView.frame.maxY + 5 - 216, width: UIScreen.main.bounds.width - 16, height: 25)
-            self.containScrollView.frame.origin.y -= 216
-            self.containScrollView.contentInset.top += 216
+            self.inputTextField.frame =  CGRect(x: 8, y: self.containScrollView.frame.maxY + 5 - 235, width: UIScreen.main.bounds.width - 16, height: 25)
+            self.containScrollView.frame.origin.y -= 235
+            self.containScrollView.contentInset.top += 235
 
 //            if self.inputTextField.frame.minY > self.nextY
 //            {
@@ -145,9 +153,9 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
     }
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         print("1")
-        UIView.animate(withDuration: 0.5, animations: {
-            self.inputTextField.frame =  CGRect(x: 8, y: self.containScrollView.frame.maxY + 5 + 216, width: UIScreen.main.bounds.width - 16, height: 25)
-            self.containScrollView.frame.origin.y += 216
+        UIView.animate(withDuration: 0.25, animations: {
+            self.inputTextField.frame =  CGRect(x: 8, y: self.containScrollView.frame.maxY + 5 + 235, width: UIScreen.main.bounds.width - 16, height: 25)
+            self.containScrollView.frame.origin.y += 235
             if self.containScrollView.contentInset.top > 0
             {
                 self.containScrollView.contentInset.top = 0
@@ -156,7 +164,7 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
     }
     //MARK: - scrollview delegate
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if (scrollView.contentOffset.y < 0 && scrollView.contentInset.top == 0) || (scrollView.contentOffset.y < -216 && scrollView.contentInset.top > 0)
+        if (scrollView.contentOffset.y < 0 && scrollView.contentInset.top == 0) || (scrollView.contentOffset.y < -235 && scrollView.contentInset.top > 0)
         {
             timer.fireDate = Date.distantFuture
             isGetmore = true

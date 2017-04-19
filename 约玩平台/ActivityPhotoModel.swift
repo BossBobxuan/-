@@ -32,7 +32,7 @@ class ActivityPhotoModel {
                 }
             }
             
-            }, failure: {[weak self] (dataTask,error) in
+            }, failure: {(dataTask,error) in
                 print(error)
                 
                 

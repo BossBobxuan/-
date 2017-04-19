@@ -19,6 +19,26 @@ class CommentListModel
         self.delegate = delegate
     }
     //MARK: - 以下需要添加token
+    //获取个人评论列表
+    func getPersonalCommentList(token: String)
+    {
+        let requestUrl = urlStruct.basicUrl + "msg/comment.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.dealWithResponse(response: response)
+            
+            }, failure: {[weak self] (dataTask,error) in
+                print(error)
+                self?.delegate.getDataFailed()
+                
+                
+        })
+        page += 1
+    }
+    
+    
+    
+    
     //获取通知，相册与活动评论
     func getCommentList(id: Int,type: String)
     {
@@ -50,6 +70,25 @@ class CommentListModel
         })
         page += 1
     }
+    
+    func refreshPersonalComment(token: String)
+    {
+        page = 1
+        let requestUrl = urlStruct.basicUrl + "msg/comment.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.commentEnitys.removeAll()
+            self?.dealWithResponse(response: response)
+            
+            }, failure: {[weak self] (dataTask,error) in
+                print(error)
+                self?.delegate.getDataFailed()
+                
+                
+        })
+        page += 1
+    }
+    
     //获取父评论的子评论
     func getChildComment(commentId: Int)
     {

@@ -50,6 +50,9 @@ struct seguename {
     static let UserImageToDetail = "UserImageToDetail"
     static let UserInformationToMag = "UserInformationToMag"
     static let ActivityDetailToUserInformation = "ActivityDetailToUserInformation"
+    static let toReport = "segueToReport"
+    static let msgListToCommentList = "msgListToCommentList"
+    static let listToAddNotification = "listToAddNotification"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -190,7 +193,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     }
     //此处填写举报信息
     func reportUser(_ sender: UIBarButtonItem)  {
-        
+        performSegue(withIdentifier: seguename.toReport, sender: nil)
     }
     
     
@@ -507,6 +510,13 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             if let controller = segue.destination as? msgDetailViewController
             {
                 controller.uid = uid
+            }
+        }else if segue.identifier == seguename.toReport
+        {
+            if let controller = segue.destination as? ReportViewController
+            {
+                controller.uid = uid!
+                controller.attachType = 0
             }
         }
     }

@@ -32,6 +32,7 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.row == 0
         {
             //MARK: - 此处进入评论列表
+            performSegue(withIdentifier: seguename.msgListToCommentList, sender: nil)
         }else
         {
             (tableView.cellForRow(at: indexPath) as! msgTableViewCell).notReadCountLabel.isHidden = true
@@ -139,6 +140,12 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let controller = segue.destination as? msgDetailViewController
             {
                 controller.uid = model.Enitys[sender! as! Int].targetId
+            }
+        }else if segue.identifier == seguename.msgListToCommentList
+        {
+            if let controller = segue.destination as? commentListViewController
+            {
+                controller.type = "me"
             }
         }
         

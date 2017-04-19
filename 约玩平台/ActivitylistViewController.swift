@@ -226,6 +226,8 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
                 }
             }
         }
+        cell.userAvatarImageView.layer.masksToBounds = true
+        cell.userAvatarImageView.layer.cornerRadius = cell.userAvatarImageView.frame.width / 2
         let media2 = beShowingActivity[indexPath.row].creator.avatar
         let url2 = urlStruct.basicUrl + "media/" + "\(media2)"
         if let image = self.getImageFromCaches(mediaId: media2!)

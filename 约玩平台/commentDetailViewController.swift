@@ -110,6 +110,8 @@ class commentDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
+        cell.userAvatarImageView.layer.masksToBounds = true
+        cell.userAvatarImageView.layer.cornerRadius = cell.userAvatarImageView.frame.width / 2
         cell.userAvatarImageView.isUserInteractionEnabled = true
         cell.userAvatarImageView.tag = childCommentListModel.commentEnitys[indexPath.row].creator.id//用于点击时识别是哪一个点击源
         cell.userAvatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "clickAvatar:"))

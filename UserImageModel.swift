@@ -43,7 +43,7 @@ class UserImageModel
                     self?.delegate.needUpdateUI()
                 }
                 
-                }, failure: {[weak self] (dataTask,error) in
+                }, failure: {(dataTask,error) in
                     print(error)
                     
                     

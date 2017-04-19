@@ -20,34 +20,8 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
     }
     func addNotification(_ sender: UIBarButtonItem)
     {
-        let alert = UIAlertController(title: "发布通知", message: "", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: {(textField) in textField.placeholder = "请输入通知标题"})
-        alert.addTextField(configurationHandler: {(textField) in textField.placeholder = "请输入通知详情"})
-        let action = UIAlertAction(title: "确定", style: .default, handler: {(alertAction) in
-            let alert1 = UIAlertController(title: "正在发布通知", message: "请稍后", preferredStyle: .alert)
-            self.present(alert1, animated: true, completion: {})
-            let manager = singleClassManager.manager
-            let requestUrl = urlStruct.basicUrl + "activity/" + "\(self.activityId!)" + "/notification.json"
-            manager.requestSerializer.setValue(self.token, forHTTPHeaderField: "token")
-            manager.post(requestUrl, parameters: ["title": alert.textFields![0].text!,"content": alert.textFields![1].text!], progress: {(progress) in }, success: {
-                (dataTask,response) in
-                print("success")
-                alert1.dismiss(animated: true, completion: nil)
-                self.pullToRefresh()
-                
-            }, failure: {(dataTask,error) in
-                print(error)
-                alert1.dismiss(animated: true, completion: nil)
-                let alert2 = UIAlertController(title: "发布失败", message: "请检查网络连接", preferredStyle: .alert)
-                alert2.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(alert2, animated: true, completion: nil)
-                
-            })
-            
-        })
-        alert.addAction(action)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        performSegue(withIdentifier: seguename.listToAddNotification, sender: nil)
+        
     }
     
     
@@ -87,34 +61,8 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
         {
             let alert = UIAlertController(title: "请选择动作", message: "", preferredStyle: .actionSheet)
             let editNotificationAction = UIAlertAction(title: "修改", style: .default, handler: {(action) in
-                let editalert = UIAlertController(title: "修改通知", message: "", preferredStyle: .alert)
-                editalert.addTextField(configurationHandler: {(textField) in textField.text = self.notificationListModel.notificationEnitys[indexPath.row].title})
-                editalert.addTextField(configurationHandler: {(textField) in textField.text = self.notificationListModel.notificationEnitys[indexPath.row].content})
-                let action = UIAlertAction(title: "确定", style: .default, handler: {(alertAction) in
-                    let alert1 = UIAlertController(title: "正在修改通知", message: "请稍后", preferredStyle: .alert)
-                    self.present(alert1, animated: true, completion: {})
-                    let manager = singleClassManager.manager
-                    let requestUrl = urlStruct.basicUrl + "notification/" + "\(self.notificationListModel.notificationEnitys[indexPath.row].id).json"
-                    manager.requestSerializer.setValue(self.token, forHTTPHeaderField: "token")
-                    manager.post(requestUrl, parameters: ["title": editalert.textFields![0].text!,"content": editalert.textFields![1].text!], progress: {(progress) in }, success: {
-                        (dataTask,response) in
-                        print("success")
-                        alert1.dismiss(animated: true, completion: nil)
-                        self.pullToRefresh()
-                    
-                    }, failure: {(dataTask,error) in
-                        print(error)
-                        alert1.dismiss(animated: true, completion: nil)
-                        let alert2 = UIAlertController(title: "修改失败", message: "请检查网络连接", preferredStyle: .alert)
-                        alert2.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                        self.present(alert2, animated: true, completion: nil)
-                    
-                    })
+                self.performSegue(withIdentifier: seguename.listToAddNotification, sender: indexPath.row)
                 
-                })
-                editalert.addAction(action)
-                editalert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-                self.present(editalert, animated: true, completion: nil)
             })
             let deleteAction = UIAlertAction(title: "删除", style: .default, handler: {(alertAction) in
                 let deleteAlert = UIAlertController(title: "是否删除", message: "", preferredStyle: .alert)
@@ -160,6 +108,7 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "default") as! NotificationTableViewCell
+        print(notificationListModel.notificationEnitys[indexPath.row].content)
         cell.notificationTitleLabel.text = notificationListModel.notificationEnitys[indexPath.row].title
         cell.commentCountLabel.text = "\(notificationListModel.notificationEnitys[indexPath.row].commentCount)"
         cell.creatAtLabel.text = notificationListModel.notificationEnitys[indexPath.row].creatAt.date
@@ -206,6 +155,21 @@ class NotificationListViewController: UIViewController, PullDataDelegate, UITabl
             {
                 controller.id = notificationListModel.notificationEnitys[sender as! Int].id
                 controller.type = "notification"
+            }
+        }else if segue.identifier == seguename.listToAddNotification
+        {
+            if let controller = segue.destination as? AddNotificationViewController
+            {
+                if sender == nil//证明为添加
+                {
+                    controller.aid = activityId
+                }else
+                {
+                    controller.isEdit = true
+                    controller.aid = notificationListModel.notificationEnitys[sender as! Int].id//此处为nid
+                    controller.notificationTitle = notificationListModel.notificationEnitys[sender as! Int].title
+                    controller.notificationContent = notificationListModel.notificationEnitys[sender as! Int].content
+                }
             }
         }
         

@@ -42,16 +42,27 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
     func pullToRefresh()
     {
         print("下拉刷新")
-        commentListModel.refreshCommentList(id: id, type: type)
-        
+        if type == "me"
+        {
+            print("me")
+            commentListModel.refreshPersonalComment(token: token)
+        }else
+        {
+            commentListModel.refreshCommentList(id: id, type: type)
+        }
     }
     //该方法用于加载更多数据与视图更新
     func loadMore(_ sender: UIButton)
     {
         btn.isHidden = true
         loadingstateUI.startAnimating()
-        commentListModel.getCommentList(id: id, type: type)
-        
+        if type == "me"
+        {
+            commentListModel.getPersonalCommentList(token: token)
+        }else
+        {
+            commentListModel.getCommentList(id: id, type: type)
+        }
         
     }
     
@@ -62,18 +73,24 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
 
         // Do any additional setup after loading the view.
         commentListModel = CommentListModel(delegate: self)
-        commentListModel.getCommentList(id: id, type: type)
-        
+        if type == "me"
+        {
+            commentListModel.getPersonalCommentList(token: token)
+        }else
+        {
+            commentListModel.getCommentList(id: id, type: type)
+        }
         self.commentListTableView.refreshControl = UIRefreshControl()
         self.commentListTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
         self.commentListTableView.refreshControl?.attributedTitle = NSAttributedString(string: "刷新中")
         //增加读取更多数据的按钮
         addGetMorebtn()
         self.navigationItem.title = "评论列表"
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add
+        if type != "me"
+        {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add
             , target: self, action: "addComment:")
-    
+        }
         
 
     }
@@ -106,6 +123,8 @@ class commentListViewController: UIViewController, PullDataDelegate, UITableView
         let url = urlStruct.basicUrl + "media/" + "\(media)"
         cell.replyButton.tag = indexPath.row//传递在model数组中的位置给reply按钮
         cell.replyButton.addTarget(self, action: "replyComment:", for: .touchUpInside)
+        cell.userAvatarImageView.layer.masksToBounds = true
+        cell.userAvatarImageView.layer.cornerRadius = cell.userAvatarImageView.frame.width / 2
         if let image = self.getImageFromCaches(mediaId: media)
         {
             cell.userAvatarImageView.image = image

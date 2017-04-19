@@ -49,6 +49,10 @@
 		B047D7201E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B047D71F1E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift */; };
 		B047D7221E893F9B00A928EF /* interest.png in Resources */ = {isa = PBXBuildFile; fileRef = B047D7211E893F9B00A928EF /* interest.png */; };
 		B047D7241E893F9E00A928EF /* interestclicked.png in Resources */ = {isa = PBXBuildFile; fileRef = B047D7231E893F9E00A928EF /* interestclicked.png */; };
+		B04EBE501EA74DA9004AE632 /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04EBE4F1EA74DA9004AE632 /* people@2x.png */; };
+		B04EBE521EA75376004AE632 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04EBE511EA75376004AE632 /* ReportViewController.swift */; };
+		B04EBE541EA770A8004AE632 /* 搜@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B04EBE531EA770A8004AE632 /* 搜@2x.png */; };
+		B04EBE561EA77242004AE632 /* AddNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04EBE551EA77242004AE632 /* AddNotificationViewController.swift */; };
 		B056B39C1E1E4BFC001B17F2 /* ActivitylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */; };
 		B056B39E1E1E4D53001B17F2 /* slideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056B39D1E1E4D53001B17F2 /* slideView.swift */; };
 		B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F3F821E222F8800777C82 /* ActivityModel.swift */; };
@@ -163,6 +167,10 @@
 		B047D71F1E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = havePullfreshAndLoadmoreTableView.swift; sourceTree = "<group>"; };
 		B047D7211E893F9B00A928EF /* interest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interest.png; sourceTree = "<group>"; };
 		B047D7231E893F9E00A928EF /* interestclicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interestclicked.png; sourceTree = "<group>"; };
+		B04EBE4F1EA74DA9004AE632 /* people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people@2x.png"; sourceTree = "<group>"; };
+		B04EBE511EA75376004AE632 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReportViewController.swift; path = "约玩平台/ReportViewController.swift"; sourceTree = "<group>"; };
+		B04EBE531EA770A8004AE632 /* 搜@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜@2x.png"; sourceTree = "<group>"; };
+		B04EBE551EA77242004AE632 /* AddNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotificationViewController.swift; sourceTree = "<group>"; };
 		B056B39B1E1E4BFC001B17F2 /* ActivitylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitylistViewController.swift; sourceTree = "<group>"; };
 		B056B39D1E1E4D53001B17F2 /* slideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slideView.swift; sourceTree = "<group>"; };
 		B05F3F821E222F8800777C82 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
@@ -292,12 +300,13 @@
 				B08D2C781EA63FA0004EDE44 /* UserImageListViewController.swift */,
 				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
 				B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */,
+				B04EBE511EA75376004AE632 /* ReportViewController.swift */,
 				B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */,
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
 				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
-				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 				B08D2C7A1EA640A7004EDE44 /* UserImageModel.swift */,
+				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 			);
 			name = "用户信息界面";
 			path = ..;
@@ -324,6 +333,7 @@
 				B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */,
 				B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */,
 				B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */,
+				B04EBE551EA77242004AE632 /* AddNotificationViewController.swift */,
 				B0221BC21E8FFD270021BB40 /* NotificationListModel.swift */,
 				B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */,
 				B0107B4E1E83EFC30040493A /* simplyActivityTableViewCell.swift */,
@@ -348,6 +358,7 @@
 				B047185A1E8A82C5000488CD /* dollar.png */,
 				B08D2C7C1EA64994004EDE44 /* more.png */,
 				B020C1CD1EA65C7F00243901 /* 发现@2x.png */,
+				B04EBE4F1EA74DA9004AE632 /* people@2x.png */,
 				B047185B1E8A82C5000488CD /* label.png */,
 				B047D7161E892FE900A928EF /* comment.png */,
 				B07787861EA6FF4400FA44A2 /* report@2x.png */,
@@ -363,6 +374,7 @@
 				B05F3F861E223D3D00777C82 /* interested.png */,
 				B05F3F891E22681700777C82 /* location.png */,
 				B07787941EA708A900FA44A2 /* 人.png */,
+				B04EBE531EA770A8004AE632 /* 搜@2x.png */,
 				B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */,
 				B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */,
 			);
@@ -613,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B07787871EA6FF4400FA44A2 /* report@2x.png in Resources */,
+				B04EBE501EA74DA9004AE632 /* people@2x.png in Resources */,
 				B05F3F871E223D3D00777C82 /* interested.png in Resources */,
 				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
 				B047D71E1E89346D00A928EF /* photo.png in Resources */,
@@ -626,6 +639,7 @@
 				B047D7191E892FE900A928EF /* clicklike.png in Resources */,
 				B077878F1EA6FFFB00FA44A2 /* msg@2x.png in Resources */,
 				B020C1CE1EA65C7F00243901 /* 发现@2x.png in Resources */,
+				B04EBE541EA770A8004AE632 /* 搜@2x.png in Resources */,
 				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
 				B047185D1E8A82C5000488CD /* date.png in Resources */,
 				B07787911EA6FFFB00FA44A2 /* 资料@2x.png in Resources */,
@@ -758,8 +772,10 @@
 				B07AE4141E9A7C19003D0F58 /* searchModel.swift in Sources */,
 				B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */,
 				B0221BC31E8FFD270021BB40 /* NotificationListModel.swift in Sources */,
+				B04EBE561EA77242004AE632 /* AddNotificationViewController.swift in Sources */,
 				B07AE4121E9A78FE003D0F58 /* SearchViewController.swift in Sources */,
 				B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */,
+				B04EBE521EA75376004AE632 /* ReportViewController.swift in Sources */,
 				B036EE721E9E5E3700C50BA8 /* msgTableViewCell.swift in Sources */,
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */,
