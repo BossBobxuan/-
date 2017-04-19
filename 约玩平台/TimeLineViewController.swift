@@ -13,6 +13,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
     @IBOutlet weak var timeLineTableView: havePullfreshAndLoadmoreTableView!
     var model: timeLineModel!
     let manager = singleClassManager.manager
+    var uid: Int?
     func toActivityDetail(_ sender: UIButton)
     {
         print(sender.tag)
@@ -33,7 +34,14 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self
         timeLineTableView.pullDataDelegate = self
-        model.getUserTimeLine(token: token)
+        if uid != nil
+        {
+            model.getUserTimeLine(uid: uid!)
+        }else
+        {
+            model.getUserTimeLine(token: token)
+        }
+        
         timeLineTableView.btn.isHidden = true//不使用加载更多
         
         self.searchTextField.delegate = self

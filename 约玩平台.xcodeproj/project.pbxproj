@@ -17,6 +17,8 @@
 		B010BCA61E7FF8260085CD79 /* EditPersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */; };
 		B01BE23C1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */; };
 		B01BE23E1E97C37800B1FB76 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B01BE23D1E97C37800B1FB76 /* icon.png */; };
+		B020C1CE1EA65C7F00243901 /* 发现@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B020C1CD1EA65C7F00243901 /* 发现@2x.png */; };
+		B020C1D51EA65D5900243901 /* 举报@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B020C1D01EA65D5900243901 /* 举报@2x.png */; };
 		B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */; };
 		B0221BBF1E8FFB2B0021BB40 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */; };
 		B0221BC11E8FFB470021BB40 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */; };
@@ -63,6 +65,13 @@
 		B071645B1E1CF217006A2FCD /* FirstUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */; };
 		B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645C1E1CF326006A2FCD /* LoginViewController.swift */; };
 		B071645F1E1CF339006A2FCD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071645E1E1CF339006A2FCD /* SignUpViewController.swift */; };
+		B07787871EA6FF4400FA44A2 /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07787861EA6FF4400FA44A2 /* report@2x.png */; };
+		B077878D1EA6FFFB00FA44A2 /* 动态@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07787881EA6FFFB00FA44A2 /* 动态@2x.png */; };
+		B077878E1EA6FFFB00FA44A2 /* 举报.png in Resources */ = {isa = PBXBuildFile; fileRef = B07787891EA6FFFB00FA44A2 /* 举报.png */; };
+		B077878F1EA6FFFB00FA44A2 /* msg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B077878A1EA6FFFB00FA44A2 /* msg@2x.png */; };
+		B07787901EA6FFFB00FA44A2 /* 消息@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B077878B1EA6FFFB00FA44A2 /* 消息@2x.png */; };
+		B07787911EA6FFFB00FA44A2 /* 资料@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B077878C1EA6FFFB00FA44A2 /* 资料@2x.png */; };
+		B07787951EA708A900FA44A2 /* 人.png in Resources */ = {isa = PBXBuildFile; fileRef = B07787941EA708A900FA44A2 /* 人.png */; };
 		B07AE40F1E9A5BFD003D0F58 /* photoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */; };
 		B07AE4121E9A78FE003D0F58 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */; };
 		B07AE4141E9A7C19003D0F58 /* searchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AE4131E9A7C19003D0F58 /* searchModel.swift */; };
@@ -71,6 +80,9 @@
 		B08AFDE61E7D5D58004C9C96 /* FollowersOrFansModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */; };
 		B08CE0CB1E82A45000DA44A3 /* UserActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */; };
 		B08CE0CD1E82AAB500DA44A3 /* ActiveEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CE0CC1E82AAB500DA44A3 /* ActiveEnity.swift */; };
+		B08D2C791EA63FA0004EDE44 /* UserImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D2C781EA63FA0004EDE44 /* UserImageListViewController.swift */; };
+		B08D2C7B1EA640A7004EDE44 /* UserImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D2C7A1EA640A7004EDE44 /* UserImageModel.swift */; };
+		B08D2C7D1EA64994004EDE44 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = B08D2C7C1EA64994004EDE44 /* more.png */; };
 		B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */; };
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
@@ -119,6 +131,8 @@
 		B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonalInformationViewController.swift; sourceTree = "<group>"; };
 		B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c37cea0a6e642c5a8ad0457a8f2a6c75.jpg; sourceTree = "<group>"; };
 		B01BE23D1E97C37800B1FB76 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B020C1CD1EA65C7F00243901 /* 发现@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发现@2x.png"; sourceTree = "<group>"; };
+		B020C1D01EA65D5900243901 /* 举报@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "举报@2x.png"; sourceTree = "<group>"; };
 		B0221BBC1E8FEBDC0021BB40 /* NotificationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationEnity.swift; sourceTree = "<group>"; };
 		B0221BBE1E8FFB2B0021BB40 /* NotificationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
 		B0221BC01E8FFB470021BB40 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,6 +186,13 @@
 		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B0765C541E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B07787861EA6FF4400FA44A2 /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
+		B07787881EA6FFFB00FA44A2 /* 动态@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态@2x.png"; sourceTree = "<group>"; };
+		B07787891EA6FFFB00FA44A2 /* 举报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "举报.png"; sourceTree = "<group>"; };
+		B077878A1EA6FFFB00FA44A2 /* msg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg@2x.png"; sourceTree = "<group>"; };
+		B077878B1EA6FFFB00FA44A2 /* 消息@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "消息@2x.png"; sourceTree = "<group>"; };
+		B077878C1EA6FFFB00FA44A2 /* 资料@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "资料@2x.png"; sourceTree = "<group>"; };
+		B07787941EA708A900FA44A2 /* 人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人.png"; sourceTree = "<group>"; };
 		B07AE40E1E9A5BFD003D0F58 /* photoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoDetailViewController.swift; sourceTree = "<group>"; };
 		B07AE4111E9A78FE003D0F58 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B07AE4131E9A7C19003D0F58 /* searchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchModel.swift; sourceTree = "<group>"; };
@@ -180,6 +201,9 @@
 		B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersOrFansModel.swift; sourceTree = "<group>"; };
 		B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityListModel.swift; sourceTree = "<group>"; };
 		B08CE0CC1E82AAB500DA44A3 /* ActiveEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveEnity.swift; sourceTree = "<group>"; };
+		B08D2C781EA63FA0004EDE44 /* UserImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserImageListViewController.swift; sourceTree = "<group>"; };
+		B08D2C7A1EA640A7004EDE44 /* UserImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserImageModel.swift; sourceTree = "<group>"; };
+		B08D2C7C1EA64994004EDE44 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
 		B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationModel.swift; sourceTree = "<group>"; };
 		B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationEnity.swift; sourceTree = "<group>"; };
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
@@ -265,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				B0355E1C1E7AAEA9003429C8 /* PersonalInfomationViewController.swift */,
+				B08D2C781EA63FA0004EDE44 /* UserImageListViewController.swift */,
 				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
 				B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */,
 				B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */,
@@ -272,6 +297,7 @@
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
 				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
 				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
+				B08D2C7A1EA640A7004EDE44 /* UserImageModel.swift */,
 			);
 			name = "用户信息界面";
 			path = ..;
@@ -320,13 +346,23 @@
 				B04718581E8A82C5000488CD /* address.png */,
 				B04718591E8A82C5000488CD /* date.png */,
 				B047185A1E8A82C5000488CD /* dollar.png */,
+				B08D2C7C1EA64994004EDE44 /* more.png */,
+				B020C1CD1EA65C7F00243901 /* 发现@2x.png */,
 				B047185B1E8A82C5000488CD /* label.png */,
 				B047D7161E892FE900A928EF /* comment.png */,
+				B07787861EA6FF4400FA44A2 /* report@2x.png */,
+				B020C1D01EA65D5900243901 /* 举报@2x.png */,
+				B07787881EA6FFFB00FA44A2 /* 动态@2x.png */,
+				B07787891EA6FFFB00FA44A2 /* 举报.png */,
+				B077878A1EA6FFFB00FA44A2 /* msg@2x.png */,
+				B077878B1EA6FFFB00FA44A2 /* 消息@2x.png */,
+				B077878C1EA6FFFB00FA44A2 /* 资料@2x.png */,
 				B047D7211E893F9B00A928EF /* interest.png */,
 				B047D7171E892FE900A928EF /* notification.png */,
 				B047D7181E892FE900A928EF /* participate.png */,
 				B05F3F861E223D3D00777C82 /* interested.png */,
 				B05F3F891E22681700777C82 /* location.png */,
+				B07787941EA708A900FA44A2 /* 人.png */,
 				B01BE23B1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg */,
 				B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */,
 			);
@@ -576,9 +612,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B07787871EA6FF4400FA44A2 /* report@2x.png in Resources */,
 				B05F3F871E223D3D00777C82 /* interested.png in Resources */,
 				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
 				B047D71E1E89346D00A928EF /* photo.png in Resources */,
+				B020C1D51EA65D5900243901 /* 举报@2x.png in Resources */,
 				B047D7221E893F9B00A928EF /* interest.png in Resources */,
 				B047185C1E8A82C5000488CD /* address.png in Resources */,
 				B047D71C1E892FE900A928EF /* participate.png in Resources */,
@@ -586,13 +624,21 @@
 				B05F3F8A1E22681700777C82 /* location.png in Resources */,
 				B047D7241E893F9E00A928EF /* interestclicked.png in Resources */,
 				B047D7191E892FE900A928EF /* clicklike.png in Resources */,
+				B077878F1EA6FFFB00FA44A2 /* msg@2x.png in Resources */,
+				B020C1CE1EA65C7F00243901 /* 发现@2x.png in Resources */,
 				B07164331E1CF179006A2FCD /* Assets.xcassets in Resources */,
 				B047185D1E8A82C5000488CD /* date.png in Resources */,
+				B07787911EA6FFFB00FA44A2 /* 资料@2x.png in Resources */,
+				B08D2C7D1EA64994004EDE44 /* more.png in Resources */,
+				B07787901EA6FFFB00FA44A2 /* 消息@2x.png in Resources */,
 				B047185F1E8A82C5000488CD /* label.png in Resources */,
 				B01BE23C1E97C28200B1FB76 /* c37cea0a6e642c5a8ad0457a8f2a6c75.jpg in Resources */,
+				B077878D1EA6FFFB00FA44A2 /* 动态@2x.png in Resources */,
 				B01BE23E1E97C37800B1FB76 /* icon.png in Resources */,
+				B077878E1EA6FFFB00FA44A2 /* 举报.png in Resources */,
 				B071642E1E1CF179006A2FCD /* Main.storyboard in Resources */,
 				B047D71A1E892FE900A928EF /* comment.png in Resources */,
+				B07787951EA708A900FA44A2 /* 人.png in Resources */,
 				B047185E1E8A82C5000488CD /* dollar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,6 +745,7 @@
 				B05F3F831E222F8800777C82 /* ActivityModel.swift in Sources */,
 				B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */,
 				B0F762721E966B8E00E0169A /* timelineCommentTableViewCell.swift in Sources */,
+				B08D2C7B1EA640A7004EDE44 /* UserImageModel.swift in Sources */,
 				B0107B531E8405FB0040493A /* ActivityDetailModel.swift in Sources */,
 				B0107B511E83F9160040493A /* ActicityDetailViewController.swift in Sources */,
 				B00038CB1E98FFC700ED2228 /* ActivityPhotoModel.swift in Sources */,
@@ -717,6 +764,7 @@
 				B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */,
 				B0F762741E966BA200E0169A /* timelineActivityTableViewCell.swift in Sources */,
 				B0F762781E966BC100E0169A /* timelineNotificationTableViewCell.swift in Sources */,
+				B08D2C791EA63FA0004EDE44 /* UserImageListViewController.swift in Sources */,
 				B03210AD1E87F2CE00A68282 /* replyCommentViewController.swift in Sources */,
 				B07164291E1CF179006A2FCD /* AppDelegate.swift in Sources */,
 				B03210AF1E87FAA900A68282 /* commentDetailViewController.swift in Sources */,

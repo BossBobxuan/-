@@ -440,17 +440,17 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         let controller = self.navigationController?.viewControllers.last as! ActicityDetailViewController
         controller.navigationItem.title = controller.activityModel.activityEnity.activityTitle
         controller.activityTitleLabel.text = controller.activityModel.activityEnity.activityTitle
-        controller.contentTextView.text = controller.activityModel.activityEnity.content
+        
         controller.categoryLabel.text = controller.activityModel.activityEnity.categoryString
-        controller.beginTimeLabel.text = controller.activityModel.activityEnity.beginTime.date
-        controller.endTimeLabel.text = controller.activityModel.activityEnity.endTime.date
-        controller.creatTimeLabel.text = controller.activityModel.activityEnity.creatAt.date
+        controller.beginTimeLabel.text = controller.activityModel.activityEnity.beginTime.date + " - " + controller.activityModel.activityEnity.endTime.date
+        
         controller.wishedCountLabel.text = "\(controller.activityModel.activityEnity.wisherCount)"
         controller.participatedCountLabel.text = "\(controller.activityModel.activityEnity.participantCount)"
         controller.addressLabel.text = controller.activityModel.activityEnity.address
         controller.photoCountLabel.text = "\(controller.activityModel.activityEnity.photoCount)"
         controller.notificationCountLabel.text = "\(controller.activityModel.activityEnity.notificationCount)"
         controller.feeLabel.text = "\(controller.activityModel.activityEnity.fee)"
+       
     }
     func getDataFailed() {
         let alert = UIAlertController(title: "修改失败", message: "请检查网络连接", preferredStyle: .alert)

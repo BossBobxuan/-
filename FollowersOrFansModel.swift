@@ -124,7 +124,7 @@ class FollowersOrFansModel
     //添加关注
     func addFollow(uid: Int,token: String)
     {
-        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        let requestUrl = urlStruct.basicUrl + "user/~me/follower/" + "\(uid).json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         //此处token需要更改
         manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
@@ -142,7 +142,7 @@ class FollowersOrFansModel
     //取消关注
     func notFollow(uid: Int,token: String)
     {
-        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        let requestUrl = urlStruct.basicUrl + "user/~me/follower/" + "\(uid).json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
         

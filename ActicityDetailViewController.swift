@@ -13,7 +13,7 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     
     @IBOutlet weak var activityImageImageView: UIImageView!
     @IBOutlet weak var activityTitleLabel: UILabel!
-    @IBOutlet weak var contentTextView: UITextView!
+   
     @IBOutlet weak var wishedCountLabel: UILabel!
     @IBOutlet weak var participatedCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
@@ -21,17 +21,23 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var beginTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var creatTimeLabel: UILabel!
+    
+    @IBOutlet weak var creatorLabel: UILabel!
+    
+    @IBOutlet weak var containerView: UIView!
+   
+    @IBOutlet weak var stackView: UIStackView!//作为tag的定位来使用
     @IBOutlet weak var photoCountLabel: UILabel!
     @IBOutlet weak var feeLabel: UILabel!
     @IBOutlet weak var wishedButton: UIButton!
     @IBOutlet weak var participateButton: UIButton!
-    @IBOutlet weak var tagsScrollView: UIScrollView!
+   
     //MARK: - var and let
     var activityModel: ActivityDetailModel = ActivityDetailModel()
     var havePowerToEdit: Bool = false
     let manager = singleClassManager.manager
+    private var nextY: CGFloat = 0
+    private let colorArray = [UIColor.red,UIColor.blue,UIColor.green,UIColor.yellow]
     //MARK: - event func
     func toEditActivity()
     {
@@ -67,7 +73,7 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         
     }
     
-    @IBAction func showParticipateList(_ sender: UIButton)
+    func showParticipateList(_ sender: UITapGestureRecognizer)
     {
         performSegue(withIdentifier: seguename.toActivityUserIn, sender: self)
     }
@@ -94,8 +100,29 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             participateButton.setTitle("+ 参加", for: .normal)
         }
     }
+    func toComment()
+    {
+        performSegue(withIdentifier: seguename.toComment, sender: self)
+    }
+    func toUserInformation(_ sender: UITapGestureRecognizer)
+    {
+        print("userInformation")
+        performSegue(withIdentifier: seguename.ActivityDetailToUserInformation, sender: nil)
+    }
     
-    
+    func toActivityLocation(_ sender: UITapGestureRecognizer)
+    {
+        performSegue(withIdentifier: seguename.toActivityLocation, sender: nil)
+    }
+    func toNotification()
+    {
+        performSegue(withIdentifier: seguename.toNotificationTableView, sender: self)
+    }
+    func toPhoto()
+    {
+        performSegue(withIdentifier: seguename.toActivityPhoto, sender: nil)
+    }
+    //MARK: - viewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print("didload")
@@ -103,20 +130,31 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         // Do any additional setup after loading the view.
         navigationItem.title = activityModel.activityEnity.activityTitle
         activityTitleLabel.text = activityModel.activityEnity.activityTitle
-        contentTextView.text = activityModel.activityEnity.content
+        
         categoryLabel.text = activityModel.activityEnity.categoryString
-        beginTimeLabel.text = activityModel.activityEnity.beginTime.date
-        endTimeLabel.text = activityModel.activityEnity.endTime.date
-        creatTimeLabel.text = activityModel.activityEnity.creatAt.date
+        beginTimeLabel.text = activityModel.activityEnity.beginTime.date + " - " + activityModel.activityEnity.endTime.date
         wishedCountLabel.text = "\(activityModel.activityEnity.wisherCount)"
         participatedCountLabel.text = "\(activityModel.activityEnity.participantCount)"
+        participatedCountLabel.isUserInteractionEnabled = true
+        participatedCountLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showParticipateList:"))
         addressLabel.text = activityModel.activityEnity.address
+        addressLabel.isUserInteractionEnabled = true
+        addressLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toActivityLocation:"))
         photoCountLabel.text = "\(activityModel.activityEnity.photoCount)"
+        photoCountLabel.isUserInteractionEnabled = true
+        photoCountLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toPhoto"))
         notificationCountLabel.text = "\(activityModel.activityEnity.notificationCount)"
+        notificationCountLabel.isUserInteractionEnabled = true
+        notificationCountLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNotification"))
         feeLabel.text = "\(activityModel.activityEnity.fee)"
         commentCountLabel.text = "\(activityModel.activityEnity.commentCount)"
+        commentCountLabel.isUserInteractionEnabled = true
+        commentCountLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toComment"))
+        creatorLabel.text = activityModel.activityEnity.creator.name
+        creatorLabel.isUserInteractionEnabled = true
+        creatorLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toUserInformation:"))
         
-        
+       
         let bar = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: "shareActivity:")
         self.navigationItem.rightBarButtonItems = [bar]
         if havePowerToEdit
@@ -186,20 +224,40 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             self?.present(alert, animated: true, completion: nil)
             
         })
+        addTagsIntoView()
+        addContentLabel()
         
-        
-        addTagsIntoScrollView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func addContentLabel()
+    {
+        
+        
+        
+        
+        let contentLabel = UILabel()
+        contentLabel.numberOfLines = 0
+        contentLabel.text = activityModel.activityEnity.content
+        let size = contentLabel.sizeThatFits(CGSize(width: self.containerView.frame.width - 16, height: 900 - nextY - 30))
+        contentLabel.frame = CGRect(x: 8, y: nextY + 30, width: size.width, height: size.height)
+        containerView.addSubview(contentLabel)
+        
+        
+    }
     
-    func addTagsIntoScrollView()
+    
+    
+    
+    
+    func addTagsIntoView()
     {
         var i = 0
-        var nextWidth: CGFloat = 0.0
+        var nextWidth: CGFloat = 8
+        nextY = stackView.frame.maxY + 10
         for tag in activityModel.activityEnity.tags
         {
             if let tagString = tag as? String
@@ -210,17 +268,25 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 tagLabel.font = UIFont(name: "Arial", size: 15)
                 tagLabel.textColor = UIColor.black
                 tagLabel.text = tagString
-                let size = tagLabel.sizeThatFits(UIScreen.main.bounds.size)
-                tagLabel.frame = CGRect(x: nextWidth, y: tagsScrollView.bounds.origin.y, width: size.width, height: tagsScrollView.bounds.height)
+                let size = tagLabel.sizeThatFits(CGSize(width: self.containerView.frame.width - 16, height: 20))
+                if (nextWidth + size.width) > self.containerView.frame.width - 8
+                {
+                    nextWidth = 8
+                    nextY += 20 + 2
+                    
+                }
+                tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
+                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
                 print(tagString)
-                nextWidth = nextWidth + 10 + size.width
+                nextWidth = nextWidth + 2 + size.width
                 tagLabel.layer.borderWidth = 0.5
-                tagLabel.layer.cornerRadius = 8
-                tagsScrollView.addSubview(tagLabel)
+                tagLabel.layer.cornerRadius = 4
+                tagLabel.layer.masksToBounds = true
+                containerView.addSubview(tagLabel)
             }
             i += 1
         }
-         tagsScrollView.contentSize.width = nextWidth
+        
     }
     //MARK: - pull Data Delegate
     func needUpdateUI() {
@@ -283,6 +349,12 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             if let controller = segue.destination as? ActivityPhotoListViewController
             {
                 controller.activityId = self.activityModel.activityEnity.id
+            }
+        }else if segue.identifier == seguename.ActivityDetailToUserInformation
+        {
+            if let controller = segue.destination as? PersonalInfomationViewController
+            {
+                controller.uid = activityModel.activityEnity.creator.id
             }
         }
             

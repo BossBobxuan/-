@@ -45,6 +45,11 @@ struct seguename {
     static let msgLIstToDetail = "msgLIstToDetail"
     static let msgDetailToUserInformation = "msgDetailToUserInformation"
     static let photoDetailToActivityDetail = "photoDetailToActivityDetail"
+    static let toUserTimeLine = "sugueToUserTImeLine"
+    static let toUserImageList = "segueToUserImageList"
+    static let UserImageToDetail = "UserImageToDetail"
+    static let UserInformationToMag = "UserInformationToMag"
+    static let ActivityDetailToUserInformation = "ActivityDetailToUserInformation"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -53,10 +58,15 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     @IBOutlet weak var fansCountsLabel: UILabel!
     @IBOutlet weak var followerCountsLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionTextView: UILabel!
     @IBOutlet weak var activityTypeSegmentControl: UISegmentedControl!
     
     @IBOutlet weak var followButton: UIButton!
+    
+ 
+    
+    
+    
     private var loadingstateUI:UIActivityIndicatorView!//加载更多的状态菊花
     private var btn:UIButton!//加载更多的按钮
     private var nowtype: String
@@ -89,8 +99,17 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     
     @IBOutlet weak var activityListTableView: UITableView!
     //MARK: - Event func
+    //切换到动态视图
+    @IBAction func toUserTimeLine(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.toUserTimeLine, sender: nil)
+    }
+    @IBAction func toUserImageList(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: seguename.toUserImageList, sender: nil)
+    }
     
-    
+    //切换到用户相册视图
     
     func editPersonalInformation(_ sender: UIBarButtonItem)
     {
@@ -165,10 +184,19 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         alert.addAction(UIAlertAction(title: "否", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    func toMsgDetail(_ sender: UIBarButtonItem)
+    {
+        performSegue(withIdentifier: seguename.UserInformationToMag, sender: nil)
+    }
+    //此处填写举报信息
+    func reportUser(_ sender: UIBarButtonItem)  {
+        
+    }
+    
+    
+    
+    
     //MARK: - 此处不太好，但是可以解决实时更新的问题
-    
-    
-    
     //MARK: - viewController lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -181,12 +209,19 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.wished)
             activityModel.getUserActivity(activityId: uid!, type: ActivityRequestType.created)
             
-            
+            //在此处添加图片
+            let msgBar = UIBarButtonItem(image: #imageLiteral(resourceName: "消息.png"), style: .bordered, target: self, action: "toMsgDetail:")
+            let reportBar = UIBarButtonItem(image: #imageLiteral(resourceName: "report.png"), style: .bordered, target: self, action: "reportUser:")
+            self.navigationItem.rightBarButtonItems = [msgBar,reportBar]
             
         }else
         {
             let editBar = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "editPersonalInformation:")
             let exitBar = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: "exitLogin:")
+            
+            
+            
+            
             self.navigationItem.rightBarButtonItems = [editBar,exitBar]
             followButton.isHidden = true
             activityModel.getUserActivity(token: token, type: ActivityRequestType.participated)
@@ -209,6 +244,9 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
         self.personalInformationModel = PersonalInformationModel(delegate: self)
         self.activityModel = UserActivityListModel(delegate: self)
         //此处以后需要更改该token
+        //更改头像为圆
+        self.avatarImageView.layer.cornerRadius = 25
+        self.avatarImageView.layer.masksToBounds = true
        
         
         self.activityListTableView.refreshControl = UIRefreshControl()
@@ -450,6 +488,26 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
                     controller.havePowerToEdit = true
                 }
             }
+        }else if segue.identifier ==  seguename.toUserTimeLine
+        {
+            if let controller = segue.destination as? TimeLineViewController
+            {
+                
+                controller.uid = uid
+                
+            }
+        }else if segue.identifier == seguename.toUserImageList
+        {
+            if let controller = segue.destination as? UserImageListViewController
+            {
+                controller.uid = uid
+            }
+        }else if segue.identifier == seguename.UserInformationToMag
+        {
+            if let controller = segue.destination as? msgDetailViewController
+            {
+                controller.uid = uid
+            }
         }
     }
     
@@ -492,7 +550,7 @@ extension Int
         
         //格式话输出
         let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        dformatter.dateFormat = "MM月dd日 HH:mm"
         return dformatter.string(from: date)
     }
     var dateNotYear: String

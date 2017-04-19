@@ -185,7 +185,7 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         {
             cell.followStateButton.setTitle("已关注", for: .normal)
         }
-        else if relation == "fans"
+        else if relation == "fan"
         {
             cell.followStateButton.setTitle("被关注", for: .normal)
             
@@ -249,9 +249,14 @@ class ShowUserViewController: UIViewController, UITableViewDelegate, UITableView
         {
             if let controller = segue.destination as? PersonalInfomationViewController
             {
-                controller.uid = (sender as! UserInformationEnity).id
-                controller.title = (sender as! UserInformationEnity).name
-                
+                if (sender as! UserInformationEnity).relation == "myself"
+                {
+                    controller.title = (sender as! UserInformationEnity).name
+                }else
+                {
+                    controller.uid = (sender as! UserInformationEnity).id
+                    controller.title = (sender as! UserInformationEnity).name
+                }
             }
         }
             

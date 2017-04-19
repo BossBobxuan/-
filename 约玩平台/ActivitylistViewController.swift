@@ -44,6 +44,45 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
 
     @IBOutlet weak var selecteScrollView: UIScrollView!
     // MARK: - Event func
+    
+    //点击推荐活动的图进入活动细节
+    func recommendImageTap(_ sender: UITapGestureRecognizer)
+    {
+        let index = sender.view!.tag
+        performSegue(withIdentifier: seguename.hotActivityToDetail, sender: model.recommendActiveEnitys[index])
+    }
+    
+    
+    
+    
+    //添加推荐活动的滑动
+    func leftslideswitch(_ sender : UISwipeGestureRecognizer)
+    {
+        
+        print("left")
+        UIView.animate(withDuration: 0.5, animations: {
+            if self.recommendActivityScrollView.contentOffset.x != self.recommendActivityScrollView.contentSize.width - self.recommendActivityScrollView.frame.width
+            {
+                self.recommendActivityScrollView.contentOffset.x += self.recommendActivityScrollView.frame.width
+            }
+        })
+        
+        
+    }
+    func rightslideswtich(_ sender : UISwipeGestureRecognizer)
+        
+    {
+        
+        print("right")
+        UIView.animate(withDuration: 0.5, animations: {
+            if self.recommendActivityScrollView.contentOffset.x != 0
+            {
+                self.recommendActivityScrollView.contentOffset.x -= self.recommendActivityScrollView.frame.width
+            }
+        })
+        
+        
+    }
     //该方法用于视图下移
     func ViewneedDown()
     {
@@ -119,11 +158,15 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         //初始化视图
         self.selectScrollViewAndTableViewContainerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "ViewneedDown"))
         changeDisdance = selectScrollViewAndTableViewContainerView.frame.minY - recommendActivityScrollView.frame.minY
-
+        
         
         //初始化model
         model = ActivityListModel(delegate: self)
         model.getActivity()
+        model.getRecommendActivity {
+            [weak self] in
+            self?.addRecommendActivity(enitys: self!.model.recommendActiveEnitys)
+        }
         //以下代码用于增加tableview的下拉刷新行为
         self.activityTableView.refreshControl = UIRefreshControl()
         self.activityTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
@@ -138,15 +181,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    // MARK: - locationdelegate
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location = locations[locations.count - 1]
-//        nowlocation = nowlocationAnnotation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        activityMap.addAnnotation(nowlocation)
-//        manager.stopUpdatingLocation()
-//        
-//    
-//    }
+ 
     // MARK: - talbeView Datasource and delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return beShowingActivity.count
@@ -312,6 +347,57 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         loadingstateUI = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         loadingstateUI.center = btn.center
         view.addSubview(loadingstateUI)
+    }
+    
+    private func addRecommendActivity(enitys: [ActiveEnity])
+    {
+        var nextX: CGFloat = 0
+        var i = 0
+        for enity in enitys
+        {
+            let activityImageView = UIImageView(frame: CGRect(x: nextX, y: 0, width: recommendActivityScrollView.frame.width, height: recommendActivityScrollView.frame.height))
+            let media = enity.image
+            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                activityImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                activityImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
+                        }
+                    }
+                }
+            }
+            activityImageView.isUserInteractionEnabled = true
+            activityImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "recommendImageTap:"))
+            activityImageView.tag = i
+            recommendActivityScrollView.addSubview(activityImageView)
+            nextX += recommendActivityScrollView.frame.width
+            i += 1
+            
+            
+        }
+        recommendActivityScrollView.contentSize.width = nextX
+        let leftgesture = UISwipeGestureRecognizer(target: self, action: "leftslideswitch:")
+        leftgesture.direction = .left
+        recommendActivityScrollView.addGestureRecognizer(leftgesture)
+        let rightgesture = UISwipeGestureRecognizer(target: self, action: "rightslideswtich:")
+        rightgesture.direction = .right
+        recommendActivityScrollView.addGestureRecognizer(rightgesture)
+        recommendActivityScrollView.isScrollEnabled = false
     }
     
     
