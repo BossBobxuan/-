@@ -44,17 +44,27 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
     var timer: Timer!
     func toUserInformation(_ sender: UITapGestureRecognizer)
     {
-        if sender.view!.tag == 0
+        if uid == -255
         {
-            performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: 1)
+            
         }else
         {
-            performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
+            if sender.view!.tag == 0
+            {
+                performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: 1)
+            }else
+            {
+                performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
+            }
         }
+      
     }
     func toUser(_ sender: UIBarButtonItem)
     {
-        performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
+        if uid != -255
+        {
+            performSegue(withIdentifier: seguename.msgDetailToUserInformation, sender: nil)
+        }
     }
     func resignKeyBoard()
     {
@@ -212,6 +222,7 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
         if avatarImage == nil
         {
             let media = model.avatar!
+            print(media)
             let url = urlStruct.basicUrl + "media/" + "\(media)"
             if let image = self.getImageFromCaches(mediaId: media)
             {
@@ -239,6 +250,7 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
         if personalAvatarImage == nil
         {
             let media = model.personalavatar!
+            print(media)
             let url = urlStruct.basicUrl + "media/" + "\(media)"
             if let image = self.getImageFromCaches(mediaId: media)
             {

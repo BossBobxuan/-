@@ -95,6 +95,7 @@
 		B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */; };
 		B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD601E913039004F1113 /* ActivityListModel.swift */; };
 		B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */; };
+		B0ED2B761EA9F4EF00D98370 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0ED2B751EA9F4EF00D98370 /* down@2x.png */; };
 		B0F2EEC21EA208DC003FF390 /* DetailPrivateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
@@ -221,6 +222,7 @@
 		B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLocationViewController.swift; sourceTree = "<group>"; };
 		B0E5BD601E913039004F1113 /* ActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListModel.swift; sourceTree = "<group>"; };
 		B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
+		B0ED2B751EA9F4EF00D98370 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
 		B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPrivateModel.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				B07787891EA6FFFB00FA44A2 /* 举报.png */,
 				B077878A1EA6FFFB00FA44A2 /* msg@2x.png */,
 				B077878B1EA6FFFB00FA44A2 /* 消息@2x.png */,
+				B0ED2B751EA9F4EF00D98370 /* down@2x.png */,
 				B077878C1EA6FFFB00FA44A2 /* 资料@2x.png */,
 				B047D7211E893F9B00A928EF /* interest.png */,
 				B047D7171E892FE900A928EF /* notification.png */,
@@ -630,6 +633,7 @@
 				B07164361E1CF179006A2FCD /* LaunchScreen.storyboard in Resources */,
 				B047D71E1E89346D00A928EF /* photo.png in Resources */,
 				B020C1D51EA65D5900243901 /* 举报@2x.png in Resources */,
+				B0ED2B761EA9F4EF00D98370 /* down@2x.png in Resources */,
 				B047D7221E893F9B00A928EF /* interest.png in Resources */,
 				B047185C1E8A82C5000488CD /* address.png in Resources */,
 				B047D71C1E892FE900A928EF /* participate.png in Resources */,

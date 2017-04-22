@@ -93,7 +93,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             })
             
             selectScrollViewAndTableViewContainerView.gestureRecognizers?.removeAll()
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: "viewNeedUp")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "down.png"), style: .bordered, target: self, action: "viewNeedUp")
         }
     }
     func viewNeedUp()
