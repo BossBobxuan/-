@@ -53,6 +53,9 @@ struct seguename {
     static let toReport = "segueToReport"
     static let msgListToCommentList = "msgListToCommentList"
     static let listToAddNotification = "listToAddNotification"
+    static let ActivityToReport = "ActivityToReport"
+    static let photoToReport = "photoToReport"
+    static let editPersonalToChangePassword = "editPersonalToChangePassword"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {

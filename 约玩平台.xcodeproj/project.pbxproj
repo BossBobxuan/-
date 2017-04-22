@@ -91,6 +91,7 @@
 		B096D2B71E7AC62900E5D201 /* UserInformationEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B61E7AC62900E5D201 /* UserInformationEnity.swift */; };
 		B096D2BA1E7AC65E00E5D201 /* ActivityEnity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */; };
 		B0B8439C1E9F14B8004BDC91 /* singleClassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */; };
+		B0D2C1561EABA66F006C9D3F /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D2C1551EABA66F006C9D3F /* EditPasswordViewController.swift */; };
 		B0DC12AF1E8A98F700428E97 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */; };
 		B0E5BD5F1E911FFE004F1113 /* ActivityLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */; };
 		B0E5BD611E913039004F1113 /* ActivityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5BD601E913039004F1113 /* ActivityListModel.swift */; };
@@ -218,6 +219,7 @@
 		B096D2B91E7AC65E00E5D201 /* ActivityEnity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnity.swift; sourceTree = "<group>"; };
 		B09B8D4A1E1CFEA90056EB2A /* bridgingheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridgingheader.h; sourceTree = "<group>"; };
 		B0B8439B1E9F14B8004BDC91 /* singleClassManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleClassManager.swift; sourceTree = "<group>"; };
+		B0D2C1551EABA66F006C9D3F /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
 		B0DC12AE1E8A98F700428E97 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
 		B0E5BD5E1E911FFE004F1113 /* ActivityLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLocationViewController.swift; sourceTree = "<group>"; };
 		B0E5BD601E913039004F1113 /* ActivityListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityListModel.swift; sourceTree = "<group>"; };
@@ -302,12 +304,13 @@
 				B08D2C781EA63FA0004EDE44 /* UserImageListViewController.swift */,
 				B08AFDE01E7D5524004C9C96 /* ShowUserViewController.swift */,
 				B010BCA51E7FF8260085CD79 /* EditPersonalInformationViewController.swift */,
+				B0D2C1551EABA66F006C9D3F /* EditPasswordViewController.swift */,
 				B04EBE511EA75376004AE632 /* ReportViewController.swift */,
 				B08CE0CA1E82A45000DA44A3 /* UserActivityListModel.swift */,
 				B096D2B31E7AB56600E5D201 /* UserInformationModel.swift */,
 				B08AFDE51E7D5D58004C9C96 /* FollowersOrFansModel.swift */,
-				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
 				B08D2C7A1EA640A7004EDE44 /* UserImageModel.swift */,
+				B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */,
 				B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */,
 			);
 			name = "用户信息界面";
@@ -740,6 +743,7 @@
 				B096D2B41E7AB56600E5D201 /* UserInformationModel.swift in Sources */,
 				B071645D1E1CF326006A2FCD /* LoginViewController.swift in Sources */,
 				B0F7627C1E966D4400E0169A /* TimeLineViewController.swift in Sources */,
+				B0D2C1561EABA66F006C9D3F /* EditPasswordViewController.swift in Sources */,
 				B047D7201E893B2300A928EF /* havePullfreshAndLoadmoreTableView.swift in Sources */,
 				B07164311E1CF179006A2FCD /* ____.xcdatamodeld in Sources */,
 				B0221BBD1E8FEBDC0021BB40 /* NotificationEnity.swift in Sources */,

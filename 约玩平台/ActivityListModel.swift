@@ -21,9 +21,10 @@ class ActivityListModel
         self.delegate = delegate
     }
     
-    func getActivity()
+    func getActivity(token: String)
     {
         let requestUrl = urlStruct.basicUrl + "recommend/activity/hot.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             [weak self] (dataTask,response) in
             self?.dealwithResponse(response: response)
@@ -38,10 +39,11 @@ class ActivityListModel
         page += 1
     }
     
-    func refreshActivity()
+    func refreshActivity(token: String)
     {
         page = 1
         let requestUrl = urlStruct.basicUrl + "recommend/activity/hot.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: ["page":page], progress: {(progress) in }, success: {
             [weak self] (dataTask,response) in
             self?.activeEnitys.removeAll()
@@ -57,9 +59,10 @@ class ActivityListModel
         page += 1
     }
     
-    func getRecommendActivity(success: @escaping () -> Void)
+    func getRecommendActivity(token: String,success: @escaping () -> Void)
     {
         let requestUrl = urlStruct.basicUrl + "recommend/activity.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
             [weak self] (dataTask,response) in
             self?.dealWithRecommendResponse(response: response)

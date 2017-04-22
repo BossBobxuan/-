@@ -21,6 +21,7 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     @IBOutlet weak var genderPickerView: UIPickerView!
     @IBOutlet weak var genderButton: UIButton!
     
+    @IBOutlet weak var changePasswordButton: UIButton!
     //MARK: - Event func
     //使选择视图出现
     @IBAction func showPickerView(_ sender: UIButton)
@@ -119,6 +120,8 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: "editFinish:")
         
         self.avatarImageView.image = avatarimage
+        self.avatarImageView.layer.masksToBounds = true
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.height / 2
         self.nameTextField.text = userInformationModel.personalInformationEnity?.name
        
         self.discriptionTextField.text = userInformationModel.personalInformationEnity?.description

@@ -130,7 +130,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     func pullToRefresh()
     {
         print("下拉刷新")
-        model.refreshActivity()
+        model.refreshActivity(token: token)
         
     }
     //该方法用于加载更多数据与视图更新
@@ -138,7 +138,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     {
         btn.isHidden = true
         loadingstateUI.startAnimating()
-        model.getActivity()
+        model.getActivity(token: token)
     }
     func toComment(_ sender: UIButton)
     {
@@ -162,8 +162,8 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         
         //初始化model
         model = ActivityListModel(delegate: self)
-        model.getActivity()
-        model.getRecommendActivity {
+        model.getActivity(token: token)
+        model.getRecommendActivity(token: token) {
             [weak self] in
             self?.addRecommendActivity(enitys: self!.model.recommendActiveEnitys)
         }

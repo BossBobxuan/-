@@ -29,6 +29,10 @@ class photoDetailViewController: UIViewController {
         performSegue(withIdentifier: seguename.photoDetailToComment, sender: self)
         
     }
+    func toReport()
+    {
+        performSegue(withIdentifier: seguename.photoToReport, sender: nil)
+    }
     func deleteImage(_ sender: UIBarButtonItem)
     {
         let alert = UIAlertController(title: "是否删除图片", message: "", preferredStyle: .alert)
@@ -101,7 +105,9 @@ class photoDetailViewController: UIViewController {
         self.commentCountLabel.text = "\(enity.commentCount)"
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "saveImage:"))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: "deleteImage:")
+        let deleteItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: "deleteImage:")
+        let reportItem = UIBarButtonItem(image: #imageLiteral(resourceName: "report.png"), style: .bordered, target: self, action: "toReport")
+        self.navigationItem.rightBarButtonItems = [reportItem,deleteItem]
         if activityInformationEnity != nil
         {
             self.toActivityButton.setTitle("#" + activityInformationEnity!.activityTitle + "#", for: .normal)
@@ -138,6 +144,13 @@ class photoDetailViewController: UIViewController {
             if let controller = segue.destination as? ActicityDetailViewController
             {
                 controller.activityModel.activityEnity = sender as! ActiveEnity
+            }
+        }else if segue.identifier == seguename.photoToReport
+        {
+            if let controller = segue.destination as? ReportViewController
+            {
+                controller.uid = enity.id
+                controller.attachType = 2
             }
         }
         

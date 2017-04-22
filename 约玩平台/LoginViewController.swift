@@ -40,7 +40,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             }, failure: {[weak self] (dataTask,error) in
                 print(error)
                 waitalert.dismiss(animated: true, completion: {(_) in
-                    let alert = UIAlertController(title: "注册失败", message: "输入用户名密码错误或者网络连接失败", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "登录失败", message: "输入用户名密码错误或者网络连接失败", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
                     self?.present(alert, animated: true, completion: nil)})
                 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 class ActicityDetailViewController: UIViewController, PullDataDelegate {
     //MARK: - outlet
     
@@ -38,6 +38,7 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     let manager = singleClassManager.manager
     private var nextY: CGFloat = 0
     private let colorArray = [UIColor.red,UIColor.blue,UIColor.green,UIColor.yellow]
+    private let notificationCenter = UNUserNotificationCenter.current()
     //MARK: - event func
     func toEditActivity()
     {
@@ -93,11 +94,29 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             activityModel.participateActivity(token: token)
             participateButton.isEnabled = false
             participateButton.setTitle("已参加", for: .normal)
+            let date = Date()
+            let timeInterval = Double(activityModel.activityEnity.beginTime - 1800) - date.timeIntervalSinceNow
+            if timeInterval > 0
+            {
+                let content = UNMutableNotificationContent()
+                content.title = NSString.localizedUserNotificationString(forKey: activityModel.activityEnity.activityTitle, arguments: nil)
+                content.body = NSString.localizedUserNotificationString(forKey: "你的活动将于" + activityModel.activityEnity.beginTime.date + "开始", arguments: nil)
+                
+                let triger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+                let request = UNNotificationRequest(identifier: "\(activityModel.activityEnity.id)", content: content, trigger: triger)
+                notificationCenter.add(request, withCompletionHandler: nil)
+            }
+            
+            
+            
+            
+            
         }else if participateButton.titleLabel?.text == "已参加"
         {
             activityModel.unparticipateActivity(token: token)
             participateButton.isEnabled = false
             participateButton.setTitle("+ 参加", for: .normal)
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(activityModel.activityEnity.id)"])
         }
     }
     func toComment()
@@ -122,6 +141,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     {
         performSegue(withIdentifier: seguename.toActivityPhoto, sender: nil)
     }
+    func reportActivity()
+    {
+        performSegue(withIdentifier: seguename.ActivityToReport, sender: nil)
+    }
+    
+    
+    
     //MARK: - viewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,6 +186,9 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
         if havePowerToEdit
         {
             self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: "toEditActivity"))
+        }else
+        {
+            self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: #imageLiteral(resourceName: "report.png"), style: .bordered, target: self, action: "reportActivity"))
         }
         
         let media = activityModel.activityEnity.image
@@ -355,6 +384,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             if let controller = segue.destination as? PersonalInfomationViewController
             {
                 controller.uid = activityModel.activityEnity.creator.id
+            }
+        }else if segue.identifier == seguename.ActivityToReport
+        {
+            if let controller = segue.destination as? ReportViewController
+            {
+                controller.uid = activityModel.activityEnity.id
+                controller.attachType = 1
             }
         }
             
