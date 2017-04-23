@@ -56,6 +56,7 @@ struct seguename {
     static let ActivityToReport = "ActivityToReport"
     static let photoToReport = "photoToReport"
     static let editPersonalToChangePassword = "editPersonalToChangePassword"
+    static let hotActivityToUser = "hotActivityToUser"
     
 }
 class PersonalInfomationViewController: UIViewController, PullDataDelegate, getUserActivityDelegate, UITableViewDelegate, UITableViewDataSource {

@@ -11,7 +11,7 @@ class ActivityListModel
 {
     var activeEnitys: [ActiveEnity] = []
     var recommendActiveEnitys: [ActiveEnity] = []
-    
+    var recommendUserEnitys: [UserInformationEnity] = []
     
     
     weak var delegate: PullDataDelegate!
@@ -75,6 +75,48 @@ class ActivityListModel
                 
         })
     }
+    func getRecommendUser(token: String,success: @escaping () -> Void)
+    {
+        let requestUrl = urlStruct.basicUrl + "recommend/user.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            [weak self] (dataTask,response) in
+            self?.dealWithRecommendUserResponse(response: response)
+            success()
+            
+            
+            }, failure: {[weak self] (dataTask,error) in
+                print(error)
+                self?.delegate.getDataFailed()
+                
+        })
+    }
+    private func dealWithRecommendUserResponse(response: Any?)
+    {
+        if let originalDic = response as? NSDictionary
+        {
+            if let UserArray = originalDic["recommend"] as? NSArray
+            {
+                
+                for user in UserArray
+                {
+                    if let JsonDictionary = user as? NSDictionary
+                    {
+                        //MARK: - 此处gender暂时为nil，以后需要修改
+                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: (JsonDictionary["gender"] as! String))
+                        recommendUserEnitys.append(userInformationEnity)
+                        
+                    }
+                    
+                }
+                
+            }
+
+        }
+    }
+    
+    
+    
     
     private func dealWithRecommendResponse(response: Any?)
     {

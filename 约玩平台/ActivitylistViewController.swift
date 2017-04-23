@@ -44,7 +44,12 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
 
     @IBOutlet weak var selecteScrollView: UIScrollView!
     // MARK: - Event func
-    
+    //点击推荐用户进入用户界面
+    func recommendToUser(_ sender: UITapGestureRecognizer)
+    {
+        let index = sender.view!.tag
+        performSegue(withIdentifier: seguename.hotActivityToUser, sender: index)
+    }
     //点击推荐活动的图进入活动细节
     func recommendImageTap(_ sender: UITapGestureRecognizer)
     {
@@ -167,12 +172,19 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             [weak self] in
             self?.addRecommendActivity(enitys: self!.model.recommendActiveEnitys)
         }
+        model.getRecommendUser(token: token){
+            [weak self] in
+            self?.addRecommendUser(enitys: self!.model.recommendUserEnitys)
+        
+        
+        }
         //以下代码用于增加tableview的下拉刷新行为
         self.activityTableView.refreshControl = UIRefreshControl()
         self.activityTableView.refreshControl?.addTarget(self, action: "pullToRefresh", for: .valueChanged)
         self.activityTableView.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新活动")
         //增加读取更多数据的按钮
         addGetMorebtn()
+        
         
 
     }
@@ -350,6 +362,51 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         loadingstateUI.center = btn.center
         view.addSubview(loadingstateUI)
     }
+    private func addRecommendUser(enitys: [UserInformationEnity])
+    {
+        var nextX: CGFloat = 0
+        var i = 0
+        for enity in enitys
+        {
+            let userView = recommendUserView(x: nextX, y: 5)
+            let media = enity.avatar!
+            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            
+            if let image = self.getImageFromCaches(mediaId: media)
+            {
+                userView.avatarImageView.image = image
+            }else
+            {
+                
+                DispatchQueue.global().async {
+                    
+                    if let data = try? Data(contentsOf: URL(string: url)!)
+                    {
+                        print("获取数据")
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data)
+                            {
+                                print("显示图片")
+                                userView.avatarImageView.image = image
+                                self.saveImageCaches(image: image, mediaId: media)
+                            }
+                        }
+                    }
+                }
+            }
+            userView.nameLabel.text = enity.name
+            userView.tag = i//传递index标志被点击的view
+            recommendUserScrollView.addSubview(userView)
+            userView.isUserInteractionEnabled = true
+            userView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "recommendToUser:"))
+            nextX += 85
+        }
+        recommendUserScrollView.contentSize.width = nextX
+    }
+    
+    
+    
+    
     
     private func addRecommendActivity(enitys: [ActiveEnity])
     {
@@ -421,6 +478,12 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             if let controller = segue.destination as? ActicityDetailViewController
             {
                 controller.activityModel.activityEnity = sender as! ActiveEnity
+            }
+        }else if segue.identifier == seguename.hotActivityToUser
+        {
+            if let controller = segue.destination as? PersonalInfomationViewController
+            {
+                controller.uid = model.recommendUserEnitys[sender! as! Int].id
             }
         }
         

@@ -11,7 +11,8 @@ import Photos
 class EditActivityViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, selectLocationDelegate, PullDataDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     //MARK: - outlet
-    @IBOutlet weak var tagsScrollView: UIScrollView!
+    
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var activityTitleTextField: UITextField!
     @IBOutlet weak var feeTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
@@ -35,11 +36,13 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     
     @IBOutlet weak var catogeryButton: UIButton!
     //MARK: - let and var
+    var tagViewArray: [UILabel] = []
     private var beginTimeStamp: Int = 0
     private var endTimeStamp: Int = 0
     var activityDetailModel:ActivityDetailModel?
     private let activityType: [String] = ["全部","聚餐","运动","旅行","电影","音乐","分享会","赛事","桌游","其他"]
     private var nowActivityType: String = "全部"
+    private let colorArray = [UIColor.red,UIColor.blue,UIColor.green,UIColor.yellow]
     private var tagsArray: [String] = []//用于存放标签
     private var longitude: Double? //用于存放地理位置
     private var latitude: Double?
@@ -64,14 +67,14 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
             alert1.addTextField(configurationHandler: {(_) in })
             alert1.addAction(UIAlertAction(title: "添加", style: .default, handler: {(alert) in
                 self?.tagsArray.append(alert1.textFields![0].text!)
-                self?.addTagsIntoScrollView()
+                self?.addTagsIntoView()
             }))
             alert1.addAction(UIAlertAction(title: "取消", style: .cancel, handler: {(_) in }))
             self?.present(alert1, animated: true, completion: {})
         }))
         alert.addAction(UIAlertAction(title: "清除标签", style: .default, handler: {[weak self] (_) in
             self?.tagsArray.removeAll()
-            self?.addTagsIntoScrollView()
+            self?.addTagsIntoView()
         }))
         alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: {[weak self] (_) in }))
         self.present(alert, animated: true, completion: {})
@@ -176,6 +179,18 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         
         
     }
+    func deleteTapTag(_ sender: UITapGestureRecognizer)
+    {
+        let index = sender.view!.tag
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "删除", style: .default, handler: {_ in
+            self.tagsArray.remove(at: index)
+            self.addTagsIntoView()
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     func editDone(_ sender: UIBarButtonItem)
     {
         print("done")
@@ -276,7 +291,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                 tagsArray.append(element as! String)
             }//MARK: - 有可能出问题
             print(tagsArray)
-            addTagsIntoScrollView()
+            addTagsIntoView()
             //异步获取图片
             let media = activityDetailModel!.activityEnity.image
             let url = urlStruct.basicUrl + "media/" + "\(media)"
@@ -383,57 +398,98 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
         nowActivityType = activityType[row]
     }
     //MARK: - other func
-    func addTagsIntoScrollView()
+    private func addTagsIntoView()
     {
         var i = 0
-        tagsScrollView.subviews.forEach({(view) in view.removeFromSuperview()})//清空所有子视图
-        //tagsScrollView.contentSize.width = CGFloat(50 * (tagsArray.count + 1))
-        var nextWidth: CGFloat = 0.0
+        var nextWidth: CGFloat = 8
+        var nextY = stackView.frame.maxY + 10
+        tagViewArray.forEach({(label) in label.removeFromSuperview()})
+        tagViewArray.removeAll()
         if activityDetailModel != nil
         {
             activityDetailModel?.activityEnity.tags = tagsArray as NSArray
             for tagString in tagsArray
             {
-                
+                print("1111")
                 print("1111")
                 let tagLabel = UILabel()
                 tagLabel.font = UIFont(name: "Arial", size: 15)
-                tagLabel.textColor = UIColor.black
-                tagLabel.text = tagString
-                let size = tagLabel.sizeThatFits(UIScreen.main.bounds.size)
-                tagLabel.frame = CGRect(x: nextWidth, y: tagsScrollView.bounds.origin.y, width: size.width, height: tagsScrollView.bounds.height)
-                print(tagString)
-                nextWidth = nextWidth + 10 + size.width
-                tagLabel.layer.borderWidth = 0.5
-                tagLabel.layer.cornerRadius = 8
-                tagsScrollView.addSubview(tagLabel)
                 
+                tagLabel.text = tagString
+                let size = tagLabel.sizeThatFits(CGSize(width: self.view.frame.width - 16, height: 20))
+                if (nextWidth + size.width) > self.view.frame.width - 8
+                {
+                    nextWidth = 8
+                    nextY += 20 + 2
+                    
+                }
+                tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
+                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
+                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
+                {
+                    tagLabel.textColor = UIColor.white
+                }else
+                {
+                    tagLabel.textColor = UIColor.black
+                }
+                print(tagString)
+                nextWidth = nextWidth + 2 + size.width
+                tagLabel.layer.borderWidth = 0.5
+                tagLabel.layer.cornerRadius = 4
+                tagLabel.layer.masksToBounds = true
+                tagLabel.tag = i
+                tagLabel.isUserInteractionEnabled = true
+                tagLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "deleteTapTag:"))
+                self.view.addSubview(tagLabel)
+                self.tagViewArray.append(tagLabel)
                 i += 1
             }
-            tagsScrollView.contentSize.width = nextWidth
         }else
         {
             for tagString in tagsArray
             {
-                
+                print("1111")
+                print("1111")
                 let tagLabel = UILabel()
                 tagLabel.font = UIFont(name: "Arial", size: 15)
-                tagLabel.textColor = UIColor.black
-                tagLabel.text = tagString
-                let size = tagLabel.sizeThatFits(UIScreen.main.bounds.size)
-                tagLabel.frame = CGRect(x: nextWidth, y: tagsScrollView.bounds.origin.y, width: size.width, height: tagsScrollView.bounds.height)
-                print(tagString)
-                nextWidth = nextWidth + 10 + size.width
-                tagLabel.layer.borderWidth = 0.5
-                tagLabel.layer.cornerRadius = 8
-                tagsScrollView.addSubview(tagLabel)
                 
+                tagLabel.text = tagString
+                let size = tagLabel.sizeThatFits(CGSize(width: self.view.frame.width - 16, height: 20))
+                if (nextWidth + size.width) > self.view.frame.width - 8
+                {
+                    nextWidth = 8
+                    nextY += 20 + 2
+                    
+                }
+                tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
+                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
+                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
+                {
+                    tagLabel.textColor = UIColor.white
+                }else
+                {
+                    tagLabel.textColor = UIColor.black
+                }
+                print(tagString)
+                nextWidth = nextWidth + 2 + size.width
+                tagLabel.layer.borderWidth = 0.5
+                tagLabel.layer.cornerRadius = 4
+                tagLabel.layer.masksToBounds = true
+                tagLabel.tag = i
+                tagLabel.isUserInteractionEnabled = true
+                tagLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "deleteTapTag:"))
+                self.view.addSubview(tagLabel)
+                self.tagViewArray.append(tagLabel)
                 i += 1
             }
-            tagsScrollView.contentSize.width = nextWidth
         }
         
     }
+    
+    
+    
+    
+    
     // MARK: - pull Data Delegate
     func needUpdateUI() {
         let _ = self.navigationController?.popViewController(animated: true)

@@ -295,7 +295,7 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 print("1111")
                 let tagLabel = UILabel()
                 tagLabel.font = UIFont(name: "Arial", size: 15)
-                tagLabel.textColor = UIColor.black
+                
                 tagLabel.text = tagString
                 let size = tagLabel.sizeThatFits(CGSize(width: self.containerView.frame.width - 16, height: 20))
                 if (nextWidth + size.width) > self.containerView.frame.width - 8
@@ -306,6 +306,13 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                 }
                 tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
                 tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
+                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
+                {
+                    tagLabel.textColor = UIColor.white
+                }else
+                {
+                    tagLabel.textColor = UIColor.black
+                }
                 print(tagString)
                 nextWidth = nextWidth + 2 + size.width
                 tagLabel.layer.borderWidth = 0.5
