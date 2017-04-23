@@ -12,3 +12,10 @@
 
 #endif /* bridgingheader_h */
 #import <AFNetworking/AFNetworking.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/QQApiInterfaceObject.h>
+#import "TencentOpenAPI/sdkdef.h"
+#import "TencentOpenAPI/TencentApiInterface.h"
+#import "TencentOpenAPI/TencentMessageObject.h"
+#import "TencentOpenAPI/TencentOAuth.h"
+#import "TencentOpenAPI/TencentOAuthObject.h"

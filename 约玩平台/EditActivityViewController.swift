@@ -244,8 +244,8 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                     [weak self] (dataTask,response) in
                     print("success")
                     alert.dismiss(animated: true, completion: {})
-                    let _ = self?.navigationController?.popViewController(animated: true)
-                
+                    
+                    
                 
                 }, failure: {[weak self] (dataTask,error) in
                     print(error)
@@ -494,6 +494,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     func needUpdateUI() {
         let _ = self.navigationController?.popViewController(animated: true)
         let controller = self.navigationController?.viewControllers.last as! ActicityDetailViewController
+        let _ = controller.navigationController?.popViewController(animated: true)
         controller.navigationItem.title = controller.activityModel.activityEnity.activityTitle
         controller.activityTitleLabel.text = controller.activityModel.activityEnity.activityTitle
         

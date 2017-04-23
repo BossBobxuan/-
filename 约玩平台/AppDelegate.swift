@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: .alert, completionHandler: {_ in })
+        let _ = TencentOAuth(appId: "1105831874", andDelegate : nil)
         return true
     }
 

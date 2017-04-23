@@ -48,6 +48,15 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     func shareActivity(_ sender: UIBarButtonItem)
     {
         
+        let urlString = urlStruct.basicUrl + "mobile.html?id=" + "\(activityModel.activityEnity.id)"
+        let media = activityModel.activityEnity.image
+        let url = urlStruct.basicUrl + "media/" + "\(media)"
+        
+        let newsObj = QQApiNewsObject(url: URL(string: urlString)!, title: activityModel.activityEnity.activityTitle, description: activityModel.activityEnity.content, previewImageURL: URL(string: url)!, targetContentType: QQApiURLTargetTypeNews)
+        let req = SendMessageToQQReq(content: newsObj)
+        let _ = QQApiInterface.send(req!)
+        
+        
     }
     @IBAction func toPhotoViewController(_ sender: UIButton) {
         performSegue(withIdentifier: seguename.toActivityPhoto, sender: nil)
@@ -94,8 +103,10 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
             activityModel.participateActivity(token: token)
             participateButton.isEnabled = false
             participateButton.setTitle("已参加", for: .normal)
-            let date = Date()
-            let timeInterval = Double(activityModel.activityEnity.beginTime - 1800) - date.timeIntervalSinceNow
+            let date = Date(timeIntervalSinceNow: 0)
+            let timeInterval = Double(activityModel.activityEnity.beginTime / 1000 - 1800) - date.timeIntervalSince1970
+            print(date.timeIntervalSince1970)
+            print(timeInterval)
             if timeInterval > 0
             {
                 let content = UNMutableNotificationContent()

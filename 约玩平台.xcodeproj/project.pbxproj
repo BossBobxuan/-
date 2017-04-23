@@ -98,6 +98,16 @@
 		B0E6243A1E8D30C600C39218 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */; };
 		B0ED2B761EA9F4EF00D98370 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0ED2B751EA9F4EF00D98370 /* down@2x.png */; };
 		B0F057891EACD291001800A5 /* recommendUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F057881EACD291001800A5 /* recommendUserView.swift */; };
+		B0F057931EACE5C8001800A5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057921EACE5C8001800A5 /* Security.framework */; };
+		B0F057951EACE5E9001800A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057941EACE5E9001800A5 /* libiconv.tbd */; };
+		B0F057971EACE5F5001800A5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057961EACE5F5001800A5 /* SystemConfiguration.framework */; };
+		B0F057991EACE5FD001800A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057981EACE5FD001800A5 /* CoreGraphics.framework */; };
+		B0F0579B1EACE609001800A5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F0579A1EACE609001800A5 /* libsqlite3.tbd */; };
+		B0F0579D1EACE611001800A5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F0579C1EACE611001800A5 /* CoreTelephony.framework */; };
+		B0F0579F1EACE61B001800A5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F0579E1EACE61B001800A5 /* libstdc++.tbd */; };
+		B0F057A11EACE623001800A5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057A01EACE623001800A5 /* libz.tbd */; };
+		B0F057A31EACE7BF001800A5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0F057A21EACE7BF001800A5 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		B0F057A51EACE9B0001800A5 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F057A41EACE9B0001800A5 /* TencentOpenAPI.framework */; };
 		B0F2EEC21EA208DC003FF390 /* DetailPrivateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */; };
 		B0F4E0C11E7EB4F40097B4FD /* UserInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */; };
 		B0F4E0C51E7EBE200097B4FD /* haveUidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */; };
@@ -227,6 +237,16 @@
 		B0E624391E8D30C600C39218 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
 		B0ED2B751EA9F4EF00D98370 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
 		B0F057881EACD291001800A5 /* recommendUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recommendUserView.swift; sourceTree = "<group>"; };
+		B0F057921EACE5C8001800A5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B0F057941EACE5E9001800A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B0F057961EACE5F5001800A5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B0F057981EACE5FD001800A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B0F0579A1EACE609001800A5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		B0F0579C1EACE611001800A5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B0F0579E1EACE61B001800A5 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		B0F057A01EACE623001800A5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B0F057A21EACE7BF001800A5 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		B0F057A41EACE9B0001800A5 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		B0F2EEC11EA208DC003FF390 /* DetailPrivateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPrivateModel.swift; sourceTree = "<group>"; };
 		B0F4E0C01E7EB4F40097B4FD /* UserInformationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTableViewCell.swift; sourceTree = "<group>"; };
 		B0F4E0C41E7EBE200097B4FD /* haveUidButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = haveUidButton.swift; sourceTree = "<group>"; };
@@ -246,6 +266,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F057A11EACE623001800A5 /* libz.tbd in Frameworks */,
+				B0F0579F1EACE61B001800A5 /* libstdc++.tbd in Frameworks */,
+				B0F0579D1EACE611001800A5 /* CoreTelephony.framework in Frameworks */,
+				B0F0579B1EACE609001800A5 /* libsqlite3.tbd in Frameworks */,
+				B0F057991EACE5FD001800A5 /* CoreGraphics.framework in Frameworks */,
+				B0F057A51EACE9B0001800A5 /* TencentOpenAPI.framework in Frameworks */,
+				B0F057971EACE5F5001800A5 /* SystemConfiguration.framework in Frameworks */,
+				B0F057951EACE5E9001800A5 /* libiconv.tbd in Frameworks */,
+				B0F057931EACE5C8001800A5 /* Security.framework in Frameworks */,
 				9BDA36CD3AF22A6649432D1D /* libPods-约玩平台.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +422,7 @@
 		B071641C1E1CF179006A2FCD = {
 			isa = PBXGroup;
 			children = (
+				B0F057A21EACE7BF001800A5 /* TencentOpenApi_IOS_Bundle.bundle */,
 				B07164271E1CF179006A2FCD /* 约玩平台 */,
 				B071643F1E1CF179006A2FCD /* 约玩平台Tests */,
 				B071644A1E1CF179006A2FCD /* 约玩平台UITests */,
@@ -515,6 +545,15 @@
 		FD0A758884871EC04E41FC42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0F057A01EACE623001800A5 /* libz.tbd */,
+				B0F057A41EACE9B0001800A5 /* TencentOpenAPI.framework */,
+				B0F0579E1EACE61B001800A5 /* libstdc++.tbd */,
+				B0F0579C1EACE611001800A5 /* CoreTelephony.framework */,
+				B0F0579A1EACE609001800A5 /* libsqlite3.tbd */,
+				B0F057981EACE5FD001800A5 /* CoreGraphics.framework */,
+				B0F057961EACE5F5001800A5 /* SystemConfiguration.framework */,
+				B0F057941EACE5E9001800A5 /* libiconv.tbd */,
+				B0F057921EACE5C8001800A5 /* Security.framework */,
 				D80C8CCBBB79A3AE310B1C7A /* libPods-约玩平台.a */,
 			);
 			name = Frameworks;
@@ -633,6 +672,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F057A31EACE7BF001800A5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				B07787871EA6FF4400FA44A2 /* report@2x.png in Resources */,
 				B04EBE501EA74DA9004AE632 /* people@2x.png in Resources */,
 				B05F3F871E223D3D00777C82 /* interested.png in Resources */,
@@ -903,6 +943,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-fobjc-arc";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -947,6 +988,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-fobjc-arc";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -960,6 +1002,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7PY3375THJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/约玩平台",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
@@ -975,6 +1022,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7PY3375THJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/约玩平台",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
