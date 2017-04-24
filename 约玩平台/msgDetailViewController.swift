@@ -85,9 +85,10 @@ class msgDetailViewController: UIViewController, PullDataDelegate, UITextFieldDe
         model.getPersonalAvatar(token: token)
         model.getMsgDetailList(token: token, uid: uid)
         print(self.view.frame.maxY)
-        print(self.containScrollView.frame.maxY)
+        print(containScrollView.frame.height)
         print(UIScreen.main.bounds.height)
         self.inputTextField = UITextField(frame: CGRect(x: 8, y: containScrollView.frame.maxY + 5, width: UIScreen.main.bounds.width - 16, height: 25))
+        
         inputTextField.layer.borderWidth = 0.5
         inputTextField.layer.cornerRadius = 5
         self.view.addSubview(inputTextField)

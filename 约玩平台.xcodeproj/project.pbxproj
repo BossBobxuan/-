@@ -206,7 +206,6 @@
 		B071645A1E1CF217006A2FCD /* FirstUseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstUseViewController.swift; sourceTree = "<group>"; };
 		B071645C1E1CF326006A2FCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B071645E1E1CF339006A2FCD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B0765C541E97B2E700C32E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		B07787861EA6FF4400FA44A2 /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
 		B07787881EA6FFFB00FA44A2 /* 动态@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "动态@2x.png"; sourceTree = "<group>"; };
 		B07787891EA6FFFB00FA44A2 /* 举报.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "举报.png"; sourceTree = "<group>"; };
@@ -652,7 +651,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = B071641C1E1CF179006A2FCD;
@@ -890,7 +888,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				B07164351E1CF179006A2FCD /* Base */,
-				B0765C541E97B2E700C32E9A /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1000,6 +997,7 @@
 			baseConfigurationReference = F4B36326D918E89785D71C26 /* Pods-约玩平台.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1009,7 +1007,7 @@
 				);
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
@@ -1021,6 +1019,7 @@
 			baseConfigurationReference = 1146A52A6370EFB3F56A48DD /* Pods-约玩平台.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7PY3375THJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1029,7 +1028,7 @@
 				);
 				INFOPLIST_FILE = "约玩平台/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-23456jinmun";
+				PRODUCT_BUNDLE_IDENTIFIER = "-23456jin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "约玩平台/bridgingheader.h";
 				SWIFT_VERSION = 3.0;
