@@ -243,7 +243,8 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                 manager.post(requestUrl, parameters: ["title": activityTitleTextField.text!,"image": imageMediaId!,"beginTime":beginTimeStamp * 1000,"endTime":endTimeStamp * 1000,"address":addressTextField.text!,"latitude":latitude!,"longitude":longitude!,"fee": Int(feeTextField.text!)!,"category":categoryPickerView.selectedRow(inComponent: 0),"content":contentTextView.text!,"tags": tagString], progress: {(progress) in }, success: {
                     [weak self] (dataTask,response) in
                     print("success")
-                    alert.dismiss(animated: true, completion: {})
+                    alert.dismiss(animated: true, completion: {self?.dismiss(animated: true, completion: nil)})
+                    
                     
                     
                 

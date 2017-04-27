@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,14 +29,14 @@
                                 <rect key="frame" x="16" y="318.5" width="343" height="30"/>
                                 <state key="normal" title="注册"/>
                                 <connections>
-                                    <segue destination="9JI-z5-1c1" kind="show" id="ykL-CQ-j7n"/>
+                                    <segue destination="9JI-z5-1c1" kind="modal" id="ykL-CQ-j7n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bO-Tt-EhF">
                                 <rect key="frame" x="16" y="356.5" width="343" height="30"/>
                                 <state key="normal" title="登录"/>
                                 <connections>
-                                    <segue destination="6uP-bp-tGg" kind="show" id="Hmz-Y4-5hJ"/>
+                                    <segue destination="6uP-bp-tGg" kind="modal" id="Hmz-Y4-5hJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -52,12 +52,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="Opr-F8-ZZa" kind="show" identifier="firstViewToMain" id="ogD-W3-zJb"/>
+                        <segue destination="Opr-F8-ZZa" kind="modal" identifier="firstViewToMain" id="ogD-W3-zJb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-662" y="-40"/>
+            <point key="canvasLocation" x="-413.75" y="-44.466666666666661"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Jyf-Rh-Qws">
@@ -238,12 +238,12 @@
                         <outlet property="passwordRepeatTextField" destination="pnZ-mh-kgV" id="dzU-aT-Zs1"/>
                         <outlet property="passwordTextField" destination="A7G-Iq-p8m" id="ScP-Yj-R7t"/>
                         <outlet property="userTextField" destination="edq-t8-LJT" id="SFk-bR-87e"/>
-                        <segue destination="Opr-F8-ZZa" kind="show" identifier="signUpToMain" id="5Sh-IK-te7"/>
+                        <segue destination="Opr-F8-ZZa" kind="modal" identifier="signUpToMain" id="5Sh-IK-te7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZQx-0Y-5LW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="-296.40179910044981"/>
+            <point key="canvasLocation" x="75.5" y="-329.5"/>
         </scene>
         <!--用户动态-->
         <scene sceneID="6ut-O1-vVk">
@@ -463,7 +463,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV0-Ax-dPM">
-                                                    <rect key="frame" x="8" y="68" width="327" height="81"/>
+                                                    <rect key="frame" x="8" y="68" width="327" height="73.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -474,7 +474,7 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZV0-Ax-dPM" firstAttribute="top" secondItem="HOl-qv-OeB" secondAttribute="bottom" constant="8" id="08p-rd-YOw"/>
+                                                <constraint firstItem="ZV0-Ax-dPM" firstAttribute="top" secondItem="HOl-qv-OeB" secondAttribute="bottom" constant="8" symbolic="YES" id="08p-rd-YOw"/>
                                                 <constraint firstItem="HOl-qv-OeB" firstAttribute="centerX" secondItem="dCX-lQ-uFA" secondAttribute="centerX" id="ATl-ZF-WWJ"/>
                                                 <constraint firstItem="t1v-sl-gL5" firstAttribute="top" secondItem="Huz-bj-VgT" secondAttribute="top" id="D5l-kf-xQS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ZV0-Ax-dPM" secondAttribute="trailing" id="H4A-jb-rul"/>
@@ -484,7 +484,7 @@
                                                 <constraint firstItem="Huz-bj-VgT" firstAttribute="leading" secondItem="dCX-lQ-uFA" secondAttribute="leadingMargin" id="n7N-kd-MRl"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="ZV0-Ax-dPM" secondAttribute="leading" id="oho-Si-COs"/>
                                                 <constraint firstItem="ZV0-Ax-dPM" firstAttribute="centerX" secondItem="HOl-qv-OeB" secondAttribute="centerX" id="pg3-FN-E0o"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ZV0-Ax-dPM" secondAttribute="bottom" constant="-8" id="tYf-TG-kW1"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZV0-Ax-dPM" secondAttribute="bottom" id="tYf-TG-kW1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -567,16 +567,16 @@
                     <navigationItem key="navigationItem" title="用户动态" id="c4b-Wl-WDS"/>
                     <connections>
                         <outlet property="timeLineTableView" destination="ciY-1Z-8Il" id="vKl-VK-cUY"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="timeLineToUser" id="l3a-1c-Jyv"/>
-                        <segue destination="aW7-NR-fpn" kind="show" identifier="timeLineToActivity" id="MYh-Gc-oc0"/>
-                        <segue destination="ZSH-Na-l6F" kind="show" identifier="timeLIneToNotification" id="81d-2g-4C3"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="timeLIneToComment" id="olD-dp-HTI"/>
-                        <segue destination="fMV-mL-idt" kind="show" identifier="timeLineToPhotoDetail" id="vJc-kC-3o5"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="timeLineToUser" id="l3a-1c-Jyv"/>
+                        <segue destination="aW7-NR-fpn" kind="push" identifier="timeLineToActivity" id="MYh-Gc-oc0"/>
+                        <segue destination="ZSH-Na-l6F" kind="push" identifier="timeLIneToNotification" id="81d-2g-4C3"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="timeLIneToComment" id="olD-dp-HTI"/>
+                        <segue destination="fMV-mL-idt" kind="push" identifier="timeLineToPhotoDetail" id="vJc-kC-3o5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKU-o0-K0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2959.1999999999998" y="458.32083958020991"/>
+            <point key="canvasLocation" x="1849.5" y="509.5"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="hh9-91-hdS">
@@ -732,17 +732,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="WbN-4v-vgD" secondAttribute="trailing" id="zkb-1U-6ka"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0iU-Qw-bvJ"/>
                     <connections>
                         <outlet property="searchTextField" destination="Cd9-bd-vrF" id="NJD-51-ETa"/>
                         <outlet property="showTableView" destination="WbN-4v-vgD" id="lS5-EL-XX8"/>
                         <outlet property="typeSegmentCoutrol" destination="c8K-su-kra" id="nBb-EW-Zl4"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="searchToUserInformation" id="msI-uU-46e"/>
-                        <segue destination="aW7-NR-fpn" kind="show" identifier="searchToActivityDetail" id="pMB-1T-oXr"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="searchToUserInformation" id="msI-uU-46e"/>
+                        <segue destination="aW7-NR-fpn" kind="push" identifier="searchToActivityDetail" id="pMB-1T-oXr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAM-tJ-RF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3949.5999999999999" y="462.8185907046477"/>
+            <point key="canvasLocation" x="2468.5" y="514.5"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="Gwg-X8-nsg">
@@ -778,7 +779,7 @@
                                             <color key="titleColor" red="0.092898796290000002" green="0.099420600299999995" blue="0.1060993522" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="jgg-Gb-AfY" kind="show" identifier="segueToFollowersList" id="07H-cX-yXE"/>
+                                            <segue destination="jgg-Gb-AfY" kind="push" identifier="segueToFollowersList" id="07H-cX-yXE"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjk-B8-WtH">
@@ -814,7 +815,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtS-VZ-CjR">
-                                <rect key="frame" x="130.5" y="219" width="114" height="35"/>
+                                <rect key="frame" x="130" y="219" width="115" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-H9-zBc">
                                         <rect key="frame" x="0.0" y="2" width="31" height="30"/>
@@ -822,11 +823,11 @@
                                             <color key="titleColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="jgg-Gb-AfY" kind="show" identifier="segueToFansList" id="kke-B2-ZGp"/>
+                                            <segue destination="jgg-Gb-AfY" kind="push" identifier="segueToFansList" id="kke-B2-ZGp"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ah-Re-m6Z">
-                                        <rect key="frame" x="52" y="9" width="9" height="17"/>
+                                        <rect key="frame" x="52.5" y="9" width="9" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -982,17 +983,17 @@
                         <outlet property="followButton" destination="u2a-xh-7Gq" id="ybi-Nt-UVg"/>
                         <outlet property="followerCountsLabel" destination="Fjk-B8-WtH" id="mVy-6w-41g"/>
                         <outlet property="nameLabel" destination="Ciz-oO-tW9" id="bcL-BU-nIR"/>
-                        <segue destination="VTE-9D-Cne" kind="show" identifier="segueToEditPersonalInformation" id="9jE-dl-dsI"/>
-                        <segue destination="aW7-NR-fpn" kind="show" identifier="segueToActivityDetail" id="jpo-Ph-vYR"/>
-                        <segue destination="fqE-hH-2MD" kind="show" identifier="sugueToUserTImeLine" id="Pag-DW-wjL"/>
-                        <segue destination="Zz3-pL-jon" kind="show" identifier="segueToUserImageList" id="JYf-Ih-SXZ"/>
-                        <segue destination="Rvg-m7-idO" kind="show" identifier="UserInformationToMag" id="p68-4F-EbF"/>
-                        <segue destination="AsB-Ap-Y1h" kind="show" identifier="segueToReport" id="yvt-5t-fYM"/>
+                        <segue destination="VTE-9D-Cne" kind="push" identifier="segueToEditPersonalInformation" id="9jE-dl-dsI"/>
+                        <segue destination="aW7-NR-fpn" kind="push" identifier="segueToActivityDetail" id="jpo-Ph-vYR"/>
+                        <segue destination="fqE-hH-2MD" kind="push" identifier="sugueToUserTImeLine" id="Pag-DW-wjL"/>
+                        <segue destination="Zz3-pL-jon" kind="push" identifier="segueToUserImageList" id="JYf-Ih-SXZ"/>
+                        <segue destination="Rvg-m7-idO" kind="push" identifier="UserInformationToMag" id="p68-4F-EbF"/>
+                        <segue destination="AsB-Ap-Y1h" kind="push" identifier="segueToReport" id="yvt-5t-fYM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBF-80-wcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="2047.826086956522"/>
+            <point key="canvasLocation" x="1848.5" y="2276.5"/>
         </scene>
         <!--Acticity Detail View Controller-->
         <scene sceneID="rbk-y3-Rw6">
@@ -1428,6 +1429,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="uVu-Ub-nwp" secondAttribute="trailing" constant="-16" id="lb0-Pf-L4G"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="AHw-cF-ccl"/>
                     <connections>
                         <outlet property="activityImageImageView" destination="zAy-1r-f4g" id="jPE-6U-7y7"/>
                         <outlet property="activityTitleLabel" destination="bW1-EV-UWx" id="BpP-H7-kLN"/>
@@ -1445,19 +1447,19 @@
                         <outlet property="stackView" destination="85f-Jd-xVj" id="7hd-tf-3DR"/>
                         <outlet property="wishedButton" destination="MaW-OU-gFp" id="4oq-0E-Cfg"/>
                         <outlet property="wishedCountLabel" destination="qWO-1i-WFU" id="Bi9-it-J3u"/>
-                        <segue destination="jgg-Gb-AfY" kind="show" identifier="segueToActivityUserIn" id="4Ro-V4-upw"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="segueToComment" id="VKn-FQ-zZg"/>
-                        <segue destination="65D-uR-Jgh" kind="show" identifier="segueToEditActivity" id="M5R-Vh-UBo"/>
-                        <segue destination="ZSH-Na-l6F" kind="show" identifier="segueToNotificationTableView" id="Fa5-uh-SKe"/>
-                        <segue destination="f3x-Lc-lje" kind="show" identifier="segueToActivityPhoto" id="lfa-5c-1B2"/>
-                        <segue destination="L8i-em-LdS" kind="show" identifier="segueToActivityLocation" id="AZD-Lj-cW5"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="ActivityDetailToUserInformation" id="Zwe-u2-uOl"/>
-                        <segue destination="AsB-Ap-Y1h" kind="show" identifier="ActivityToReport" id="Fui-LG-Nrf"/>
+                        <segue destination="jgg-Gb-AfY" kind="push" identifier="segueToActivityUserIn" id="4Ro-V4-upw"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="segueToComment" id="VKn-FQ-zZg"/>
+                        <segue destination="65D-uR-Jgh" kind="push" identifier="segueToEditActivity" id="M5R-Vh-UBo"/>
+                        <segue destination="ZSH-Na-l6F" kind="push" identifier="segueToNotificationTableView" id="Fa5-uh-SKe"/>
+                        <segue destination="f3x-Lc-lje" kind="push" identifier="segueToActivityPhoto" id="lfa-5c-1B2"/>
+                        <segue destination="L8i-em-LdS" kind="push" identifier="segueToActivityLocation" id="AZD-Lj-cW5"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="ActivityDetailToUserInformation" id="Zwe-u2-uOl"/>
+                        <segue destination="AsB-Ap-Y1h" kind="push" identifier="ActivityToReport" id="Fui-LG-Nrf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pg-6K-aPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="3877.5112443778112"/>
+            <point key="canvasLocation" x="1848.5" y="4310.5"/>
         </scene>
         <!--User Image List View Controller-->
         <scene sceneID="re8-vt-Num">
@@ -1488,14 +1490,15 @@
                             <constraint firstItem="kI1-1e-Loq" firstAttribute="leading" secondItem="MmH-Ay-YNv" secondAttribute="leadingMargin" constant="-16" id="yCo-kO-uNI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TRl-9j-aeE"/>
                     <connections>
                         <outlet property="containerScrollView" destination="kI1-1e-Loq" id="tbk-pH-XXA"/>
-                        <segue destination="fMV-mL-idt" kind="show" identifier="UserImageToDetail" id="Sxw-0V-qQu"/>
+                        <segue destination="fMV-mL-idt" kind="push" identifier="UserImageToDetail" id="Sxw-0V-qQu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7j-B4-Uk9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="3007.6461769115444"/>
+            <point key="canvasLocation" x="1262.5" y="3343.5"/>
         </scene>
         <!--Add Notification View Controller-->
         <scene sceneID="ebm-x2-92y">
@@ -1539,6 +1542,7 @@
                             <constraint firstItem="fSK-HY-tEC" firstAttribute="top" secondItem="Vrj-NU-iwU" secondAttribute="bottom" constant="8" symbolic="YES" id="svZ-Fq-oDY"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nQx-cg-CwM"/>
                     <connections>
                         <outlet property="contentTextView" destination="fSK-HY-tEC" id="icp-hJ-MJ9"/>
                         <outlet property="titleTextField" destination="Vrj-NU-iwU" id="h4h-uB-zOP"/>
@@ -1546,7 +1550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SU3-9y-PDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2292" y="4624.1379310344828"/>
+            <point key="canvasLocation" x="1432.5" y="5140.5"/>
         </scene>
         <!--Notification List View Controller-->
         <scene sceneID="oD8-ZD-Ss0">
@@ -1660,15 +1664,16 @@
                             <constraint firstItem="dIE-sx-uFt" firstAttribute="top" secondItem="dv5-Ij-Snx" secondAttribute="bottom" constant="8" symbolic="YES" id="xRP-b7-QYu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sQs-M3-UFM"/>
                     <connections>
                         <outlet property="notificationTableView" destination="dv5-Ij-Snx" id="iaz-74-EzG"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="notificationSegueToCommentList" id="N5J-P4-uYk"/>
-                        <segue destination="Qvp-vy-Pem" kind="show" identifier="listToAddNotification" id="Nlj-x8-XWA"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="notificationSegueToCommentList" id="N5J-P4-uYk"/>
+                        <segue destination="Qvp-vy-Pem" kind="push" identifier="listToAddNotification" id="Nlj-x8-XWA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQL-m9-MGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="4629.5352323838088"/>
+            <point key="canvasLocation" x="1848.5" y="5146.5"/>
         </scene>
         <!--Report View Controller-->
         <scene sceneID="kDP-4d-6gX">
@@ -1699,13 +1704,14 @@
                             <constraint firstItem="06s-X0-Ns9" firstAttribute="top" secondItem="5KW-Hb-hxo" secondAttribute="bottom" constant="8" id="nSg-dJ-FF4"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JTD-Jg-PRp"/>
                     <connections>
                         <outlet property="descriptionTextView" destination="06s-X0-Ns9" id="4M9-kt-bzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s9C-Vz-ALd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4760.8000000000002" y="2047.826086956522"/>
+            <point key="canvasLocation" x="2975.5" y="2276.5"/>
         </scene>
         <!--Activity Photo List View Controller-->
         <scene sceneID="H0o-RH-cBS">
@@ -1736,14 +1742,15 @@
                             <constraint firstItem="S1a-AS-E4q" firstAttribute="top" secondItem="Dvh-dw-b82" secondAttribute="bottom" constant="8" symbolic="YES" id="s27-HQ-CiU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="POO-Eq-Vbc"/>
                     <connections>
                         <outlet property="containerScrollView" destination="S1a-AS-E4q" id="7oI-aK-k7r"/>
-                        <segue destination="fMV-mL-idt" kind="show" identifier="photoListToDetail" id="iB6-e4-LwH"/>
+                        <segue destination="fMV-mL-idt" kind="push" identifier="photoListToDetail" id="iB6-e4-LwH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8W-kk-Zjc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4064.8000000000002" y="4541.3793103448279"/>
+            <point key="canvasLocation" x="2540.5" y="5048.5"/>
         </scene>
         <!--Photo Detail View Controller-->
         <scene sceneID="DU3-3b-Pgc">
@@ -1808,19 +1815,20 @@
                             <constraint firstItem="5Hi-dq-5Ee" firstAttribute="centerY" secondItem="XOO-xF-idS" secondAttribute="centerY" id="yMa-MB-mA8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2kn-6s-Cce"/>
                     <connections>
                         <outlet property="commentCountLabel" destination="5Hi-dq-5Ee" id="Jls-tI-H2e"/>
                         <outlet property="descriptionLabel" destination="5d3-2O-0PJ" id="ixT-Rk-LIV"/>
                         <outlet property="imageView" destination="LcW-K2-EHJ" id="7AC-x4-Cka"/>
                         <outlet property="toActivityButton" destination="wU6-ZA-ObJ" id="AeE-1E-zSC"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="photoDetailToComment" id="aPy-wp-hk7"/>
-                        <segue destination="aW7-NR-fpn" kind="show" identifier="photoDetailToActivityDetail" id="9dv-UY-Ywi"/>
-                        <segue destination="AsB-Ap-Y1h" kind="show" identifier="photoToReport" id="tig-4v-SuB"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="photoDetailToComment" id="aPy-wp-hk7"/>
+                        <segue destination="aW7-NR-fpn" kind="push" identifier="photoDetailToActivityDetail" id="9dv-UY-Ywi"/>
+                        <segue destination="AsB-Ap-Y1h" kind="push" identifier="photoToReport" id="tig-4v-SuB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Il4-4M-HQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4783.1999999999998" y="4541.3793103448279"/>
+            <point key="canvasLocation" x="2989.5" y="5048.5"/>
         </scene>
         <!--Activity Location View Controller-->
         <scene sceneID="Pnx-C3-B9A">
@@ -1846,13 +1854,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1u8-Aw-xAS" secondAttribute="trailing" id="i4N-Yn-cQg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Udo-H5-1jG"/>
                     <connections>
                         <outlet property="activityMapView" destination="1u8-Aw-xAS" id="YVO-yA-25k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivW-ac-cRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4064.8000000000002" y="3877.5112443778112"/>
+            <point key="canvasLocation" x="2540.5" y="4310.5"/>
         </scene>
         <!--Location Select View Controller-->
         <scene sceneID="owc-a5-xTu">
@@ -1891,6 +1900,7 @@
                             <constraint firstItem="RV0-Ec-evr" firstAttribute="top" secondItem="5RI-GK-cp5" secondAttribute="bottom" constant="8" symbolic="YES" id="m6x-Vp-iBr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="CqC-Cy-sX2"/>
                     <connections>
                         <outlet property="activityLocationMapView" destination="RV0-Ec-evr" id="ssG-cf-GE9"/>
                         <outlet property="searchLocationTextField" destination="5RI-GK-cp5" id="psv-Tc-Uio"/>
@@ -1903,7 +1913,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1549.5999999999999" y="3877.5112443778112"/>
+            <point key="canvasLocation" x="968.5" y="4310.5"/>
         </scene>
         <!--Edit Activity View Controller-->
         <scene sceneID="Qmf-u2-gmM">
@@ -2270,6 +2280,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="dVy-DL-2vK" secondAttribute="leading" id="yje-wD-fuq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aWo-du-r5Y"/>
                     <connections>
                         <outlet property="activityBeginAndEndTimeDatePicker" destination="dC8-TH-3af" id="6xM-xd-wdB"/>
                         <outlet property="activityImageImageView" destination="uyD-dS-aRL" id="sqs-py-b6q"/>
@@ -2285,12 +2296,12 @@
                         <outlet property="endTimeButton" destination="Jbo-dP-iMj" id="Mea-pC-xCo"/>
                         <outlet property="feeTextField" destination="Uai-Ln-9l3" id="nxF-dG-Ef0"/>
                         <outlet property="stackView" destination="Ouv-h7-cmk" id="bzQ-U1-vr3"/>
-                        <segue destination="w7u-UM-3jg" kind="show" identifier="segueToLocationSelect" id="S0R-T3-tw1"/>
+                        <segue destination="w7u-UM-3jg" kind="push" identifier="segueToLocationSelect" id="S0R-T3-tw1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bH-sT-qVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2248.5" y="3877.5"/>
+            <point key="canvasLocation" x="1405.3125" y="4310.4874999999993"/>
         </scene>
         <!--Edit Password View Controller-->
         <scene sceneID="iJ7-sH-ix0">
@@ -2348,6 +2359,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wQl-XM-xbo" secondAttribute="trailing" id="t8K-mZ-DLi"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4iK-r0-4CL"/>
                     <connections>
                         <outlet property="newPassWordTextField" destination="xSH-ci-0Jq" id="Kao-hG-X02"/>
                         <outlet property="oldPassWordTextField" destination="wQl-XM-xbo" id="gGe-Cr-hFH"/>
@@ -2356,7 +2368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9df-Nt-Uu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3607.1999999999998" y="3011.2443778110946"/>
+            <point key="canvasLocation" x="2254.5" y="3347.5"/>
         </scene>
         <!--Comment List View Controller-->
         <scene sceneID="JSC-fV-FGU">
@@ -2452,16 +2464,17 @@
                             <constraint firstAttribute="leadingMargin" secondItem="SxJ-MS-02p" secondAttribute="leading" id="gb9-K5-zbe"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Mck-CJ-2Ep"/>
                     <connections>
                         <outlet property="commentListTableView" destination="SxJ-MS-02p" id="i4a-8z-DfQ"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="commentSegueToUserInformation" id="3YB-kW-QwX"/>
-                        <segue destination="uvZ-bK-k4T" kind="show" identifier="segueToReplyComment" id="kGL-hZ-nU3"/>
-                        <segue destination="B6P-xd-XK1" kind="show" identifier="segueToChildComment" id="Ayk-aB-qSm"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="commentSegueToUserInformation" id="3YB-kW-QwX"/>
+                        <segue destination="uvZ-bK-k4T" kind="push" identifier="segueToReplyComment" id="kGL-hZ-nU3"/>
+                        <segue destination="B6P-xd-XK1" kind="push" identifier="segueToChildComment" id="Ayk-aB-qSm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RXb-Kr-Nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4172" y="3008"/>
+            <point key="canvasLocation" x="2607.5" y="3343.893333333333"/>
         </scene>
         <!--Comment Detail View Controller-->
         <scene sceneID="sjt-Wd-r4E">
@@ -2557,15 +2570,16 @@
                             <constraint firstItem="d9v-jW-77o" firstAttribute="top" secondItem="dVF-6a-C7k" secondAttribute="bottom" constant="8" symbolic="YES" id="OU8-4q-ncg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="wCy-ig-og4"/>
                     <connections>
                         <outlet property="childCommentTableView" destination="d9v-jW-77o" id="3cJ-8H-Ady"/>
-                        <segue destination="uvZ-bK-k4T" kind="show" identifier="childSegueToReplyComment" id="WPZ-Nn-4Og"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="childCommentSegueToUserInformation" id="V7b-q8-knz"/>
+                        <segue destination="uvZ-bK-k4T" kind="push" identifier="childSegueToReplyComment" id="WPZ-Nn-4Og"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="childCommentSegueToUserInformation" id="V7b-q8-knz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4h-lq-ztO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4762" y="3878"/>
+            <point key="canvasLocation" x="2976.25" y="4311.0433333333331"/>
         </scene>
         <!--Reply Comment View Controller-->
         <scene sceneID="CM0-fa-GK9">
@@ -2595,13 +2609,14 @@
                             <constraint firstItem="eUu-Zs-YLa" firstAttribute="top" secondItem="z5m-nn-MuP" secondAttribute="bottom" constant="8" symbolic="YES" id="eyb-Y0-WIS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="IhT-aA-RXp"/>
                     <connections>
                         <outlet property="replyTextView" destination="eUu-Zs-YLa" id="WBh-TX-Nup"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMC-0Z-mMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5790" y="3008"/>
+            <point key="canvasLocation" x="3618.75" y="3343.893333333333"/>
         </scene>
         <!--Edit Personal Information View Controller-->
         <scene sceneID="gkR-ei-dch">
@@ -2695,7 +2710,7 @@
                                 <rect key="frame" x="16" y="292" width="343" height="30"/>
                                 <state key="normal" title="修改密码"/>
                                 <connections>
-                                    <segue destination="Qyi-48-iSV" kind="show" id="TLp-Zw-Klw"/>
+                                    <segue destination="Qyi-48-iSV" kind="push" id="TLp-Zw-Klw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2724,6 +2739,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="aya-yO-d1W" secondAttribute="leading" id="yTQ-LV-6oD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cBH-Bh-O0W"/>
                     <connections>
                         <outlet property="avatarImageView" destination="RHt-X6-5An" id="PSN-kE-KmH"/>
                         <outlet property="changePasswordButton" destination="3bC-Tn-wqw" id="Bxy-Bi-irF"/>
@@ -2736,7 +2752,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lS8-6y-5vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="3007.6461769115444"/>
+            <point key="canvasLocation" x="1848.5" y="3343.5"/>
         </scene>
         <!--Show User View Controller-->
         <scene sceneID="a6l-42-4eh">
@@ -2816,14 +2832,15 @@
                             <constraint firstItem="7at-BU-1sL" firstAttribute="top" secondItem="DRM-8b-1jK" secondAttribute="bottom" constant="8" symbolic="YES" id="Spq-zQ-4lT"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aIc-Yk-Q1a"/>
                     <connections>
                         <outlet property="UserTableView" destination="DRM-8b-1jK" id="EUm-wD-yLm"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="segueToUserInformation" id="OyB-rE-ZOf"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="segueToUserInformation" id="OyB-rE-ZOf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yT5-Eg-Zfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5790" y="2048"/>
+            <point key="canvasLocation" x="3618.75" y="2276.6933333333332"/>
         </scene>
         <!--消息-->
         <scene sceneID="EKh-67-PHp">
@@ -2930,13 +2947,13 @@
                     <navigationItem key="navigationItem" title="消息" id="6Qt-vA-hbb"/>
                     <connections>
                         <outlet property="msgListTableView" destination="9Wy-rU-TPv" id="bva-NS-LNZ"/>
-                        <segue destination="Rvg-m7-idO" kind="show" identifier="msgLIstToDetail" id="2Zs-J7-gwd"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="msgListToCommentList" id="5lw-yn-4BX"/>
+                        <segue destination="Rvg-m7-idO" kind="push" identifier="msgLIstToDetail" id="2Zs-J7-gwd"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="msgListToCommentList" id="5lw-yn-4BX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhZ-vr-K00" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="1199.5502248875564"/>
+            <point key="canvasLocation" x="1848.5" y="1333.5"/>
         </scene>
         <!--Msg Detail View Controller-->
         <scene sceneID="IiX-99-bsY">
@@ -2967,14 +2984,15 @@
                             <constraint firstAttribute="leadingMargin" secondItem="GcP-SS-eXb" secondAttribute="leading" id="c8D-bv-E7p"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="NVW-87-kUk"/>
                     <connections>
                         <outlet property="containScrollView" destination="GcP-SS-eXb" id="7r5-Df-Ol9"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="msgDetailToUserInformation" id="Qw8-1v-5OE"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="msgDetailToUserInformation" id="Qw8-1v-5OE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNJ-Pk-0iO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3975.1999999999998" y="1215.7421289355323"/>
+            <point key="canvasLocation" x="2484.5" y="1351.5"/>
         </scene>
         <!--发现-->
         <scene sceneID="IdP-YV-BCf">
@@ -3109,12 +3127,12 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Cd7-Hc-dbf">
                                 <connections>
-                                    <segue destination="65D-uR-Jgh" kind="show" identifier="segueToAddActivity" id="jZv-JX-T4c"/>
+                                    <segue destination="65D-uR-Jgh" kind="push" identifier="segueToAddActivity" id="jZv-JX-T4c"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="搜.png" id="nY8-k4-Lkm">
                                 <connections>
-                                    <segue destination="dXn-kG-5jB" kind="show" id="7fv-b1-gNN"/>
+                                    <segue destination="dXn-kG-5jB" kind="push" id="7fv-b1-gNN"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -3125,14 +3143,14 @@
                         <outlet property="recommendUserScrollView" destination="UNS-l2-4f3" id="yJa-fy-04i"/>
                         <outlet property="selectScrollViewAndTableViewContainerView" destination="0a6-mZ-cq1" id="jfO-Sl-Esl"/>
                         <outlet property="selecteScrollView" destination="dEa-nz-adj" id="zo7-i8-lPD"/>
-                        <segue destination="Ej9-yA-ZyH" kind="show" identifier="hotActivityToCommentList" id="QBO-2N-wnt"/>
-                        <segue destination="aW7-NR-fpn" kind="show" identifier="hotActivityToDetail" id="ZhN-rJ-K5T"/>
-                        <segue destination="3KI-Xp-R29" kind="show" identifier="hotActivityToUser" id="vEK-DA-TTh"/>
+                        <segue destination="Ej9-yA-ZyH" kind="push" identifier="hotActivityToCommentList" id="QBO-2N-wnt"/>
+                        <segue destination="aW7-NR-fpn" kind="push" identifier="hotActivityToDetail" id="ZhN-rJ-K5T"/>
+                        <segue destination="3KI-Xp-R29" kind="push" identifier="hotActivityToUser" id="vEK-DA-TTh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HVk-iX-3aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2959.1999999999998" y="-202.84857571214394"/>
+            <point key="canvasLocation" x="1849.5" y="-225.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9aQ-8R-yr4">
@@ -3152,7 +3170,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mc3-Ll-TZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="775"/>
+            <point key="canvasLocation" x="623.75" y="861.54166666666663"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="zcB-Mf-5vt">
@@ -3211,12 +3229,12 @@
                     <connections>
                         <outlet property="passwordTextField" destination="tIr-Dy-9Za" id="bar-6p-KBC"/>
                         <outlet property="userTextFIeld" destination="Mne-LA-Tqv" id="NBy-Wb-By5"/>
-                        <segue destination="Opr-F8-ZZa" kind="show" identifier="loginToMain" id="Tq8-Fa-dBu"/>
+                        <segue destination="Opr-F8-ZZa" kind="modal" identifier="loginToMain" id="Tq8-Fa-dBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGX-Bo-ajj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="357.57121439280365"/>
+            <point key="canvasLocation" x="75.5" y="397.50000000000006"/>
         </scene>
         <!--发现-->
         <scene sceneID="lb4-L1-7b8">
@@ -3235,7 +3253,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdt-ep-ftQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="-202.84857571214394"/>
+            <point key="canvasLocation" x="1262.5" y="-225.5"/>
         </scene>
         <!--动态-->
         <scene sceneID="XBz-ms-t2G">
@@ -3254,7 +3272,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5q-VR-35i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="458.32083958020991"/>
+            <point key="canvasLocation" x="1262.5" y="509.5"/>
         </scene>
         <!--消息-->
         <scene sceneID="Dob-Vw-P13">
@@ -3273,7 +3291,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2z-O3-NPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="1172"/>
+            <point key="canvasLocation" x="1262.5" y="1302.8733333333332"/>
         </scene>
         <!--个人信息-->
         <scene sceneID="KmG-y5-jes">
@@ -3292,7 +3310,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9d-Pm-2Pg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="2048"/>
+            <point key="canvasLocation" x="1262.5" y="2276.6933333333332"/>
         </scene>
     </scenes>
     <resources>
@@ -3311,18 +3329,23 @@
         <image name="搜.png" width="24" height="24"/>
         <image name="资料@2x.png" width="122" height="110"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qw8-1v-5OE"/>
-        <segue reference="2Zs-J7-gwd"/>
+        <segue reference="vEK-DA-TTh"/>
         <segue reference="ogD-W3-zJb"/>
         <segue reference="jZv-JX-T4c"/>
+        <segue reference="pMB-1T-oXr"/>
+        <segue reference="Fa5-uh-SKe"/>
+        <segue reference="kke-B2-ZGp"/>
+        <segue reference="p68-4F-EbF"/>
+        <segue reference="yvt-5t-fYM"/>
         <segue reference="Pag-DW-wjL"/>
         <segue reference="olD-dp-HTI"/>
-        <segue reference="MYh-Gc-oc0"/>
         <segue reference="vJc-kC-3o5"/>
-        <segue reference="81d-2g-4C3"/>
         <segue reference="kGL-hZ-nU3"/>
-        <segue reference="4Ro-V4-upw"/>
-        <segue reference="tig-4v-SuB"/>
     </inferredMetricsTieBreakers>
 </document>

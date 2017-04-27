@@ -251,10 +251,16 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                     {
                         case "0": self?.participateButton.setTitle("+ 参加", for: .normal)
                         case "1": self?.participateButton.setTitle("已参加", for: .normal)
-                    default: break 
+                      
+                        
+                        
+                        
+                        
+                        default: break
                     }
                 }
             }
+         
             
             
         }, failure: {[weak self] (dataTask,error) in

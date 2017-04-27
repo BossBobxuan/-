@@ -66,7 +66,7 @@ class ActivityDetailModel {
     
     func unparticipateActivity(token: String)
     {
-        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant"
+        let requestUrl = urlStruct.basicUrl + "activity/" + "\(activityEnity.id)/" + "participant.json"
         manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
         manager.delete(requestUrl, parameters: [],  success: {
             [weak self] (dataTask,response) in

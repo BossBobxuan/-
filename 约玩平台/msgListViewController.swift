@@ -40,7 +40,15 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0
+        {
+            return 40
+        }else
+        {
+            return 80
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -55,6 +63,7 @@ class msgListViewController: UIViewController, UITableViewDelegate, UITableViewD
         {
             let cell = UITableViewCell()
             cell.textLabel?.text = "点击查看评论消息"
+            cell.textLabel?.textAlignment = .center
             return cell
         }else
         {

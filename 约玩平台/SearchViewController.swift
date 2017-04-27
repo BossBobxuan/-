@@ -155,11 +155,20 @@ class SearchViewController: UIViewController ,UITextFieldDelegate,UITableViewDel
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        model.searchItem(type: "user", keyword: textField.text!)
-        model.searchItem(type: "activity", keyword: textField.text!)
-        nowKeyword = textField.text!
-        textField.resignFirstResponder()
-        return true
+        if textField.text! != ""
+        {
+            model.searchItem(type: "user", keyword: textField.text!)
+            model.searchItem(type: "activity", keyword: textField.text!)
+            nowKeyword = textField.text!
+            textField.resignFirstResponder()
+            return true
+        }else
+        {
+            let alert = UIAlertController(title: "搜索不可为空", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return false
+        }
     }
     
     

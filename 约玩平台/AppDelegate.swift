@@ -13,11 +13,11 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let center = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let center = UNUserNotificationCenter.current()
+        
         center.requestAuthorization(options: .alert, completionHandler: {_ in })
         let _ = TencentOAuth(appId: "1105831874", andDelegate : nil)
         return true
