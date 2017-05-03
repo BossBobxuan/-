@@ -86,6 +86,19 @@ class privateModel {
                     let enity = privates(targetId: Dic["target_id"] as! Int, avatar: Dic["avatar"] as! Int, recent: privateEnity , privateCount: Dic["private_count"] as! Int , privateTotalCount: Dic["private_total_count"] as! Int, targetName: Dic["target_name"] as! String)
                     Enitys.append(enity)
                 }
+                var i = 0
+                for enity in Enitys
+                {
+                    
+                    if enity.targetId == -255
+                    {
+                        let temEnity = enity
+                        Enitys[i] = Enitys[0]
+                        Enitys[0] = temEnity
+                        break
+                    }
+                    i += 1
+                }
                 self.delegate.needUpdateUI()
             }
         }

@@ -48,6 +48,7 @@ class ReportViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: "report:")
+        self.descriptionTextView.becomeFirstResponder()
         
         
     }

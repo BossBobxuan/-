@@ -132,7 +132,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
     
     @IBAction func editActivityImage(_ sender: UIButton) {
         //若不收起键盘会崩溃尚未解决
-        self.resignFirstResponder()
+        UIApplication.shared.keyWindow?.endEditing(true)
         let imagePicker = UIImagePickerController()
         PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized
@@ -243,7 +243,7 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                 manager.post(requestUrl, parameters: ["title": activityTitleTextField.text!,"image": imageMediaId!,"beginTime":beginTimeStamp * 1000,"endTime":endTimeStamp * 1000,"address":addressTextField.text!,"latitude":latitude!,"longitude":longitude!,"fee": Int(feeTextField.text!)!,"category":categoryPickerView.selectedRow(inComponent: 0),"content":contentTextView.text!,"tags": tagString], progress: {(progress) in }, success: {
                     [weak self] (dataTask,response) in
                     print("success")
-                    alert.dismiss(animated: true, completion: {self?.dismiss(animated: true, completion: nil)})
+                    alert.dismiss(animated: true, completion: {self?.navigationController?.popViewController(animated: true)})
                     
                     
                     
@@ -425,14 +425,8 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                     
                 }
                 tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
-                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
-                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
-                {
-                    tagLabel.textColor = UIColor.white
-                }else
-                {
-                    tagLabel.textColor = UIColor.black
-                }
+                tagLabel.backgroundColor = UIColor.gray
+                tagLabel.textColor = UIColor.white
                 print(tagString)
                 nextWidth = nextWidth + 2 + size.width
                 tagLabel.layer.borderWidth = 0.5
@@ -463,14 +457,8 @@ class EditActivityViewController: UIViewController, UINavigationControllerDelega
                     
                 }
                 tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
-                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
-                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
-                {
-                    tagLabel.textColor = UIColor.white
-                }else
-                {
-                    tagLabel.textColor = UIColor.black
-                }
+                tagLabel.backgroundColor = UIColor.gray
+                tagLabel.textColor = UIColor.white
                 print(tagString)
                 nextWidth = nextWidth + 2 + size.width
                 tagLabel.layer.borderWidth = 0.5

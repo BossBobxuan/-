@@ -49,9 +49,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             
         }
     }
-    @IBAction func cancel(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func cancel(_ sender: UIButton) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     
     override func viewDidLoad() {
@@ -60,8 +60,19 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.userTextFIeld.delegate = self
         self.passwordTextField.delegate = self
+       
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let userd = UserDefaults.standard
+        if userd.object(forKey: "token") != nil
+        {
+            print("1")
+            performSegue(withIdentifier: seguename.logInToMain, sender: nil)
+        }
         
     }
 

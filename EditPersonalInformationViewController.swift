@@ -36,6 +36,7 @@ class EditPersonalInformationViewController: UIViewController, UIPickerViewDeleg
     //编辑头像
     @IBAction func EditAvatar(_ sender: UIButton)
     {
+        UIApplication.shared.keyWindow?.endEditing(true)
         let imagePicker = UIImagePickerController()
         PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized

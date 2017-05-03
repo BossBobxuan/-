@@ -19,6 +19,45 @@ class timeLineModel
     init(delegate: PullDataDelegate) {
         self.delegate = delegate
     }
+    func getPersonalTimeLine(token: String)
+    {
+        requestNumber = 0
+        let requestUrl = urlStruct.basicUrl + "user/~me/timeline/home.json"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.get(requestUrl, parameters: [], progress: {(progress) in}, success: {[weak self] (dataTask,response) in
+            self?.requestNumber += 1
+            
+            self?.Enitys.removeAll()
+            self?.status.removeAll()
+            self?.dealWithResponse(response: response)
+            
+            }, failure: {[weak self] (dataTask,error) in
+                print(error)
+                self?.delegate.getDataFailed()
+                
+                
+        })
+        manager.get(urlStruct.basicUrl + "user/~me.json", parameters: [], progress: {(progress) in}, success: {[weak self](dataTask,response) in
+            self?.requestNumber += 1
+            
+            if let Dic = response as? NSDictionary
+            {
+                self?.userAvatarId = Dic["avatar"] as! Int
+                self?.userName = Dic["name"] as! String
+            }
+            if self?.requestNumber == 2
+            {
+                self?.delegate.needUpdateUI()
+            }
+            
+            }, failure: {[weak self] (dataTask,error) in
+                print(error)
+                self?.delegate.getDataFailed()
+                
+                
+        })
+
+    }
     func getUserTimeLine(uid: Int)
     {
         requestNumber = 0

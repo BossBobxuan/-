@@ -281,14 +281,18 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
     }
     func addContentLabel()
     {
-        
-        
+        let titleLabel = UILabel()
+        titleLabel.text = "活动详情"
+        titleLabel.textAlignment = .center
+        titleLabel.frame = CGRect(x: 8, y: nextY + 30, width: self.containerView.frame.width - 16, height: 30)
+        containerView.addSubview(titleLabel)
+        nextY += 30
         
         
         let contentLabel = UILabel()
         contentLabel.numberOfLines = 0
         contentLabel.text = activityModel.activityEnity.content
-        let size = contentLabel.sizeThatFits(CGSize(width: self.containerView.frame.width - 16, height: 900 - nextY - 30))
+        let size = contentLabel.sizeThatFits(CGSize(width: self.containerView.frame.width - 16, height: 900 - nextY - 60))
         contentLabel.frame = CGRect(x: 8, y: nextY + 30, width: size.width, height: size.height)
         containerView.addSubview(contentLabel)
         
@@ -322,14 +326,8 @@ class ActicityDetailViewController: UIViewController, PullDataDelegate {
                     
                 }
                 tagLabel.frame = CGRect(x: nextWidth, y: nextY, width: size.width, height: 20)
-                tagLabel.backgroundColor = colorArray[Int(arc4random() % 4)]
-                if tagLabel.backgroundColor == UIColor.red || tagLabel.backgroundColor == UIColor.blue
-                {
-                    tagLabel.textColor = UIColor.white
-                }else
-                {
-                    tagLabel.textColor = UIColor.black
-                }
+                tagLabel.backgroundColor = UIColor(displayP3Red: 0.463, green: 0.565, blue: 0.647, alpha: 1)
+                tagLabel.textColor = UIColor.white
                 print(tagString)
                 nextWidth = nextWidth + 2 + size.width
                 tagLabel.layer.borderWidth = 0.5

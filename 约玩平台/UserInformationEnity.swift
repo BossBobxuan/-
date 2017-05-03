@@ -19,13 +19,19 @@ class UserInformationEnity
     var activitiesCount: Int
     var relation: String
     var gender: String
-    init(id: Int,user: String,name: String,avatar: Int?,description: String,followersCount: Int,fansCount: Int,activitiesCount: Int,relation: String,gender: String)
+    init(id: Int,user: String,name: String,avatar: Int?,description: String?,followersCount: Int,fansCount: Int,activitiesCount: Int,relation: String,gender: String)
     {
         self.id = id
         self.user = user
         self.name = name
         self.avatar = avatar
-        self.description = description
+        if description != nil
+        {
+            self.description = description!
+        }else
+        {
+            self.description = ""
+        }
         self.followersCount = followersCount
         self.fansCount = fansCount
         self.activitiesCount = activitiesCount

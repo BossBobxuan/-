@@ -57,7 +57,32 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         performSegue(withIdentifier: seguename.hotActivityToDetail, sender: model.recommendActiveEnitys[index])
     }
     
-    
+    //关注推荐用户
+    func interestUser(_ sender: UIButton)
+    {
+        let index = sender.tag
+        sender.isEnabled = false
+        if sender.titleLabel?.text == "互相关注"
+        {
+            model.notFollowUser(uid: model.recommendUserEnitys[index].id, token: token, success: {sender.isEnabled = true})
+            sender.setTitle("被关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "被关注"
+        {
+            model.followUser(uid: model.recommendUserEnitys[index].id, token: token, success: {sender.isEnabled = true})
+            sender.setTitle("互相关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "已关注"
+        {
+            model.notFollowUser(uid: model.recommendUserEnitys[index].id, token: token, success: {sender.isEnabled = true})
+            sender.setTitle("未关注", for: .normal)
+        }
+        else if sender.titleLabel?.text == "未关注"
+        {
+            model.followUser(uid: model.recommendUserEnitys[index].id, token: token, success: {sender.isEnabled = true})
+            sender.setTitle("已关注", for: .normal)
+        }
+    }
     
     
     //添加推荐活动的滑动
@@ -366,41 +391,83 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
     {
         var nextX: CGFloat = 0
         var i = 0
-        for enity in enitys
+        if enitys.count == 0
         {
-            let userView = recommendUserView(x: nextX, y: 5)
-            let media = enity.avatar!
-            let url = urlStruct.basicUrl + "media/" + "\(media)"
+            let label = UILabel(frame: CGRect(x: nextX, y: 5, width: recommendUserScrollView.frame.width - 10, height: recommendUserScrollView.frame.height - 10))
+            label.text = "请关注用户或者参加活动以便我们向您推荐"
+            recommendUserScrollView.addSubview(label)
+            nextX = recommendUserScrollView.frame.width
             
-            if let image = self.getImageFromCaches(mediaId: media)
+        }else
+        {
+            for enity in enitys
             {
-                userView.avatarImageView.image = image
-            }else
-            {
+                let userView = recommendUserView(x: nextX, y: 5)
+                let media = enity.avatar!
+                let url = urlStruct.basicUrl + "media/" + "\(media)"
                 
-                DispatchQueue.global().async {
+                if let image = self.getImageFromCaches(mediaId: media)
+                {
+                    userView.avatarImageView.image = image
+                }else
+                {
                     
-                    if let data = try? Data(contentsOf: URL(string: url)!)
-                    {
-                        print("获取数据")
-                        DispatchQueue.main.async {
-                            if let image = UIImage(data: data)
-                            {
-                                print("显示图片")
-                                userView.avatarImageView.image = image
-                                self.saveImageCaches(image: image, mediaId: media)
+                    DispatchQueue.global().async {
+                        
+                        if let data = try? Data(contentsOf: URL(string: url)!)
+                        {
+                            print("获取数据")
+                            DispatchQueue.main.async {
+                                if let image = UIImage(data: data)
+                                {
+                                    print("显示图片")
+                                    userView.avatarImageView.image = image
+                                    self.saveImageCaches(image: image, mediaId: media)
+                                }
                             }
                         }
                     }
                 }
+                userView.nameLabel.text = enity.name
+                userView.tag = i//传递index标志被点击的view
+                recommendUserScrollView.addSubview(userView)
+                userView.isUserInteractionEnabled = true
+                userView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "recommendToUser:"))
+                let relation = enity.relation
+                print(relation)
+                if relation == "follower"
+                {
+                    userView.relationButton.setTitle("已关注", for: .normal)
+                }
+                else if relation == "fan"
+                {
+                    userView.relationButton.setTitle("被关注", for: .normal)
+                    
+                }
+                else if relation == "friend"
+                {
+                    userView.relationButton.setTitle("互相关注", for: .normal)
+                }
+                else if relation == "myself"
+                {
+                    //cell.followStateButton.isHidden = true
+                    //做测试先显示按钮
+                    userView.relationButton.setTitle("自己", for: .normal)
+                    userView.relationButton.isEnabled = false
+                }
+                else if relation == "stranger"
+                {
+                    print("strange")
+                    userView.relationButton.setTitle("未关注", for: .normal)
+                }
+                userView.relationButton.addTarget(self, action: "interestUser:", for: .touchUpInside)
+                userView.relationButton.tag = i
+
+                nextX += 85
+                i += 1
             }
-            userView.nameLabel.text = enity.name
-            userView.tag = i//传递index标志被点击的view
-            recommendUserScrollView.addSubview(userView)
-            userView.isUserInteractionEnabled = true
-            userView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "recommendToUser:"))
-            nextX += 85
         }
+        
         recommendUserScrollView.contentSize.width = nextX
     }
     
@@ -415,6 +482,13 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
         for enity in enitys
         {
             let activityImageView = UIImageView(frame: CGRect(x: nextX, y: 0, width: recommendActivityScrollView.frame.width, height: recommendActivityScrollView.frame.height))
+            let view = UIView(frame: CGRect(x: nextX, y: recommendActivityScrollView.bounds.height - 30, width: recommendActivityScrollView.frame.width, height: 30))
+            let label = UILabel(frame: CGRect(x: 5, y: 5, width: recommendActivityScrollView.frame.width - 10, height: 20))
+            label.textColor = UIColor.white
+            label.text = enity.activityTitle
+            view.backgroundColor = UIColor.gray
+            view.alpha = 0.7
+            view.addSubview(label)
             let media = enity.image
             let url = urlStruct.basicUrl + "media/" + "\(media)"
             
@@ -444,6 +518,7 @@ class ActivitylistViewController: UIViewController,UITableViewDelegate,UITableVi
             activityImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "recommendImageTap:"))
             activityImageView.tag = i
             recommendActivityScrollView.addSubview(activityImageView)
+            recommendActivityScrollView.addSubview(view)
             nextX += recommendActivityScrollView.frame.width
             i += 1
             

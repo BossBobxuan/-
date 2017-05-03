@@ -1,3 +1,4 @@
+
 //
 //  ActivityListModel.swift
 //  约玩平台
@@ -91,6 +92,40 @@ class ActivityListModel
                 
         })
     }
+    
+    func followUser(uid: Int,token: String,success:@escaping () -> Void)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        //此处token需要更改
+        manager.post(requestUrl, parameters: [], progress: {(progress) in }, success: {
+            (dataTask,response) in
+            success()
+            
+            
+        }, failure: {[weak self] (dataTask,error) in
+            print(error)
+            self?.delegate.getDataFailed()
+            
+        })
+    }
+    func notFollowUser(uid: Int,token: String,success:@escaping () -> Void)
+    {
+        let requestUrl = urlStruct.basicUrl + "/user/~me/follower/" + "\(uid)"
+        manager.requestSerializer.setValue(token, forHTTPHeaderField: "token")
+        manager.delete(requestUrl, parameters: [], success: {(dataTask,response) in
+            success()
+            
+        }, failure: {[weak self] (dataTask,error) in
+            print(error)
+            self?.delegate.getDataFailed()
+            
+        })
+    }
+    
+    
+    
+    
     private func dealWithRecommendUserResponse(response: Any?)
     {
         if let originalDic = response as? NSDictionary
@@ -103,7 +138,7 @@ class ActivityListModel
                     if let JsonDictionary = user as? NSDictionary
                     {
                         //MARK: - 此处gender暂时为nil，以后需要修改
-                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as! String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: (JsonDictionary["gender"] as! String))
+                        let userInformationEnity = UserInformationEnity(id: JsonDictionary["id"] as! Int, user: JsonDictionary["user"] as! String, name: JsonDictionary["name"] as! String, avatar: JsonDictionary["avatar"] as? Int, description: JsonDictionary["description"] as? String, followersCount: JsonDictionary["followers_count"] as! Int, fansCount: JsonDictionary["fans_count"] as! Int, activitiesCount: JsonDictionary["activities_count"] as! Int, relation: JsonDictionary["relation"] as! String,gender: (JsonDictionary["gender"] as! String))
                         recommendUserEnitys.append(userInformationEnity)
                         
                     }

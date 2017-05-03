@@ -21,6 +21,7 @@ class UserImageModel
     func getActivityInformation(idArray: [PhotoEnity])
     {
         requestNumber = 0
+        var count = idArray.count - activityEnitys.count
         for enity in idArray
         {
             let activityId = enity.activityId
@@ -38,7 +39,7 @@ class UserImageModel
                         
                     }
                 }
-                if self?.requestNumber == 9
+                if self?.requestNumber == count
                 {
                     self?.delegate.needUpdateUI()
                 }

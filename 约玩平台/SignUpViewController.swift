@@ -44,6 +44,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
     
     
     @IBAction func editAvatar(_ sender: UIButton) {
+        UIApplication.shared.keyWindow?.endEditing(true)
         let imagePicker = UIImagePickerController()
         PHPhotoLibrary.requestAuthorization({[weak self] (status) in
             if status == PHAuthorizationStatus.authorized
@@ -144,6 +145,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate,UIPickerViewDel
         self.userTextField.delegate = self
         
     }
+    
 
     override func didReceiveMemoryWarning()
     {

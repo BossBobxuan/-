@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c37cea0a6e642c5a8ad0457a8f2a6c75.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-DB-DK1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="boot.png" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-DB-DK1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="c37cea0a6e642c5a8ad0457a8f2a6c75.jpg" width="1920" height="1080"/>
+        <image name="boot.png" width="450" height="800"/>
     </resources>
 </document>

@@ -34,12 +34,15 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self
         timeLineTableView.pullDataDelegate = self
-        if uid != nil
+        if uid == 0
+        {
+            model.getUserTimeLine(token: token)
+        }else if uid != nil
         {
             model.getUserTimeLine(uid: uid!)
         }else
         {
-            model.getUserTimeLine(token: token)
+            model.getPersonalTimeLine(token: token)
         }
         
         timeLineTableView.btn.isHidden = true//不使用加载更多
@@ -148,7 +151,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             return cell
         case "1":
             let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as! ActivityDisplayTableViewCell
-            cell.userNameLabel.text = model.userName + "添加活动"
+            cell.userNameLabel.text = (model.Enitys[indexPath.row] as! ActiveEnity).creator.name + "添加活动"
             cell.activityTitleLabel.text = (model.Enitys[indexPath.row] as! ActiveEnity).activityTitle
             let media = (model.Enitys[indexPath.row] as! ActiveEnity).image
             let url = urlStruct.basicUrl + "media/" + "\(media)"
@@ -176,7 +179,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             }
             cell.userAvatarImageView.layer.masksToBounds = true
             cell.userAvatarImageView.layer.cornerRadius = cell.userAvatarImageView.frame.width / 2
-            let media2 = model.userAvatarId
+            let media2 = (model.Enitys[indexPath.row] as! ActiveEnity).creator.avatar
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             print(url2)
             if let image = self.getImageFromCaches(mediaId: media2!)
@@ -205,7 +208,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
         case "2":
             //MARK: - 尚未添加图片
             let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! timelinePhotoTableViewCell
-            cell.nameLabel.text = model.userName + "上传"
+            cell.nameLabel.text = (model.Enitys[indexPath.row] as! PhotoEnity).creator.name + "上传"
             if let description = (model.Enitys[indexPath.row] as! PhotoEnity).description
             {
                 cell.descriptionLabel.text = description
@@ -238,7 +241,7 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
             
             
             
-            let media2 = model.userAvatarId
+            let media2 = (model.Enitys[indexPath.row] as! PhotoEnity).creator.avatar
             let url2 = urlStruct.basicUrl + "media/" + "\(media2!)"
             cell.avatarImageView.layer.masksToBounds = true
             cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.width / 2
@@ -369,7 +372,16 @@ class TimeLineViewController: UIViewController, PullDataDelegate, UITableViewDel
     
     
     func pullToRefresh() {
-        model.getUserTimeLine(token: token)
+        if uid == 0
+        {
+            model.getUserTimeLine(token: token)
+        }else if uid != nil
+        {
+            model.getUserTimeLine(uid: uid!)
+        }else
+        {
+            model.getPersonalTimeLine(token: token)
+        }
     }
     func loadMore() {
         

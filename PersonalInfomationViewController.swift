@@ -70,6 +70,7 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     
     @IBOutlet weak var followButton: UIButton!
     
+    
  
     
     
@@ -276,7 +277,14 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
     func needUpdateUI()
     {
         self.nameLabel.text = personalInformationModel.personalInformationEnity!.name
-        self.descriptionTextView.text = personalInformationModel.personalInformationEnity!.description
+        if personalInformationModel.personalInformationEnity!.gender == "0"
+        {
+            self.descriptionTextView.text = "♂" + personalInformationModel.personalInformationEnity!.description
+        }else
+        {
+            self.descriptionTextView.text = "♀" + personalInformationModel.personalInformationEnity!.description
+        }
+        
         self.fansCountsLabel.text = "\(personalInformationModel.personalInformationEnity!.fansCount)"
         self.followerCountsLabel.text = "\(personalInformationModel.personalInformationEnity!.followersCount)"
         if uid != nil
@@ -500,7 +508,14 @@ class PersonalInfomationViewController: UIViewController, PullDataDelegate, getU
             if let controller = segue.destination as? TimeLineViewController
             {
                 
-                controller.uid = uid
+                if uid != nil
+                {
+                    controller.uid = uid
+                }else
+                {
+                    controller.uid = 0
+                }
+                
                 
             }
         }else if segue.identifier == seguename.toUserImageList
